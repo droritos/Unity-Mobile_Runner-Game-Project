@@ -4,10 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    void Start()
-    {
-    }
-
+    [SerializeField] GameObject playerPrefab;
     // Update is called once per frame
     void Update()
     {
@@ -17,21 +14,21 @@ public class PlayerMovement : MonoBehaviour
 
     public void CheckLeft()
     {
-        if (Input.GetMouseButton(0) && transform.position.x >= -1.5f)
+        if (playerPrefab.transform.position.x >= -0.5f)
         {
             // Move the player to the left
-            transform.Translate(new Vector3(-0.3f, 0, 0));
-            Debug.Log("LeftMoush key was pressed");
+            playerPrefab.transform.Translate(new Vector3(-1f, 0, 0));
         }
+        Debug.Log("LeftMoush key was pressed");
     }
 
-    private void CheckRight()
+    public void CheckRight()
     {
-        if (Input.GetMouseButton(1) && transform.position.x <= 1.5f)
+        if (playerPrefab.transform.position.x <= 1f)
         {
             // Move the player to the right
-            transform.Translate(new Vector3(6f, 0, 0));
-            Debug.Log("RightMouse key was pressed");
+            playerPrefab.transform.Translate(new Vector3(1f, 0, 0));
         }
+        Debug.Log("RightMouse key was pressed");
     }
 }

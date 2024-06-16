@@ -2,28 +2,33 @@ using UnityEngine;
 
 public class MoveGround : MonoBehaviour
 {
-    [SerializeField] RoadParameters roadParameters;
-    Transform floorsParent;
+    private float _speed;
+    Transform spawnFloorPosition;
     private void Awake()
     {
-        floorsParent = GameObject.Find("SpawnFloors").transform;
+        spawnFloorPosition = GameObject.Find("SpawnFloors").transform;
     }
     void Update()
     {
         MoveFloor();
+        UpdateMoveSpeed();
     }
 
     private void MoveFloor()
     {
         // Move the ground backwards along the Z axis
-        transform.Translate(roadParameters.Speed * Time.deltaTime * Vector3.back);
+        transform.Translate(_speed * Time.deltaTime * Vector3.back);
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Wall"))
         {
-            transform.position = floorsParent.transform.position;
+            transform.position = spawnFloorPosition.transform.position;
         }
+    }
+    private void UpdateMoveSpeed()
+    {
+        _speed = GameManager.Instance.SetFloorSpeed();
     }
 }

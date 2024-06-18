@@ -18,8 +18,9 @@ public class PlayerMovement : MonoBehaviour
         {
             // Move the player to the left
             playerPrefab.transform.Translate(new Vector3(-1f, 0, 0));
+            
         }
-        Debug.Log("LeftMoush key was pressed");
+        
     }
 
     public void CheckRight()
@@ -28,7 +29,8 @@ public class PlayerMovement : MonoBehaviour
         {
             // Move the player to the right
             playerPrefab.transform.Translate(new Vector3(1f, 0, 0));
+          
         }
-        Debug.Log("RightMouse key was pressed");
+        
     }
 }

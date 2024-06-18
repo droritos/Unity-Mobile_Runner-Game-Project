@@ -1553,6 +1553,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1687495687}
   - component: {fileID: 1687495688}
+  - component: {fileID: 1687495689}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1589,6 +1590,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roadParameters: {fileID: 11400000, guid: b1e510215af7a134b8003fe8faa5e20e, type: 2}
   floorSpeed: 8.5
+--- !u!114 &1687495689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1687495686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 338d6f5a484735b49821be89f263e9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerPrefab: {fileID: 467877059}
 --- !u!1 &1689871848
 GameObject:
   m_ObjectHideFlags: 0
@@ -2530,6 +2544,11 @@ PrefabInstance:
     - target: {fileID: 2944043120655938976, guid: be6eeed500b734347bc7031775900e3b,
         type: 3}
       propertyPath: m_Name
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 2944043120655938976, guid: be6eeed500b734347bc7031775900e3b,
+        type: 3}
+      propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []

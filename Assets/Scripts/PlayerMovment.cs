@@ -5,12 +5,6 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] GameObject playerPrefab;
-    // Update is called once per frame
-    void Update()
-    {
-        CheckRight();
-        CheckLeft();
-    }
 
     public void CheckLeft()
     {
@@ -19,7 +13,7 @@ public class PlayerMovement : MonoBehaviour
             // Move the player to the left
             playerPrefab.transform.Translate(new Vector3(-1f, 0, 0));
         }
-        Debug.Log("LeftMoush key was pressed");
+        Debug.Log("Player Moving Left");
     }
 
     public void CheckRight()
@@ -29,6 +23,26 @@ public class PlayerMovement : MonoBehaviour
             // Move the player to the right
             playerPrefab.transform.Translate(new Vector3(1f, 0, 0));
         }
-        Debug.Log("RightMouse key was pressed");
+        Debug.Log("Player Moving Right");
+    }
+
+    public void CheckJump()
+    {
+        if (playerPrefab.transform.position.y <= 1f)
+        {
+            // Move the player to the right
+            playerPrefab.transform.Translate(new Vector3(0, 1f, 0));
+        }
+        Debug.Log("Player Jumping");
+    }
+
+    public void CheckSlide()
+    {
+        if (playerPrefab.transform.position.y > -0.03999996f)
+        {
+            // Move the player to the left
+            playerPrefab.transform.Translate(new Vector3(0, -1f, 0));
+        }
+        Debug.Log("Player Sliding");
     }
 }

@@ -1,14 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SwipeTouchDetected2 : MonoBehaviour
 {
-    private bool _isSwiping = false;
     private Vector2 startPosition;
     private Vector2 endPosition;
-    private float _startTime;
-    private float _endTime;
 
     void Update()
     {
@@ -19,11 +14,9 @@ public class SwipeTouchDetected2 : MonoBehaviour
             {
                 case TouchPhase.Began:
                     startPosition = touch.position;
-                    _startTime = Time.time;
                     break;
                 case TouchPhase.Ended:
                     endPosition = touch.position;
-                    _endTime = Time.time;
                     DetectSwipe();
                     break;
 
@@ -33,7 +26,6 @@ public class SwipeTouchDetected2 : MonoBehaviour
 
     private void DetectSwipe()
     {
-        _isSwiping = true; Debug.Log("Swiping");
         float swipeDistanceX = endPosition.x - startPosition.x;
         float swipeDistanceY = endPosition.y - startPosition.y;
         if (Mathf.Abs(swipeDistanceX) > Mathf.Abs(swipeDistanceY))

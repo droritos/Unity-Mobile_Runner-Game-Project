@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : MonoSingleton<PlayerMovement>
 {
-    [SerializeField] GameObject playerPrefab;
+    public GameObject PlayerPrefab;
     private Vector3 _startPosition;
     private Vector3 _targetPosition;
     private float _elapsedTime;
@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
-        _startPosition = playerPrefab.transform.position;
+        _startPosition = PlayerPrefab.transform.position;
     }
 
     private void Update()
@@ -20,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
         {
             _elapsedTime += Time.deltaTime;
             float t = _elapsedTime / duration;
-            playerPrefab.transform.position = Vector3.Lerp(_startPosition, _targetPosition, t);
+            PlayerPrefab.transform.position = Vector3.Lerp(_startPosition, _targetPosition, t);
 
             if (t >= 1.0f)
             {
@@ -32,10 +32,10 @@ public class PlayerMovement : MonoBehaviour
 
     public void CheckLeft()
     {
-        if (playerPrefab.transform.position.x >= -0.5f && !_isMoving)
+        if (PlayerPrefab.transform.position.x >= -0.5f && !_isMoving)
         {
-            _startPosition = playerPrefab.transform.position;
-            _targetPosition = new Vector3(playerPrefab.transform.position.x - 1f, playerPrefab.transform.position.y, playerPrefab.transform.position.z);
+            _startPosition = PlayerPrefab.transform.position;
+            _targetPosition = new Vector3(PlayerPrefab.transform.position.x - 1f, PlayerPrefab.transform.position.y, PlayerPrefab.transform.position.z);
             _isMoving = true;
         }
         Debug.Log("Player Moving Left");
@@ -43,10 +43,10 @@ public class PlayerMovement : MonoBehaviour
 
     public void CheckRight()
     {
-        if (playerPrefab.transform.position.x <= 1f && !_isMoving)
+        if (PlayerPrefab.transform.position.x <= 1f && !_isMoving)
         {
-            _startPosition = playerPrefab.transform.position;
-            _targetPosition = new Vector3(playerPrefab.transform.position.x + 1f, playerPrefab.transform.position.y, playerPrefab.transform.position.z);
+            _startPosition = PlayerPrefab.transform.position;
+            _targetPosition = new Vector3(PlayerPrefab.transform.position.x + 1f, PlayerPrefab.transform.position.y, PlayerPrefab.transform.position.z);
             _isMoving = true;
         }
         Debug.Log("Player Moving Right");
@@ -54,10 +54,10 @@ public class PlayerMovement : MonoBehaviour
 
     public void CheckJump()
     {
-        if (playerPrefab.transform.position.y <= 1f && !_isMoving)
+        if (PlayerPrefab.transform.position.y <= 1f && !_isMoving)
         {
-            _startPosition = playerPrefab.transform.position;
-            _targetPosition = new Vector3(playerPrefab.transform.position.x, playerPrefab.transform.position.y + 1f, playerPrefab.transform.position.z);
+            _startPosition = PlayerPrefab.transform.position;
+            _targetPosition = new Vector3(PlayerPrefab.transform.position.x, PlayerPrefab.transform.position.y + 1f, PlayerPrefab.transform.position.z);
             _isMoving = true;
         }
         Debug.Log("Player Jumping");
@@ -65,10 +65,10 @@ public class PlayerMovement : MonoBehaviour
 
     public void CheckSlide()
     {
-        if (playerPrefab.transform.position.y > -0.03999996f && !_isMoving)
+        if (PlayerPrefab.transform.position.y > -0.03999996f && !_isMoving)
         {
-            _startPosition = playerPrefab.transform.position;
-            _targetPosition = new Vector3(playerPrefab.transform.position.x, playerPrefab.transform.position.y - 1f, playerPrefab.transform.position.z);
+            _startPosition = PlayerPrefab.transform.position;
+            _targetPosition = new Vector3(PlayerPrefab.transform.position.x, PlayerPrefab.transform.position.y - 1f, PlayerPrefab.transform.position.z);
             _isMoving = true;
         }
         Debug.Log("Player Sliding");

@@ -1,48 +1,76 @@
 using UnityEngine;
+
 public class GyroInput : MonoBehaviour
 {
-
     [SerializeField] float minShakeInterval = 0.5f;
     [SerializeField] float shakeDetectionThreshold = 1.0f;
-    
+    private PlayerMovement _player;
+
     private float _lastShakeTime;
 
     private void Start()
     {
+        _player = FindObjectOfType<PlayerMovement>();
         _lastShakeTime = Time.time;
-
         shakeDetectionThreshold *= shakeDetectionThreshold;
     }
 
     void Update()
     {
-        Vector3 accelertion = Input.acceleration * Time.deltaTime;
+        Vector3 acceleration = Input.acceleration * Time.deltaTime;
 
-        float accelerationSqrMagnitude = accelertion.sqrMagnitude;
+        float accelerationSqrMagnitude = acceleration.sqrMagnitude;
 
         if (accelerationSqrMagnitude >= shakeDetectionThreshold && Time.time >= _lastShakeTime + minShakeInterval)
         {
             _lastShakeTime = Time.time;
 
-            if (Mathf.Abs(accelertion.x) > Mathf.Abs(accelertion.y))
+            if (Mathf.Abs(acceleration.x) > Mathf.Abs(acceleration.y))
             {
-                HorizontalShaken();
+                if (acceleration.x > 0)
+                {
+                    LeftShaken();
+                }
+                else
+                {
+                    RightShaken();
+                }
             }
             else
             {
-                VerticalShaken();
+                if (acceleration.y > 0)
+                {
+                    UpShaken();
+                }
+                else
+                {
+                    DownShaken();
+                }
             }
         }
     }
 
-    private void HorizontalShaken()
+    private void RightShaken()
     {
-        Debug.Log("Device Horizontal Shake");
+        Debug.Log("Device shaken to the right");
+        _player.CheckRight();
     }
 
-    private void VerticalShaken()
+    private void LeftShaken()
     {
-        Debug.Log("Device Vetical Shake");
+        Debug.Log("Device shaken to the left");
+        _player.CheckLeft();
     }
 
+    private void UpShaken()
+    {
+        Debug.Log("Device shaken up");
+        _player.CheckJump();
+    }
+
+    private void DownShaken()
+    {
+        Debug.Log("Device shaken down");
+        _player.CheckSlide();
+    }
 }

@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuScript : MonoBehaviour
 {
-    int num = 0;
     public void SetInputButtons()
     {
         PlayerPrefs.SetInt("ButtonSelected", 1);
@@ -33,6 +32,5 @@ public class MainMenuScript : MonoBehaviour
     public void OpenMainMenu()
     {
         SceneManager.LoadScene(0);
->>>>>>> Slava
     }
 }

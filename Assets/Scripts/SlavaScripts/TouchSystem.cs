@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class TouchSystem : MonoBehaviour
 {
@@ -9,11 +10,14 @@ public class TouchSystem : MonoBehaviour
     float minSwipeDist = 30; // Minimum Ssize of swipe
     float startTime;
     float touchDuration;
-    [SerializeField] GameObject playerPrefab;
+    private PlayerMovement _player;
 
+    private void Awake()
+    {
+        _player = FindObjectOfType<PlayerMovement>();
+    }
     void Update()
     {
-        
         if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
@@ -38,30 +42,18 @@ public class TouchSystem : MonoBehaviour
                         return;
                     }
 
-                   
-
                     // Detect direction dude (\L/)00(\R/)
                     if (Mathf.Abs(swipeDirection.x) > Mathf.Abs(swipeDirection.y))
                     {
                         // horizontal
                         if (swipeDirection.x > 0)
                         {
-                            if (playerPrefab.transform.position.x >= -0.5f)
-                            {
-                                // Move the player to the left
-                                playerPrefab.transform.Translate(new Vector3(-1f, 0, 0));
-
-                            }
+                            _player.CheckLeft();
                             Debug.Log("Right Swipe");
                         }
                         else
                         {
-                            if (playerPrefab.transform.position.x <= 1f)
-                            {
-                                // Move the player to the right
-                                playerPrefab.transform.Translate(new Vector3(1f, 0, 0));
-
-                            }
+                            _player.CheckRight();
                             Debug.Log("Left Swipe");
                         }
                     }
@@ -70,22 +62,12 @@ public class TouchSystem : MonoBehaviour
                         //vertical
                         if (swipeDirection.y > 0)
                         {
-                            if (playerPrefab.transform.position.y <= 1f)
-                            {
-                                // Move the player to the right
-                                playerPrefab.transform.Translate(new Vector3(0, 1f, 0));
-
-                            }
+                            _player.CheckJump();
                             Debug.Log("Up Swipe");
                         }
                         else
                         {
-                            if (playerPrefab.transform.position.y >= 1f)
-                            {
-                                // Move the player to the right
-                                playerPrefab.transform.Translate(new Vector3(0, -1f, 0));
-
-                            }
+                            _player.CheckSlide();
                             Debug.Log("Down Swipe");
                         }
                     }

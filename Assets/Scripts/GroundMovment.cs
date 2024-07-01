@@ -2,33 +2,32 @@ using UnityEngine;
 
 public class MoveGround : MonoBehaviour
 {
-    private float _speed;
-    Transform spawnFloorPosition;
-    private void Awake()
+    [SerializeField] RoadParameters floorConfig;
+    private bool _canSpawnGround = true;
+    private Rigidbody _rb;
+    private void Start()
     {
-        spawnFloorPosition = GameObject.Find("SpawnFloors").transform;
+        _rb = GetComponent<Rigidbody>();
     }
-    void Update()
+    private void Update()
     {
         MoveFloor();
-        UpdateMoveSpeed();
     }
 
     private void MoveFloor()
     {
-        // Move the ground backwards along the Z axis
-        transform.Translate(_speed * Time.deltaTime * Vector3.back);
-    }
+        transform.position += floorConfig.Speed * Time.deltaTime * Vector3.back;
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Wall"))
+        if (transform.position.z <= floorConfig.objectDistance && transform.tag == "Ground" && _canSpawnGround)
         {
-            transform.position = spawnFloorPosition.transform.position;
+            FloorSpawner.Instance.SpawnGround();
+            _canSpawnGround = false;
         }
-    }
-    private void UpdateMoveSpeed()
-    {
-        _speed = GameManager.Instance.SetFloorSpeed();
+
+        if (transform.position.z <= floorConfig.despawnDistance)
+        {
+            _canSpawnGround = true;
+            gameObject.SetActive(false);
+        }
     }
 }

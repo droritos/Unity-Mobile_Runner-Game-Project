@@ -5,6 +5,9 @@ using UnityEngine;
 public class RoadParameters : ScriptableObject // Note : Inhireted from ScriptableObject and not MonoBehaivor !!
 {
     public float Speed = 1.0f;
+    public float objectDistance = -40;
+    public float despawnDistance = -110f;
+
 
     private void OnValidate()
     {

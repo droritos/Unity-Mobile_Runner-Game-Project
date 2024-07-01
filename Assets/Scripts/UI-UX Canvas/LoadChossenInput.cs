@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class LoadChossenInput : MonoBehaviour
 {
-    
     private void Awake()
     {
         int option = PlayerPrefs.GetInt("InputSetting");

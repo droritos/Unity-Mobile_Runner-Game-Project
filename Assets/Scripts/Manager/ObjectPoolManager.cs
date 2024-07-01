@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Pool;
 
-public class ObjectPoolManager : MonoBehaviour
+public class ObjectPoolManager : MonoSingleton<ObjectPoolManager>
 {
     [SerializeField] GameObject prefab;
     [SerializeField] int initialPoolSize;

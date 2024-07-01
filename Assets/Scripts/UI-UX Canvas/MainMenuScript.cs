@@ -19,7 +19,7 @@ public class MainMenuScript : MonoBehaviour
     public void SetInputGyro()
     {
         PlayerPrefs.SetInt("ButtonSelected", 2);
-        Debug.Log("Gyro");
+        Debug.Log("Gyroo");
     }
     public void OpenSetingsMenu()
     {

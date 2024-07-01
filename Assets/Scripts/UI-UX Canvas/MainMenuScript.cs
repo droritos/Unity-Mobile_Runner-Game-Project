@@ -1,28 +1,38 @@
+
+using System.Globalization;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
 public class MainMenuScript : MonoBehaviour
 {
-    private int key;
-    private string _optionChoosen = "InputSetting";
-
-    public void SwipeOption()
+    int num = 0;
+    public void SetInputButtons()
     {
-        _optionChoosen = "Swipe";
-        key = 0;
-        SetOptionsChoosen(key);
+        PlayerPrefs.SetInt("ButtonSelected", 1);
+        Debug.Log("buttons");
+    }
+    public void SetInputTouch()
+    {
+        PlayerPrefs.SetInt("ButtonSelected", 0);
+        Debug.Log("touch");
+    }
+    public void SetInputGyro()
+    {
+        PlayerPrefs.SetInt("ButtonSelected", 2);
+        Debug.Log("Gyroo");
+    }
+    public void OpenSetingsMenu()
+    {
         SceneManager.LoadScene(1);
     }
-
-    public void ButtonsOption()
+    public void PlayTheGameButton()
     {
-        _optionChoosen = "Buttons";
-        key = 1;
-        SetOptionsChoosen(key);
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
     }
-    private void SetOptionsChoosen(int key)
+    public void OpenMainMenu()
     {
-        PlayerPrefs.SetInt(_optionChoosen, key);
+        SceneManager.LoadScene(0);
+>>>>>>> Slava
     }
 }

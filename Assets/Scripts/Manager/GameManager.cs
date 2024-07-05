@@ -1,18 +1,22 @@
+using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoSingleton<GameManager>
 {
-    [SerializeField] RoadParameters roadParameters;
     [SerializeField] float floorSpeed;
-    public static GameManager Instance; // The "Singleton Pattern" - Easy way to call the ScoreManger script from every where
-    private void Awake()
-    {
-        if (Instance == null)
-            Instance = this;
-        else
-            Destroy(gameObject);
-    }
+    [SerializeField] RoadParameters roadParameters;
+    [SerializeField] ObjectPoolManager poolManager;
+    List<GameObject> pooledList = new List<GameObject>();
+    List<GameObject> standByList = new List<GameObject>();
 
+    private void Start()
+    {
+        for (int i = 0; i < poolManager.InitialPoolSize; i++)
+        {
+            poolManager.GetObject();
+            pooledList.Add(poolManager.GetObject());
+        }
+    }
     public float SetFloorSpeed()
     {
         roadParameters.Speed = floorSpeed;

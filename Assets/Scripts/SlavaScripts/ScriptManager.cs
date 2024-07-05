@@ -6,7 +6,7 @@ public class ScriptManager : MonoBehaviour
     public GameObject scriptGyro;
     [SerializeField] GameObject MovementButtons;
 
-    void Start()
+    void Awake()
     {
         DisableScripts();
         DisableButtonsMenu();
@@ -15,7 +15,7 @@ public class ScriptManager : MonoBehaviour
 
     private void DecideInput()
     {
-        int canvasSelected = PlayerPrefs.GetInt("ButtonSelected", 0); // Note - 0 is the deafult Input Settings
+        int canvasSelected = PlayerPrefs.GetInt("ButtonSelected"); // Note - 0 is the deafult Input Settings
         // Disable specific scripts based on canvas selection
         switch (canvasSelected)
         {
@@ -27,6 +27,9 @@ public class ScriptManager : MonoBehaviour
                 break;
             case 2:
                 scriptGyro.SetActive(true);
+                break;
+            default:
+                scriptTouch.SetActive(true);
                 break;
         }
     }

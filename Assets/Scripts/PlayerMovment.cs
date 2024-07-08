@@ -43,7 +43,7 @@ public class PlayerMovement : MonoSingleton<PlayerMovement>
 
     public void CheckRight()
     {
-        if (PlayerPrefab.transform.position.x <= 1f && !_isMoving)
+        if (PlayerPrefab.transform.position.x <= 0.5f && !_isMoving)
         {
             _startPosition = PlayerPrefab.transform.position;
             _targetPosition = new Vector3(PlayerPrefab.transform.position.x + 1f, PlayerPrefab.transform.position.y, PlayerPrefab.transform.position.z);

@@ -7,9 +7,10 @@ public class ObjectPoolManager : MonoBehaviour
 // create bone section so voxels can be connected to it
 
     public GameObject Prefab;
-    public int InitialPoolSize = 100;
-    public int MaxPoolSize = 4500;
+    public int InitialPoolSize = 50;
+    public int MaxPoolSize = 100;
     public ObjectPool<GameObject> Pool;
+    [SerializeField] Transform poolParent;
     void Awake()
     {
         Pool = new ObjectPool<GameObject>(
@@ -21,12 +22,11 @@ public class ObjectPoolManager : MonoBehaviour
             InitialPoolSize,
             MaxPoolSize
         );
-
         // Pre-warm the pool
         for (int i = 0; i < InitialPoolSize; i++)
         {
             GameObject obj = Pool.Get();
-            Pool.Release(obj);
+            OnReturnedToPool(obj);
         }
     }
 
@@ -38,6 +38,7 @@ public class ObjectPoolManager : MonoBehaviour
 
     private void OnTakeFromPool(GameObject obj)
     {
+        obj.transform.SetParent(poolParent);
         obj.SetActive(true);
         // obstacles 
         // power ups

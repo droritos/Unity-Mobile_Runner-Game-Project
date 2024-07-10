@@ -1,79 +1,80 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GroundController : MonoBehaviour
 {
     [Header("Ground Floor Data")]
     [SerializeField] RoadParameters floorConfig;
-    [SerializeField] Transform[] groundPieces; // Array of ground pieces
+    [SerializeField] List<Transform> groundPieces; // Array of ground pieces
     private float groundLength;
 
     [Header("Object Pool")]
     [SerializeField] ObjectPoolManager obstaclePool;
 
-
-    private void Start()
+    private void Awake()
     {
-        if (groundPieces.Length > 0)
-        {
-            groundLength = groundPieces[0].GetComponent<Renderer>().bounds.size.z;
-        }
+        GetAllFloors();
     }
-
-    private void Update()
+    void Update()
     {
         MoveFloor();
-        CheckAndRepositionGround();
     }
 
     private void MoveFloor()
     {
-        foreach (Transform groundPiece in groundPieces)
+        foreach (Transform floor in groundPieces)
         {
-            groundPiece.position += floorConfig.Speed * Time.deltaTime * Vector3.back;
-
-        }
-
-    }
-
-    private void CheckAndRepositionGround()
-    {
-        foreach (Transform groundPiece in groundPieces)
-        {
-
-            if (groundPiece.position.z < -groundLength)
-            {
-
-                Transform lastGroundPiece = GetLastGroundPiece();
-                float newZ = lastGroundPiece.position.z + groundLength;
-                groundPiece.position = new Vector3(groundPiece.position.x, groundPiece.position.y, newZ);
-
-                GameObject obstacle = obstaclePool.GetObject();
-                obstacle.transform.SetParent(groundPiece);
-            }
+            // Move the ground backwards along the Z axis
+            floor.Translate(floorConfig.Speed * Time.deltaTime * Vector3.back);
         }
     }
 
-    private Transform GetLastGroundPiece()
+    private void GetAllFloors()
     {
-        Transform lastGroundPiece = groundPieces[0];
-        foreach (Transform groundPiece in groundPieces)
+        groundPieces = new List<Transform>();
+        for (int i = 0; i < transform.childCount; i++)
         {
-            if (groundPiece.position.z > lastGroundPiece.position.z)
-            {
-                lastGroundPiece = groundPiece;
-            }
-        }
-        return lastGroundPiece;
-    }
-
-
-    private void CreatPoolObject()
-    {
-        for (int i = 0; i > obstaclePool.InitialPoolSize; i++)
-        {
-            obstaclePool.GetObject();
-            
+            groundPieces.Add(transform.GetChild(i));
         }
     }
 }
+
+
+
+/*
+ 
+public class MoveGround : MonoBehaviour
+{
+    private float _speed;
+    Transform spawnFloorPosition;
+    private void Awake()
+    {
+        spawnFloorPosition = GameObject.Find("SpawnFloors").transform;
+    }
+    void Update()
+    {
+        MoveFloor();
+        UpdateMoveSpeed();
+    }
+
+    private void MoveFloor()
+    {
+        // Move the ground backwards along the Z axis
+        transform.Translate(_speed * Time.deltaTime * Vector3.back);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Wall"))
+        {
+            transform.position = spawnFloorPosition.transform.position;
+        }
+    }
+    private void UpdateMoveSpeed()
+    {
+        _speed = GameManager.Instance.SetFloorSpeed();
+    }
+}
+
+*/

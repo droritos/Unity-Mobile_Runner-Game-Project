@@ -38,7 +38,6 @@ public class ObjectPoolManager : MonoBehaviour
 
     private void OnTakeFromPool(GameObject obj)
     {
-        obj.transform.SetParent(poolParent);
         obj.SetActive(true);
         // obstacles 
         // power ups
@@ -64,4 +63,6 @@ public class ObjectPoolManager : MonoBehaviour
     {
         Pool.Release(obj);
     }
+
+
 }

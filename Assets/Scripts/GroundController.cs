@@ -10,12 +10,10 @@ public class GroundController : MonoBehaviour
 
     [Header("Object Pool")]
     [SerializeField] ObjectPoolManager obstaclePool;
-    private List<ObjectPoolManager> obstaclesList;
 
 
     private void Start()
     {
-        CreatPoolObject();
         if (groundPieces.Length > 0)
         {
             groundLength = groundPieces[0].GetComponent<Renderer>().bounds.size.z;
@@ -34,10 +32,6 @@ public class GroundController : MonoBehaviour
         {
             groundPiece.position += floorConfig.Speed * Time.deltaTime * Vector3.back;
 
-            //for (int i = 0; i > obstaclesList.Count; i++)
-            //{
-            //    obstaclesList[i].transform.position = groundPiece.position;
-            //}
         }
 
     }
@@ -46,12 +40,16 @@ public class GroundController : MonoBehaviour
     {
         foreach (Transform groundPiece in groundPieces)
         {
+
             if (groundPiece.position.z < -groundLength)
             {
+
                 Transform lastGroundPiece = GetLastGroundPiece();
                 float newZ = lastGroundPiece.position.z + groundLength;
                 groundPiece.position = new Vector3(groundPiece.position.x, groundPiece.position.y, newZ);
-                obstaclePool.GetObject();
+
+                GameObject obstacle = obstaclePool.GetObject();
+                obstacle.transform.SetParent(groundPiece);
             }
         }
     }

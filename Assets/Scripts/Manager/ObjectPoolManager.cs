@@ -10,7 +10,7 @@ public class ObjectPoolManager : MonoBehaviour
     public int InitialPoolSize = 50;
     public int MaxPoolSize = 100;
     public ObjectPool<GameObject> Pool;
-    [SerializeField] Transform poolParent;
+    [SerializeField] Transform parent;
     void Awake()
     {
         Pool = new ObjectPool<GameObject>(
@@ -33,6 +33,7 @@ public class ObjectPoolManager : MonoBehaviour
     private GameObject CreatePooledItem()
     {
         var gameobjectprefab = Instantiate(Prefab); // spwan 
+        gameobjectprefab.transform.parent = parent;
         return gameobjectprefab;
     }
 
@@ -43,10 +44,11 @@ public class ObjectPoolManager : MonoBehaviour
         // power ups
     }
 
+
     public void OnReturnedToPool(GameObject obj)
     {
         obj.SetActive(false);
-
+        obj.transform.SetParent(parent);
     }
 
     private void OnDestroyPoolObject(GameObject obj)
@@ -63,6 +65,4 @@ public class ObjectPoolManager : MonoBehaviour
     {
         Pool.Release(obj);
     }
-
-
 }

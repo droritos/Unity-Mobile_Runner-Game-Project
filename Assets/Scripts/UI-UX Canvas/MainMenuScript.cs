@@ -33,4 +33,12 @@ public class MainMenuScript : MonoBehaviour
     {
         SceneManager.LoadScene(0);
     }
+
+    public void MenuSwitcher(GameObject menu)
+    {
+        if(menu.activeInHierarchy)
+            menu.SetActive(false);
+        else
+            menu.SetActive(true);
+    }
 }

@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class TouchSystem : MonoBehaviour
 {
@@ -33,11 +30,11 @@ public class TouchSystem : MonoBehaviour
                     Vector2 endPos = touch.position;
                     Vector2 swipeDirection = endPos - startPos;
                     touchDuration = Time.time - startTime;
-                    Debug.Log("Touch lasted for: " + touchDuration + " seconds");
+                    //Debug.Log("Touch lasted for: " + touchDuration + " seconds");
 
                     if (swipeDirection.magnitude < minSwipeDist)
                     {
-                        Debug.Log("Touch Shel halavi!");
+                        //Debug.Log("Touch Shel halavi!");
                         // VERY SMALL TOOL
                         return;
                     }

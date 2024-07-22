@@ -628,8 +628,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c9a6417786d46b4bb95a247c8e78026, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textObject: {fileID: 3387146581779176359, guid: e4aee84548258304296a448cfe11869e,
-    type: 3}
+  playerPhoto: {fileID: 0}
   playerPhotoDisplay: {fileID: 1583012066}
 --- !u!114 &205451300
 MonoBehaviour:
@@ -4842,6 +4841,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   floorSpeed: 8.5
   roadParameters: {fileID: 11400000, guid: b1e510215af7a134b8003fe8faa5e20e, type: 2}
+  readListFromFile: {fileID: 205451299}
 --- !u!114 &1687495690
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -9,21 +9,7 @@ public class ReadListFromFile : MonoBehaviour
     public GameObject playerPhoto;
     public RawImage playerPhotoDisplay; // Reference to display the loaded photo
 
-    [System.Serializable]
-    public class Player
-    {
-        public string playerName;
-        public int playerAge;
-        public string photoPath;
-    }
-
-    [System.Serializable]
-    public class PlayerListWrapper
-    {
-        public List<Player> players;
-    }
-
-    public void LoadPlayerData()
+    public List<Player> LoadPlayerData()
     {
         string filePath = Path.Combine(Application.persistentDataPath, "playersData.json");
         string jsonData = ReadFromFile(filePath);
@@ -49,7 +35,9 @@ public class ReadListFromFile : MonoBehaviour
 
                 Debug.Log("Player Name: " + player.playerName + ", Player Age: " + player.playerAge);
             }
+            return players;
         }
+        return null;
     }
 
     string ReadFromFile(string path)
@@ -74,4 +62,17 @@ public class ReadListFromFile : MonoBehaviour
             return null;
         }
     }
+}
+[System.Serializable]
+public class Player
+{
+    public string playerName;
+    public int playerAge;
+    public string photoPath;
+}
+
+[System.Serializable]
+public class PlayerListWrapper
+{
+    public List<Player> players;
 }

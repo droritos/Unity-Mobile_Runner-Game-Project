@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class WallManager : MonoBehaviour
@@ -114,30 +115,21 @@ public class WallManager : MonoBehaviour
     }
     #endregion
     #region << Coin Related Methods >>
-    private GameObject RandomBuilding(int degres)
+    private GameObject RandomBuilding(float rotationDegrees)
     {
         int ranom = Random.Range(0, buildingObjectPool.Prefabs.Length);
         GameObject building = buildingObjectPool.Prefabs[ranom];
-        building.transform.rotation = Quaternion.Euler(0, degres, 0);
+        building.transform.rotation = Quaternion.Euler(0, rotationDegrees, 0);
         return building;
     }
     private void RemoveBuildingFromSidewalk(Transform sidewalk)
     {
         for (int i = 0; i < sidewalk.childCount; i++)
         {
-            Transform child = sidewalk.GetChild(i);
-            if (child.childCount > 0)
-            {
-                GameObject building = child.GetChild(0).gameObject;
-                buildingObjectPool.ReleaseObject(building, building);
-                Debug.Log($"Released obstacle: {building.name}");
-            }
+            GameObject building = sidewalk.GetChild(i).gameObject;
+            buildingObjectPool.ReleaseObject(building);
+            Debug.Log($"Released obstacle: {building.name}");
         }
-    }
-
-    private void RotateBuilding()
-    {
-
     }
     #endregion
 }

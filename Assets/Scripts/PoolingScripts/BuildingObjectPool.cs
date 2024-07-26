@@ -37,17 +37,30 @@ public class BuildingObjectPool : MonoBehaviour
             }
         }
     }
+    //private GameObject aaaaCreatePooledItem(GameObject prefab)
+    //{
+    //    var gameobjectprefab = Instantiate(prefab);
+
+    //    gameobjectprefab.transform.parent = this.transform;
+    //    return gameobjectprefab;
+        
+
+
+    //}
+
     private GameObject CreatePooledItem(GameObject prefab)
     {
-        var gameobjectprefab = Instantiate(prefab);
-
-        gameobjectprefab.transform.parent = this.transform;
-        return gameobjectprefab;
+        var instance = Instantiate(prefab); // Instantiate prefab
+        instance.transform.SetParent(this.transform); // Set parent if needed
+        var pooledObject = instance.AddComponent<PooledObject>();
+        pooledObject.OriginalPrefab = prefab;
+        return instance;
     }
 
     private void OnTakeFromPool(GameObject obj)
     {
         obj.transform.localScale = _localScaled;
+        //obj.name = prefabPools.Keys.ToString();
         obj.SetActive(true);
         // Additional logic for obstacles, power-ups, etc.
     }
@@ -76,11 +89,12 @@ public class BuildingObjectPool : MonoBehaviour
         }
     }
 
-    public void ReleaseObject(GameObject prefab, GameObject obj)
+    public void ReleaseObject(GameObject obj)
     {
-        if (prefabPools.ContainsKey(prefab))
+        var pooledObject = obj.GetComponent<PooledObject>();
+        if (pooledObject != null && prefabPools.ContainsKey(pooledObject.OriginalPrefab))
         {
-            prefabPools[prefab].Release(obj);
+            prefabPools[pooledObject.OriginalPrefab].Release(obj);
         }
         else
         {

@@ -3,58 +3,89 @@ using UnityEngine;
 
 public class GroundController : MonoBehaviour
 {
-    [Header("Ground Floor Data")]
+    [Header("Ground Config")]
     [SerializeField] RoadParameters floorConfig;
-    [SerializeField] List<Transform> groundPieces; // Array of ground peices
-    [HideInInspector] public Bounds FloorBounds;
+    private Dictionary<string, Bounds> objectBounds = new Dictionary<string, Bounds>();
+
+    [Header("Ground Type Lists")]
+    [SerializeField] List<Transform> groundPieces; // List of ground pieces
+    [SerializeField] List<Transform> sidewalkRightPieces; // List of right sidewalk pieces
+    [SerializeField] List<Transform> sidewalkLeftPieces; // List of left sidewalk pieces
+
+    [Header("Ground Type Parents")]
+    [SerializeField] Transform floorParent;
+    [SerializeField] Transform sidewalkRightParent;
+    [SerializeField] Transform sidewalkLeftParent;
+
 
     private void Awake()
     {
-        SetAllFloors();
-    }
-    void Update()
-    {
-        MoveFloor();
+        SetAllObjects(floorParent, groundPieces, "Floor");
+        SetAllObjects(sidewalkRightParent, sidewalkRightPieces, "SidewalkRight");
+        SetAllObjects(sidewalkLeftParent, sidewalkLeftPieces, "SidewalkLeft");
     }
 
-    private void MoveFloor()
+    private void Update()
     {
-        foreach (Transform floor in groundPieces)
+        MoveObjects(groundPieces, floorConfig.CarRoadSpeed);
+        MoveObjects(sidewalkRightPieces, floorConfig.SideWalkSpeed);
+        MoveObjects(sidewalkLeftPieces, floorConfig.SideWalkSpeed);
+    }
+
+    private void MoveObjects(List<Transform> objects, float speed)
+    {
+        foreach (Transform obj in objects)
         {
-            // Move the ground backwards along the Z axis
-            floor.Translate(floorConfig.Speed * Time.deltaTime * Vector3.back);
+            // Move the object backwards along the Z axis
+            obj.Translate(speed * Time.deltaTime * Vector3.back);
         }
     }
-    private Transform GetAllFloors()
+
+    private void SetAllObjects(Transform parent, List<Transform> objectList, string objectType)
     {
-        groundPieces = new List<Transform>();
+        Transform lastObject = PopulateTransformList(parent, objectList);
+        UpdateBounds(lastObject, objectType);
+    }
+
+    private Transform PopulateTransformList(Transform parent, List<Transform> objectList)
+    {
+        objectList.Clear(); // Clear the list to avoid duplications
         Transform lastAddedTransform = null;
 
-        for (int i = 0; i < transform.childCount; i++)
+        for (int i = 0; i < parent.childCount; i++)
         {
-            lastAddedTransform = transform.GetChild(i);
-            groundPieces.Add(lastAddedTransform);
+            lastAddedTransform = parent.GetChild(i);
+            objectList.Add(lastAddedTransform);
         }
 
-        // Return the last added Transform
         return lastAddedTransform;
     }
-    private void GetFloorBounds(Transform floorBounds)
+
+    private void UpdateBounds(Transform targetTransform, string objectType)
     {
-        Bounds bounds = floorBounds.GetComponent<MeshFilter>().mesh.bounds;
-        FloorBounds = bounds;
+        if (targetTransform != null)
+        {
+            Bounds bounds = targetTransform.GetComponent<MeshRenderer>().bounds;
+            if (objectBounds.ContainsKey(objectType))
+            {
+                objectBounds[objectType] = bounds;
+            }
+            else
+            {
+                objectBounds.Add(objectType, bounds);
+            }
+        }
     }
-    private void SetAllFloors()
+
+    public Bounds GetBounds(string objectType)
     {
-        Transform takeFloorBounds = GetAllFloors();
-        GetFloorBounds(takeFloorBounds);
-    }
-    public bool RandomObstacleOnMe()
-    {
-        int chance = Random.Range(0, 100);
-        if (chance > 50)
-            return true; // Add an obstacle on the floor 
+        if (objectBounds.ContainsKey(objectType))
+        {
+            return objectBounds[objectType];
+        }
         else
-            return false; // Dont add an obstacle on the floor
+        {
+            return new Bounds();
+        }
     }
 }

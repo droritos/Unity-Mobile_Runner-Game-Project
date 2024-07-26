@@ -45,12 +45,12 @@ public class TouchSystem : MonoBehaviour
                         // horizontal
                         if (swipeDirection.x > 0)
                         {
-                            _player.CheckLeft();
+                            _player.MoveRight();
                             Debug.Log("Right Swipe");
                         }
                         else
                         {
-                            _player.CheckRight();
+                            _player.MoveLeft();
                             Debug.Log("Left Swipe");
                         }
                     }

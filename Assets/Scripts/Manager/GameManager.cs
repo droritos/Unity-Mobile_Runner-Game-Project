@@ -6,15 +6,17 @@ public class GameManager : MonoSingleton<GameManager>
     [SerializeField] float floorSpeed;
     [SerializeField] RoadParameters roadParameters;
     [SerializeField] ReadListFromFile readListFromFile;
+    [SerializeField] WebcamCapture webcamCapture;
 
     public float SetFloorSpeed()
     {
-        roadParameters.Speed = floorSpeed;
+        roadParameters.CarRoadSpeed = floorSpeed;
         return floorSpeed;
     }
 
     private void Start()
     {
         readListFromFile.LoadPlayerData();
+        StartCoroutine(webcamCapture.RequestCameraPermissionCoroutine());
     }
 }

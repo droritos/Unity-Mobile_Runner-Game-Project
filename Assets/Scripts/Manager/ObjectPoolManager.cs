@@ -11,6 +11,8 @@ public class ObjectPoolManager : MonoBehaviour
     public int MaxPoolSize = 100;
     public ObjectPool<GameObject> Pool;
     [SerializeField] Transform parent;
+
+    private Vector3 _localScaled;
     void Awake()
     {
         Pool = new ObjectPool<GameObject>(
@@ -22,6 +24,8 @@ public class ObjectPoolManager : MonoBehaviour
             InitialPoolSize,
             MaxPoolSize
         );
+
+        _localScaled = Prefab.transform.localScale;
         // Pre-warm the pool
         for (int i = 0; i < InitialPoolSize; i++)
         {
@@ -39,6 +43,7 @@ public class ObjectPoolManager : MonoBehaviour
 
     private void OnTakeFromPool(GameObject obj)
     {
+        obj.transform.localScale = _localScaled;
         obj.SetActive(true);
         // obstacles 
         // power ups

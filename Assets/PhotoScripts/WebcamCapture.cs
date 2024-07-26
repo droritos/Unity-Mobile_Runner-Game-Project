@@ -8,17 +8,19 @@ public class WebcamCapture : MonoBehaviour
     public RawImage capturedImageDisplay;
     private WebCamTexture webCamTexture;
     private ImageHandler _imageHandler;
+    [SerializeField] Material playerFaceMaterial;
 
     void Start()
     {
-        StartCoroutine(RequestCameraPermissionCoroutine());
+        //StartCoroutine(RequestCameraPermissionCoroutine());
         _imageHandler = GetComponent<ImageHandler>();
     }
 
     // Coroutine to request camera permission
-    private IEnumerator RequestCameraPermissionCoroutine()
+    public IEnumerator RequestCameraPermissionCoroutine()
     {
         // Check if the camera permission is already granted
+        Debug.Log("Checking Camera Permisson ? ");
         if (!HasCameraPermission())
         {
             // Request the camera permission
@@ -53,6 +55,7 @@ public class WebcamCapture : MonoBehaviour
         if (Application.platform != RuntimePlatform.Android)
             return true;
 
+        Debug.Log("Camera Needs Permisson!");
         using (AndroidJavaObject activity = new AndroidJavaClass("com.unity3d.player.UnityPlayer")
             .GetStatic<AndroidJavaObject>("currentActivity"))
         {
@@ -73,6 +76,7 @@ public class WebcamCapture : MonoBehaviour
         if (Application.platform != RuntimePlatform.Android)
             return;
 
+        Debug.Log("Camera Needs Permisson !");
         using (AndroidJavaObject activity = new AndroidJavaClass("com.unity3d.player.UnityPlayer")
             .GetStatic<AndroidJavaObject>("currentActivity"))
         {
@@ -111,6 +115,7 @@ public class WebcamCapture : MonoBehaviour
         if (loadedTexture != null)
         {
             capturedImageDisplay.texture = loadedTexture;
+            playerFaceMaterial.mainTexture = capturedImageDisplay.texture;
         }
     }
 }

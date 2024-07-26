@@ -53,13 +53,13 @@ public class GyroInput : MonoBehaviour
     private void RightShaken()
     {
         Debug.Log("Device shaken to the right");
-        _player.CheckRight();
+        _player.MoveLeft();
     }
 
     private void LeftShaken()
     {
         Debug.Log("Device shaken to the left");
-        _player.CheckLeft();
+        _player.MoveRight();
     }
 
     private void UpShaken()

@@ -11,6 +11,7 @@ public abstract class MonoSingleton<T> : MonoBehaviour where T : Component
         }
         else if (Instance != this as T)
         {
+            Debug.LogError($"More than one Instance of {Instance} {typeof(T)}");
             Destroy(this);
         }
     }

@@ -8,6 +8,9 @@ TagManager:
   - Wall
   - Ground
   - Floor
+  - Coin
+  - SidewalkRight
+  - SidewalkLeft
   layers:
   - Default
   - TransparentFX

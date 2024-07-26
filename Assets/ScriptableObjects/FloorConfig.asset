@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbc81972830a4674c9c8d1916787a337, type: 3}
   m_Name: FloorConfig
   m_EditorClassIdentifier: 
-  Speed: 30.41
+  CarRoadSpeed: 15
+  SideWalkSpeed: 8.5
   objectDistance: 8
   despawnDistance: -100

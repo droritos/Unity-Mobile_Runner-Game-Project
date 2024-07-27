@@ -1,20 +1,32 @@
+using System.Collections;
 using UnityEngine;
+
 
 public class PlayerMovement : MonoSingleton<PlayerMovement>
 {
-    private Vector3 _startPosition;
-    private Vector3 _targetPosition;
-    private float _elapsedTime;
+    [Header("Public Data")]
+    [HideInInspector] public Animator Animator;
+
+    [Header("Serialize Data")]
     [SerializeField] float duration = 0.5f;
-    private bool _isMoving;
     [SerializeField] float horizontalOffset = 1f;
     [SerializeField] float horizontalMoveRange = 1.6f;
     [SerializeField] float verticalOffset;
-    [SerializeField] float verticallMoveRange;
-
+    [SerializeField] float verticalMoveRange;
+    
+    [Header("Private Data")]
+    private Vector3 _targetPosition;
+    private Vector3 _startPosition;
+    private Vector3 _startBoxPosition;
+    private float _elapsedTime;
+    private bool _isMoving;
+    private BoxCollider _boxCollider;
     private void Start()
     {
+        _boxCollider = GetComponent<BoxCollider>();
+        Animator = GetComponent<Animator>();
         _startPosition = this.transform.position;
+        _startBoxPosition = _boxCollider.center;
     }
 
     private void Update()
@@ -55,25 +67,37 @@ public class PlayerMovement : MonoSingleton<PlayerMovement>
         Debug.Log("Player Moving Right");
     }
 
-    public void CheckJump()
+    public void Jump()
     {
-        if (this.transform.position.y <= 1f && !_isMoving)
+        if (!_isMoving)
         {
-            _startPosition = this.transform.position;
-            _targetPosition = new Vector3(this.transform.position.x, this.transform.position.y + 1f, this.transform.position.z);
-            _isMoving = true;
+            _boxCollider.center *= 2;
+            Animator.SetTrigger("Jumping");
+            StartCoroutine(WaitForAnimationToFinish());
         }
         Debug.Log("Player Jumping");
     }
 
-    public void CheckSlide()
+    public void Slide()
     {
-        if (this.transform.position.y > -0.03999996f && !_isMoving)
+        if (!_isMoving)
         {
-            _startPosition = this.transform.position;
-            _targetPosition = new Vector3(this.transform.position.x, this.transform.position.y - 1f, this.transform.position.z);
-            _isMoving = true;
+            _boxCollider.center /= 2;
+            Animator.SetTrigger("Sliding");
+            StartCoroutine(WaitForAnimationToFinish());
         }
         Debug.Log("Player Sliding");
+    }
+    private IEnumerator WaitForAnimationToFinish()
+    {
+        // Wait until animation is done
+        yield return new WaitForSeconds(Animator.GetCurrentAnimatorStateInfo(0).length);
+
+        // Move the player collison box to deafult
+        while (_boxCollider.center != _startBoxPosition)
+        {
+            _boxCollider.center = _startBoxPosition;
+            yield return null;
+        }
     }
 }

@@ -59,12 +59,12 @@ public class TouchSystem : MonoBehaviour
                         //vertical
                         if (swipeDirection.y > 0)
                         {
-                            _player.CheckJump();
+                            _player.Jump();
                             Debug.Log("Up Swipe");
                         }
                         else
                         {
-                            _player.CheckSlide();
+                            _player.Slide();
                             Debug.Log("Down Swipe");
                         }
                     }

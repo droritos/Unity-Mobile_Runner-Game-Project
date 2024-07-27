@@ -51,7 +51,8 @@ public class BuildingObjectPool : MonoBehaviour
     private GameObject CreatePooledItem(GameObject prefab)
     {
         var instance = Instantiate(prefab); // Instantiate prefab
-        instance.transform.SetParent(this.transform); // Set parent if needed
+        instance.transform.SetParent(this.transform, false); // Set parent if needed
+        //instance.transform.parent = this.transform;
         var pooledObject = instance.AddComponent<PooledObject>();
         pooledObject.OriginalPrefab = prefab;
         return instance;

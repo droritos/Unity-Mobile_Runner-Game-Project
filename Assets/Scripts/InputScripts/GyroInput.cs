@@ -65,12 +65,12 @@ public class GyroInput : MonoBehaviour
     private void UpShaken()
     {
         Debug.Log("Device shaken up");
-        _player.CheckJump();
+        _player.Jump();
     }
 
     private void DownShaken()
     {
         Debug.Log("Device shaken down");
-        _player.CheckSlide();
+        _player.Slide();
     }
 }

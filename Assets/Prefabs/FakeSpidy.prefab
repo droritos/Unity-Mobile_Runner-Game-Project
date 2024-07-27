@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2021154464951580671
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6957835799963775398}
+  m_Layer: 0
+  m_Name: SpawnPoints
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6957835799963775398
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2021154464951580671}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.88, z: 1.58}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 164027789239561936}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &417716676916136251
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -595,13 +626,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 7ef51a24c76f81a4c93da6be03f47a6e,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6957835799963775398}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7ef51a24c76f81a4c93da6be03f47a6e,
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 5498203338206596113}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7ef51a24c76f81a4c93da6be03f47a6e,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1221012511583938676}
   m_SourcePrefab: {fileID: 100100000, guid: 7ef51a24c76f81a4c93da6be03f47a6e, type: 3}
+--- !u!4 &164027789239561936 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 7ef51a24c76f81a4c93da6be03f47a6e,
+    type: 3}
+  m_PrefabInstance: {fileID: 417716676916136251}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &652299339805946986 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 7ef51a24c76f81a4c93da6be03f47a6e,
@@ -629,3 +674,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1221012511583938676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 652299339805946986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 255cd7ef44c0ea042b04b12dcd6b6bbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cobwebSpawnPoint:
+  - {fileID: 6957835799963775398}
+  cobweb: {fileID: 6792072769037908922, guid: fbc9cfc6121b5714f98bc9974d51957f, type: 3}
+  coldown: 2
+  _fire: 0

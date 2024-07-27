@@ -32,7 +32,7 @@ public class WallManager : MonoBehaviour
             if (RandomObstacleChance(coinChance))
             {
                 GameObject pooledObject = poolCoinScript.GetObject();
-                Debug.Log($"Active Coin");
+                //Debug.Log($"Active Coin");
                 PlaceObstacleOnFloor(pooledObject, other.transform, "Floor");
             }
         }

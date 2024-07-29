@@ -4560,6 +4560,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1148162940}
   - component: {fileID: 1148162939}
+  - component: {fileID: 1148162941}
   m_Layer: 0
   m_Name: BuildingPool
   m_TagString: Untagged
@@ -4580,15 +4581,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Prefabs:
-  - {fileID: 919132149155446097, guid: 58fb1c0942575f2409568e06ba0b72e6, type: 3}
-  - {fileID: 919132149155446097, guid: 6541eda7d4ee7d345b4addad2ea181e6, type: 3}
-  - {fileID: 919132149155446097, guid: c461cda6265151d4f97151d1dbd453f1, type: 3}
-  - {fileID: 919132149155446097, guid: 8a69bf4a20748cd4891cc454ce4bce79, type: 3}
-  - {fileID: 919132149155446097, guid: 080fcd4a7f8a54345bf66fea141ab5cc, type: 3}
-  - {fileID: 919132149155446097, guid: a54805b4c367be640ad6cf301126522b, type: 3}
-  - {fileID: 919132149155446097, guid: 47001b0b759d4b849b7ce367ca3d8ba2, type: 3}
-  - {fileID: 919132149155446097, guid: a38db90468f47f34b987aaece76da4b5, type: 3}
-  - {fileID: 919132149155446097, guid: 9d269851f74848d43b17554af206a311, type: 3}
+  - {fileID: 5510958954979389883, guid: 0239e7a0339503748b000ffff4aa5e99, type: 3}
+  - {fileID: 417323805899885575, guid: ae5663c0a10dc8c4ca2765847cf2782c, type: 3}
+  - {fileID: 87464227110886484, guid: f5634ee4090eb9741b2187d52af3c221, type: 3}
+  - {fileID: 1009718470242029666, guid: 102d340e15761464bb04c789898413ef, type: 3}
+  - {fileID: 6170398801437961204, guid: f00e351723d3d4f4c864b05193d6d693, type: 3}
+  - {fileID: 4810883055440434506, guid: 347285ffd4b6dc14689aa03301bb59ce, type: 3}
+  - {fileID: 3614561409914821418, guid: d85087efdd20434418b5e00b57cee971, type: 3}
+  - {fileID: 6860175271765403148, guid: 32b24c30795e424448be5c8067ef8b57, type: 3}
+  - {fileID: 7624837290386107402, guid: 4df024e961a39bb4aa216782383791d9, type: 3}
   InitialPoolSize: 5
   MaxPoolSize: 10
 --- !u!4 &1148162940
@@ -4606,6 +4607,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 844319496}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1148162941
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1148162938}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1179618549
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7969,8 +7991,8 @@ Transform:
   m_GameObject: {fileID: 1979482767}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 192.89}
-  m_LocalScale: {x: 15, y: 30, z: 0.5}
+  m_LocalPosition: {x: 0.1151, y: 0, z: 192.89}
+  m_LocalScale: {x: 8.132501, y: 30, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -7987,6 +8009,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c28c6bc6a74601d4691381b7fc8dd03b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildingObjectPool: {fileID: 1148162939}
 --- !u!1001 &1981130068
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8866,8 +8889,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1221012511583938676, guid: 1d2edae00096627499be46148c1d5f73,
         type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1514245441}
+    - target: {fileID: 1221012511583938676, guid: 1d2edae00096627499be46148c1d5f73,
+        type: 3}
       propertyPath: moveSpeed
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1221012511583938676, guid: 1d2edae00096627499be46148c1d5f73,
+        type: 3}
+      propertyPath: maxCooldown
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1221012511583938676, guid: 1d2edae00096627499be46148c1d5f73,
         type: 3}

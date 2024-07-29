@@ -4,8 +4,18 @@ using UnityEngine;
 
 public class WallGarbage : MonoBehaviour
 {
-    private void OnCollisionEnter(Collision collision)
+    [SerializeField] BuildingObjectPool buildingObjectPool;
+    private void OnTriggerEnter(Collider other)
     {
-        Destroy(collision.gameObject);
+        if (other.CompareTag("Web"))
+        {
+            Destroy(other.gameObject);
+        }
+        else if (other.CompareTag("Building"))
+        {
+            Debug.Log("Remove Building");
+            buildingObjectPool.ReleaseObject(other.gameObject);
+        }
     }
+
 }

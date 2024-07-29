@@ -12,6 +12,7 @@ TagManager:
   - SidewalkRight
   - SidewalkLeft
   - Web
+  - Building
   layers:
   - Default
   - TransparentFX

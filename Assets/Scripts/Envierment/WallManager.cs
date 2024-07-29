@@ -128,7 +128,7 @@ public class WallManager : MonoBehaviour
         {
             GameObject building = sidewalk.GetChild(i).gameObject;
             buildingObjectPool.ReleaseObject(building);
-            Debug.Log($"Released obstacle: {building.name}");
+            //Debug.Log($"Released obstacle: {building.name}");
         }
     }
     #endregion

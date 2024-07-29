@@ -16,6 +16,7 @@ public class SpidyMorals : MonoBehaviour
     [SerializeField] float moveSpeed = 5f;
     [SerializeField] int fireCooldown = 3;
     [SerializeField] float maxCooldown = 2.5f;
+    [SerializeField] Vector3 animationOffset;
 
     [Header("Private Data")]
     private Animator _animator;
@@ -23,6 +24,7 @@ public class SpidyMorals : MonoBehaviour
     private Vector3 _targetPosition;
     private float _fire = 0;
     private float _lerpTime = 0;
+    
 
     [Header("Moving Data")]
     private float _move = 0;
@@ -58,7 +60,7 @@ public class SpidyMorals : MonoBehaviour
         _isMoving = true;
         if (_move >= _randomMove)
         {
-            Debug.Log("Chasing");
+            //Debug.Log("Chasing");
 
             // Set the start and target positions
             _startPosition = transform.position;

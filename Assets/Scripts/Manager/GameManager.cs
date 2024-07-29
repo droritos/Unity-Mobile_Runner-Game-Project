@@ -8,6 +8,7 @@ public class GameManager : MonoSingleton<GameManager>
     [SerializeField] RoadParameters roadParameters;
     [SerializeField] ReadListFromFile readListFromFile;
     [SerializeField] WebcamCapture webcamCapture;
+    [SerializeField] WallManager wallManager;
 
     public float SetFloorSpeed()
     {
@@ -20,4 +21,6 @@ public class GameManager : MonoSingleton<GameManager>
         readListFromFile.LoadPlayerData();
         StartCoroutine(webcamCapture.RequestCameraPermissionCoroutine());
     }
+
+
 }

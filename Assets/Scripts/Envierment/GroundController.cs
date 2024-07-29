@@ -17,12 +17,21 @@ public class GroundController : MonoBehaviour
     [SerializeField] Transform sidewalkRightParent;
     [SerializeField] Transform sidewalkLeftParent;
 
+    [Header("Referances")]
+    [SerializeField] WallManager wallManager;
+
+
 
     private void Awake()
     {
         SetAllObjects(floorParent, groundPieces, "Floor");
         SetAllObjects(sidewalkRightParent, sidewalkRightPieces, "SidewalkRight");
         SetAllObjects(sidewalkLeftParent, sidewalkLeftPieces, "SidewalkLeft");
+    }
+
+    private void Start()
+    {
+        InsiliateStartingBuilding();
     }
 
     private void Update()
@@ -76,7 +85,6 @@ public class GroundController : MonoBehaviour
             }
         }
     }
-
     public Bounds GetBounds(string objectType)
     {
         if (objectBounds.ContainsKey(objectType))
@@ -87,5 +95,24 @@ public class GroundController : MonoBehaviour
         {
             return new Bounds();
         }
+    }
+
+    private void InsiliateStartingBuilding()
+    {
+        foreach (Transform sidewalk in sidewalkLeftParent) // Left
+        {
+            GameObject build = wallManager.RandomBuilding(0);
+            GameObject pooledBuilding = wallManager.BuildingObjectPool.GetObject(build);
+            pooledBuilding.transform.SetParent(sidewalk);
+            pooledBuilding.transform.localPosition = wallManager.BuildingLeftOffset;
+        }
+        foreach (Transform sidewalk in sidewalkRightParent) // Right
+        {
+            GameObject build = wallManager.RandomBuilding(-180);
+            GameObject pooledBuilding = wallManager.BuildingObjectPool.GetObject(build);
+            pooledBuilding.transform.SetParent(sidewalk);
+            pooledBuilding.transform.localPosition = wallManager.BuildingRightOffset;
+        }
+
     }
 }

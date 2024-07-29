@@ -37,16 +37,6 @@ public class BuildingObjectPool : MonoBehaviour
             }
         }
     }
-    //private GameObject aaaaCreatePooledItem(GameObject prefab)
-    //{
-    //    var gameobjectprefab = Instantiate(prefab);
-
-    //    gameobjectprefab.transform.parent = this.transform;
-    //    return gameobjectprefab;
-        
-
-
-    //}
 
     private GameObject CreatePooledItem(GameObject prefab)
     {
@@ -70,6 +60,7 @@ public class BuildingObjectPool : MonoBehaviour
     {
         obj.SetActive(false);
         obj.transform.SetParent(this.transform);
+        obj.transform.position = Vector3.zero; // Restet position
     }
 
     private void OnDestroyPoolObject(GameObject obj)

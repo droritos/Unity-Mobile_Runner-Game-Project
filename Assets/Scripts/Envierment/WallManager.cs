@@ -15,10 +15,9 @@ public class WallManager : MonoBehaviour
     [SerializeField] int coinChance;
 
     [Header("Building Pool Fields")]
-    [SerializeField] BuildingObjectPool buildingObjectPool;
-    [SerializeField] Vector3 buildingRightOffset;
-    [SerializeField] Vector3 buildingLeftOffset;
-
+    public BuildingObjectPool BuildingObjectPool;
+    public Vector3 BuildingRightOffset;
+    public Vector3 BuildingLeftOffset;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -40,22 +39,14 @@ public class WallManager : MonoBehaviour
         {
             other.transform.position = SidewalkRightStartPos.position;
             RemoveBuildingFromSidewalk(other.transform);
-            PlaceBuildingOnSidewalk(other, -180 , buildingRightOffset);
+            PlaceBuildingOnSidewalk(other, -180 , BuildingRightOffset);
         }
         else if (other.CompareTag("SidewalkLeft"))
         {
             other.transform.position = SidewalkLeftStartPos.position;
             RemoveBuildingFromSidewalk(other.transform);
-            PlaceBuildingOnSidewalk(other, 0, buildingLeftOffset);
+            PlaceBuildingOnSidewalk(other, 0, BuildingLeftOffset);
         }
-    }
-
-    private void PlaceBuildingOnSidewalk(Collider other, int degrees , Vector3 offset)
-    {
-        GameObject build = RandomBuilding(degrees);
-        GameObject pooledBuilding = buildingObjectPool.GetObject(build);
-        pooledBuilding.transform.SetParent(other.transform, true);
-        pooledBuilding.transform.localPosition = offset;
     }
 
     #region << Coin Related Methods >> 
@@ -114,22 +105,30 @@ public class WallManager : MonoBehaviour
         return floats[index];
     }
     #endregion
-    #region << Coin Related Methods >>
-    private GameObject RandomBuilding(float rotationDegrees)
+
+    #region << Building Related Methods >>
+    private void PlaceBuildingOnSidewalk(Collider other, int degrees , Vector3 offset)
     {
-        int ranom = Random.Range(0, buildingObjectPool.Prefabs.Length);
-        GameObject building = buildingObjectPool.Prefabs[ranom];
-        building.transform.rotation = Quaternion.Euler(0, rotationDegrees, 0);
-        return building;
+        GameObject build = RandomBuilding(degrees);
+        GameObject pooledBuilding = BuildingObjectPool.GetObject(build);
+        pooledBuilding.transform.SetParent(other.transform, true);
+        pooledBuilding.transform.localPosition = offset;
     }
     private void RemoveBuildingFromSidewalk(Transform sidewalk)
     {
         for (int i = 0; i < sidewalk.childCount; i++)
         {
             GameObject building = sidewalk.GetChild(i).gameObject;
-            buildingObjectPool.ReleaseObject(building);
+            BuildingObjectPool.ReleaseObject(building);
             //Debug.Log($"Released obstacle: {building.name}");
         }
+    }
+    public GameObject RandomBuilding(float rotationDegrees)
+    {
+        int ranom = Random.Range(0, BuildingObjectPool.Prefabs.Length);
+        GameObject building = BuildingObjectPool.Prefabs[ranom];
+        building.transform.rotation = Quaternion.Euler(0, rotationDegrees, 0);
+        return building;
     }
     #endregion
 }

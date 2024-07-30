@@ -2,6 +2,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using System;
 
 public class PlayerData : MonoSingleton<PlayerData>
 {
@@ -10,6 +11,7 @@ public class PlayerData : MonoSingleton<PlayerData>
     public WriteListToFile writeListToFile; // Reference to the WriteListToFile script
     public ReadListFromFile readListFromFile; // Reference to the ReadListFromFile script
     public WebcamCapture webCamCapture; // Reference to the WebCamCapture script
+    public string LastTimeLogin;
 
 
 
@@ -23,6 +25,7 @@ public class PlayerData : MonoSingleton<PlayerData>
         string playerName = playerNameInput.text;
         int playerAge = int.Parse(playerAgeInput.text);
         writeListToFile.SavePlayerData(playerName, playerAge, "capturedImage.png");
+        LastTimeLogin = DateTime.Now.Date.ToString();
     }
 
     public void LoadProfile()

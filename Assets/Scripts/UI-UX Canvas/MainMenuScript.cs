@@ -6,6 +6,12 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuScript : MonoBehaviour
 {
+    
+    private void Start()
+    {
+        PlayerData.Instance.LoadProfile();
+
+    }
     public void SetInputButtons()
     {
         PlayerPrefs.SetInt("ButtonSelected", 1);

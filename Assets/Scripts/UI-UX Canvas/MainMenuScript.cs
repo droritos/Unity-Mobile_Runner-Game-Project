@@ -9,7 +9,7 @@ public class MainMenuScript : MonoBehaviour
     
     private void Start()
     {
-        PlayerData.Instance.LoadProfile();
+        //PlayerData.Instance.LoadProfile();
 
     }
     public void SetInputButtons()

@@ -24,9 +24,10 @@ public class GroundController : MonoBehaviour
 
     private void Awake()
     {
-        SetAllObjects(floorParent, groundPieces, "Floor");
+        //SetAllObjects(floorParent, groundPieces, "Floor");
         SetAllObjects(sidewalkRightParent, sidewalkRightPieces, "SidewalkRight");
         SetAllObjects(sidewalkLeftParent, sidewalkLeftPieces, "SidewalkLeft");
+        SetGroundPieces();
     }
 
     private void Start()
@@ -55,6 +56,18 @@ public class GroundController : MonoBehaviour
         Transform lastObject = PopulateTransformList(parent, objectList);
         UpdateBounds(lastObject, objectType);
     }
+
+    private void SetGroundPieces(/*Transform parent, List<Transform> objectList, string objectType*/)
+    {
+        foreach (Transform obj in floorParent)
+        {
+            groundPieces.Add(obj);
+        }
+
+        //Transform lastObject = PopulateTransformList(parent, objectList);
+        //UpdateBounds(lastObject, objectType);
+    }
+
 
     private Transform PopulateTransformList(Transform parent, List<Transform> objectList)
     {

@@ -8,6 +8,7 @@ public class WallManager : MonoBehaviour
     [SerializeField] Transform FloorStartPos;
     [SerializeField] Transform SidewalkRightStartPos;
     [SerializeField] Transform SidewalkLeftStartPos;
+    [SerializeField] Transform StreetFloorParent;
 
     [Header("Coin Pool Fields")]
     [SerializeField] ObjectPoolManager poolCoinScript;
@@ -39,13 +40,17 @@ public class WallManager : MonoBehaviour
         {
             other.transform.position = SidewalkRightStartPos.position;
             RemoveBuildingFromSidewalk(other.transform);
-            PlaceBuildingOnSidewalk(other, -180 , BuildingRightOffset);
+            PlaceBuildingOnSidewalk(other, -180, BuildingRightOffset);
         }
         else if (other.CompareTag("SidewalkLeft"))
         {
             other.transform.position = SidewalkLeftStartPos.position;
             RemoveBuildingFromSidewalk(other.transform);
             PlaceBuildingOnSidewalk(other, 0, BuildingLeftOffset);
+        }
+        else if (other.CompareTag("StreetFloor"))
+        {
+            other.transform.position = StreetFloorParent.position;
         }
     }
 

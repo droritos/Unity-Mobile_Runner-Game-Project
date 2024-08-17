@@ -11,11 +11,14 @@ public class GroundController : MonoBehaviour
     [SerializeField] List<Transform> groundPieces; // List of ground pieces
     [SerializeField] List<Transform> sidewalkRightPieces; // List of right sidewalk pieces
     [SerializeField] List<Transform> sidewalkLeftPieces; // List of left sidewalk pieces
+    [SerializeField] List<Transform> StreetFloorPieces; // List of left sidewalk pieces
+
 
     [Header("Ground Type Parents")]
     [SerializeField] Transform floorParent;
     [SerializeField] Transform sidewalkRightParent;
     [SerializeField] Transform sidewalkLeftParent;
+    [SerializeField] Transform StreetFloorParent;
 
     [Header("Referances")]
     [SerializeField] WallManager wallManager;
@@ -25,8 +28,10 @@ public class GroundController : MonoBehaviour
     private void Awake()
     {
         //SetAllObjects(floorParent, groundPieces, "Floor");
-        SetAllObjects(sidewalkRightParent, sidewalkRightPieces, "SidewalkRight");
-        SetAllObjects(sidewalkLeftParent, sidewalkLeftPieces, "SidewalkLeft");
+        //SetAllObjects(sidewalkRightParent, sidewalkRightPieces, "SidewalkRight");
+        //SetAllObjects(sidewalkLeftParent, sidewalkLeftPieces, "SidewalkLeft");
+        SetSideWalkPieces(sidewalkRightParent, sidewalkRightPieces);
+        SetSideWalkPieces(sidewalkLeftParent, sidewalkLeftPieces);
         SetGroundPieces();
     }
 
@@ -40,6 +45,7 @@ public class GroundController : MonoBehaviour
         MoveObjects(groundPieces, floorConfig.CarRoadSpeed);
         MoveObjects(sidewalkRightPieces, floorConfig.SideWalkSpeed);
         MoveObjects(sidewalkLeftPieces, floorConfig.SideWalkSpeed);
+        MoveChildObjects(StreetFloorParent, floorConfig.SideWalkSpeed);
     }
 
     private void MoveObjects(List<Transform> objects, float speed)
@@ -50,6 +56,16 @@ public class GroundController : MonoBehaviour
             obj.Translate(speed * Time.deltaTime * Vector3.back);
         }
     }
+    private void MoveChildObjects(Transform parentPiece, float speed)
+    {
+        //Transform child = parentPiece.GetComponentInChildren<Transform>();
+        foreach (Transform child in parentPiece.GetComponentInChildren<Transform>())
+        {
+            // Move the object backwards along the Z axis
+            child.Translate(speed * Time.deltaTime * Vector3.back);
+        }
+    }
+
 
     private void SetAllObjects(Transform parent, List<Transform> objectList, string objectType)
     {
@@ -57,16 +73,21 @@ public class GroundController : MonoBehaviour
         UpdateBounds(lastObject, objectType);
     }
 
-    private void SetGroundPieces(/*Transform parent, List<Transform> objectList, string objectType*/)
+    private void SetGroundPieces()
     {
         foreach (Transform obj in floorParent)
         {
             groundPieces.Add(obj);
         }
-
-        //Transform lastObject = PopulateTransformList(parent, objectList);
-        //UpdateBounds(lastObject, objectType);
     }
+    private void SetSideWalkPieces(Transform parent, List<Transform> objectList)
+    {
+        foreach (Transform obj in parent)
+        {
+            objectList.Add(obj);
+        }
+    }
+
 
 
     private Transform PopulateTransformList(Transform parent, List<Transform> objectList)

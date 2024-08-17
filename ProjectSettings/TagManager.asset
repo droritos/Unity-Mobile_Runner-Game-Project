@@ -13,6 +13,7 @@ TagManager:
   - SidewalkLeft
   - Web
   - Building
+  - StreetFloor
   layers:
   - Default
   - TransparentFX

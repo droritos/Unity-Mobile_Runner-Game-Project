@@ -8,7 +8,10 @@ public class GameManager : MonoSingleton<GameManager>
     [SerializeField] RoadParameters roadParameters;
     [SerializeField] ReadListFromFile readListFromFile;
     [SerializeField] WebcamCapture webcamCapture;
-    [SerializeField] WallManager wallManager;
+    [SerializeField] PlayerBehavior player;
+    [SerializeField] SceneStateManager sceneStateManager;
+
+    private int _checkPoint = 0;
 
     public float SetFloorSpeed()
     {
@@ -22,5 +25,17 @@ public class GameManager : MonoSingleton<GameManager>
         StartCoroutine(webcamCapture.RequestCameraPermissionCoroutine());
     }
 
+    private void Update()
+    {
+        AutoSave();
+    }
 
+    private void AutoSave()
+    {
+        if (player.coins % 5 == 0)
+        {
+            _checkPoint++;
+            sceneStateManager.SaveSceneState($"checkPoint_{_checkPoint}");
+        }
+    }
 }

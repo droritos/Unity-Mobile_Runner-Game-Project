@@ -97,7 +97,7 @@ public class SpidyMorals : MonoBehaviour
     {
         // Wait until animation is done
         yield return new WaitForSeconds(_animator.GetCurrentAnimatorStateInfo(0).length);
-        Instantiate(cobweb, cobwebSpawnPoint[0].position, cobweb.transform.rotation);
+        Instantiate(cobweb, cobwebSpawnPoint[Random.RandomRange(0,2)].position, cobweb.transform.rotation);
     }
 
     private float GetPlayerLane()

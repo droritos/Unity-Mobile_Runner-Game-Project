@@ -11,6 +11,7 @@ public class WallManager : MonoBehaviour
     [SerializeField] Transform StreetFloorParent;
 
     [Header("Coin Pool Fields")]
+    [SerializeField] CoinScript coinScript;
     [SerializeField] ObjectPoolManager poolCoinScript;
     [SerializeField] Vector3 coinOffset;
     [SerializeField] int coinChance;
@@ -26,15 +27,16 @@ public class WallManager : MonoBehaviour
         {
             other.transform.position = FloorStartPos.position; // Other is the Floor
 
-            RemoveObstacleOnFloor(other.transform);
+            coinScript.CoinPooled();
+            //RemoveObstacleOnFloor(other.transform);
 
 
-            if (RandomObstacleChance(coinChance))
-            {
-                GameObject pooledObject = poolCoinScript.GetObject();
-                //Debug.Log($"Active Coin");
-                PlaceObstacleOnFloor(pooledObject, other.transform, "Floor");
-            }
+            //if (RandomObstacleChance(coinChance))
+            //{
+            //    GameObject pooledObject = poolCoinScript.GetObject();
+            //    //Debug.Log($"Active Coin");
+            //    PlaceObstacleOnFloor(pooledObject, other.transform, "Floor");
+            //}
         }
         else if (other.CompareTag("SidewalkRight"))
         {

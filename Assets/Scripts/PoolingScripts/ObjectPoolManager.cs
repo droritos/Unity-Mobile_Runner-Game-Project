@@ -42,7 +42,7 @@ public class ObjectPoolManager : MonoBehaviour
 
     private void OnTakeFromPool(GameObject obj)
     {
-        obj.transform.localScale = _localScaled;
+        //obj.transform.localScale = _localScaled;
         obj.SetActive(true);
         // obstacles 
         // power ups
@@ -52,7 +52,8 @@ public class ObjectPoolManager : MonoBehaviour
     public void OnReturnedToPool(GameObject obj)
     {
         obj.SetActive(false);
-        obj.transform.localScale = _localScaled;
+        //obj.transform.localScale = _localScaled;
+        //obj.transform.rotation = Quaternion.Euler(0f,0f,0f);
         obj.transform.SetParent(parent);
     }
 

@@ -36,7 +36,7 @@ public class ObjectPoolManager : MonoBehaviour
     {
         _localScaled = new Vector3(0.5f,0.5f,0.5f);
         var gameobjectprefab = Instantiate(Prefab); // spwan 
-        gameobjectprefab.transform.parent = parent;
+        gameobjectprefab.transform.SetParent(parent);
         return gameobjectprefab;
     }
 

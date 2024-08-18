@@ -26,17 +26,17 @@ public class WallManager : MonoBehaviour
         if (other.CompareTag("Floor"))
         {
             other.transform.position = FloorStartPos.position; // Other is the Floor
-
             coinScript.CoinPooled();
-            //RemoveObstacleOnFloor(other.transform);
-
 
             //if (RandomObstacleChance(coinChance))
             //{
-            //    GameObject pooledObject = poolCoinScript.GetObject();
-            //    //Debug.Log($"Active Coin");
-            //    PlaceObstacleOnFloor(pooledObject, other.transform, "Floor");
             //}
+
+        }
+        else if (other.CompareTag("Coin"))
+        {
+            coinScript.poolCoinScript.ReleaseObject(other.gameObject);
+
         }
         else if (other.CompareTag("SidewalkRight"))
         {

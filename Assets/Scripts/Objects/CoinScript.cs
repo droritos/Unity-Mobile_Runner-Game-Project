@@ -6,7 +6,7 @@ public class CoinScript : MonoBehaviour
     [SerializeField] RoadParameters roadParametersSO;
 
     [Header("Coin Pool Fields")]
-    [SerializeField] ObjectPoolManager poolCoinScript;
+    public ObjectPoolManager poolCoinScript;
     [SerializeField] int coinChance;
     [SerializeField] Transform coinParent;
     public List<Transform> coinPieces;
@@ -16,10 +16,10 @@ public class CoinScript : MonoBehaviour
     [SerializeField] Transform middleSpawnPoint;
     [SerializeField] Transform rightpawnPoint;
 
-    void Start()
-    {
-        GetCoins();
-    }
+    //void Start()
+    //{
+    //    GetCoins();
+    //}
     private void Update()
     {
         MoveCoins();
@@ -56,15 +56,16 @@ public class CoinScript : MonoBehaviour
         foreach (Transform obj in coinParent)
         {
             coinPieces.Add(obj);
+            //Debug.Log("Added coin piece: " + obj.name);
         }
     }
     private void MoveCoins()
     {
-        for (int i = 0; i < coinPieces.Count; i++)
+        foreach (Transform obj in coinParent)
         {
-            if (coinPieces[i].gameObject.activeSelf)
+            if (obj.gameObject.activeSelf)
             {
-                coinPieces[i].Translate(roadParametersSO.CarRoadSpeed * Time.deltaTime * Vector3.back);
+                obj.Translate(roadParametersSO.CarRoadSpeed * Time.deltaTime * Vector3.back);
             }
         }
     }

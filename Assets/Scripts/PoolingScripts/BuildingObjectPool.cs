@@ -90,7 +90,7 @@ public class BuildingObjectPool : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Prefab not found in pool manager.");
+            Debug.Log($"Bandage Script Applied, Building {obj.name} Released");
         }
     }
 }

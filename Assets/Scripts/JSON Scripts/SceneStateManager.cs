@@ -45,7 +45,7 @@ public class SceneStateManager : MonoBehaviour
             // Serialize all components
             foreach (var component in obj.GetComponents<Component>())
             {
-                ComponentState compState = new ComponentState
+                ComponentState compState = new()
                 {
                     type = component.GetType().ToString(),
                     json = JsonUtility.ToJson(component)

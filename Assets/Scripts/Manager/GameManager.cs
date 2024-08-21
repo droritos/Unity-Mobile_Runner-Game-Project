@@ -8,8 +8,8 @@ public class GameManager : MonoSingleton<GameManager>
     [SerializeField] RoadParameters roadParameters;
     [SerializeField] ReadListFromFile readListFromFile;
     [SerializeField] WebcamCapture webcamCapture;
-    [SerializeField] PlayerBehavior player;
     [SerializeField] SceneStateManager sceneStateManager;
+    public PlayerBehavior player;
 
     private int _checkPoint = 0;
 
@@ -27,7 +27,7 @@ public class GameManager : MonoSingleton<GameManager>
 
     private void Update()
     {
-        AutoSave();
+        //AutoSave();
     }
 
     private void AutoSave()

@@ -19,15 +19,11 @@ public class ScoreManager : MonoBehaviour
     private float _survivedScore;
     private int _coinScore;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     void Update()
     {
         UpdateScore();
+        UpdateCoins();
     }
 
     private void UpdateScore()
@@ -36,6 +32,10 @@ public class ScoreManager : MonoBehaviour
         SetCoins();
         _totalScore = _coinScore + _survivedScore;
         score.text = Mathf.FloorToInt(_totalScore).ToString();
+    }
+    private void UpdateCoins()
+    {
+        coins.text = _coinScore.ToString();
     }
 
     private void SetTimeScore()

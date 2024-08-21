@@ -12,6 +12,7 @@ public class PlayerData : MonoSingleton<PlayerData>
     public ReadListFromFile readListFromFile; // Reference to the ReadListFromFile script
     public WebcamCapture webCamCapture; // Reference to the WebCamCapture script
     public string LastTimeLogin;
+    public int coins;
 
 
 
@@ -26,6 +27,7 @@ public class PlayerData : MonoSingleton<PlayerData>
         int playerAge = int.Parse(playerAgeInput.text);
         writeListToFile.SavePlayerData(playerName, playerAge, "capturedImage.png");
         LastTimeLogin = DateTime.Now.Date.ToString();
+        this.coins = GameManager.Instance.player.coins;
     }
 
     public void LoadProfile()
@@ -33,6 +35,7 @@ public class PlayerData : MonoSingleton<PlayerData>
         List<Player> players = readListFromFile.LoadPlayerData();
         playerNameInput.text = players[0].playerName;
         playerAgeInput.text = players[0].playerAge.ToString();
+        GameManager.Instance.player.coins = this.coins;
     }
 
 }

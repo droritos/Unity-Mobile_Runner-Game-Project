@@ -1,13 +1,10 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Pool;
 
 public class PlayerBehavior : MonoBehaviour
 {
     public int coins = 0;
     public bool IsAlive = true;
-    [SerializeField] Transform playerScreenPhoto;
     [SerializeField] ObjectPoolManager coinPool;
     [SerializeField] SpidyMorals chaser;
     [SerializeField] float moveSpeed = 5;
@@ -23,17 +20,17 @@ public class PlayerBehavior : MonoBehaviour
         else if (other.CompareTag("Web"))
         {
             Destroy(other.gameObject);
-            Die();
+            //Die();
         }
     }
 
+    #region << Dying Methods >> 
     private void Die()
     {
         IsAlive = false;
         StartCoroutine(MoveTowardsChaser());
         chaser.Grab();
     }
-
     private IEnumerator MoveTowardsChaser()
     {
         chaser.IsGrabbing = true;
@@ -60,4 +57,5 @@ public class PlayerBehavior : MonoBehaviour
         // Keep the player aligned with the chaser
         AlignPlayerWithChaser();
     }
+    #endregion
 }

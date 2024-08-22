@@ -5,11 +5,12 @@ using UnityEngine;
 public class GameManager : MonoSingleton<GameManager>
 {
     [SerializeField] float floorSpeed;
-    [SerializeField] RoadParameters roadParameters;
+    [SerializeField] MovingObjectsConfig roadParameters;
     [SerializeField] ReadListFromFile readListFromFile;
     [SerializeField] WebcamCapture webcamCapture;
     [SerializeField] SceneStateManager sceneStateManager;
-    public PlayerBehavior player;
+    public PlayerBehavior Player;
+    public SpidyMorals SpidyMorals;
 
     private int _checkPoint = 0;
 
@@ -32,7 +33,7 @@ public class GameManager : MonoSingleton<GameManager>
 
     private void AutoSave()
     {
-        if (player.coins % 5 == 0)
+        if (Player.coins % 5 == 0)
         {
             _checkPoint++;
             sceneStateManager.SaveSceneState($"checkPoint_{_checkPoint}");

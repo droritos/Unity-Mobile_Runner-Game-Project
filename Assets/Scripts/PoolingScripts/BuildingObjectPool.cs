@@ -90,7 +90,7 @@ public class BuildingObjectPool : MonoBehaviour
         }
         else
         {
-            Debug.Log($"Bandage Script Applied, Building {obj.name} Released");
+            //Debug.Log($"Bandage Script Applied, Building {obj.name} Released");
         }
     }
 }

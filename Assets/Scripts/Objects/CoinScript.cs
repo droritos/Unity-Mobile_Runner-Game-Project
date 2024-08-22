@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class CoinScript : MonoBehaviour
 {
-    [SerializeField] RoadParameters roadParametersSO;
+    [SerializeField] MovingObjectsConfig MovingObjectsSO;
 
     [Header("Coin Pool Fields")]
     public ObjectPoolManager poolCoinScript;
@@ -65,7 +65,7 @@ public class CoinScript : MonoBehaviour
         {
             if (obj.gameObject.activeSelf)
             {
-                obj.Translate(roadParametersSO.CarRoadSpeed * Time.deltaTime * Vector3.back);
+                obj.Translate(MovingObjectsSO.CarRoadSpeed * Time.deltaTime * Vector3.back);
             }
         }
     }

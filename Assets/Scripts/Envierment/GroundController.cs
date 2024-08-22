@@ -4,7 +4,7 @@ using UnityEngine;
 public class GroundController : MonoBehaviour
 {
     [Header("Ground Config")]
-    [SerializeField] RoadParameters floorConfig;
+    [SerializeField] MovingObjectsConfig floorConfig;
     private Dictionary<string, Bounds> objectBounds = new Dictionary<string, Bounds>();
 
     [Header("Ground Type Lists")]

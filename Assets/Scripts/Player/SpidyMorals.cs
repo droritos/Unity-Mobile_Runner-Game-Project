@@ -6,19 +6,21 @@ public class SpidyMorals : MonoBehaviour
 {
     [Header("Public Data")]
     [HideInInspector] public bool IsGrabbing = false;
+    public Transform[] cobwebSpawnPoint;
 
     [Header("Serialize Data")]
-    [SerializeField] Transform[] cobwebSpawnPoint;
     [SerializeField] GameObject cobweb;
     [SerializeField] Transform player;
+    [SerializeField] ObjectPoolManager cobwebPoolScript;
 
     [Header("Numbers Data")]
     [SerializeField] float moveSpeed = 5f;
-    [SerializeField] int fireCooldown = 3;
+    [SerializeField] float fireCooldown = 0.5f;
     [SerializeField] float maxCooldown = 2.5f;
     [SerializeField] Vector3 animationOffset;
 
     [Header("Private Data")]
+    private GameObject _cobweb;
     private Animator _animator;
     private Vector3 _startPosition;
     private Vector3 _targetPosition;
@@ -41,17 +43,30 @@ public class SpidyMorals : MonoBehaviour
     {
         _fire += Time.deltaTime;
         _move += Time.deltaTime;
-        Shoot();
-        Chase();
+        AutoShoot();
+        //cobwebPoolScript.IsMaxPoolSize(_cobweb, cobwebSpawnPoint[0].position);
+        //Chase();
+    }
+    private void AutoShoot()
+    {
+        if (_fire >= fireCooldown)
+        {
+            _animator.SetTrigger("Attacking");
+            StartCoroutine(WaitForShoot());
+            _fire = 0;
+        }
     }
 
-    private void Shoot()
+
+    private void GrabShoot()
     {
         if (_fire >= fireCooldown && !IsGrabbing && !_isMoving)
         {
             _animator.SetTrigger("Attacking");
             StartCoroutine(WaitForShoot());
-            _fire = 0;
+            GameObject web = cobwebPoolScript.GetObject();
+            web.transform.position = cobwebSpawnPoint[0].position;
+
         }
     }
 
@@ -97,7 +112,12 @@ public class SpidyMorals : MonoBehaviour
     {
         // Wait until animation is done
         yield return new WaitForSeconds(_animator.GetCurrentAnimatorStateInfo(0).length);
-        Instantiate(cobweb, cobwebSpawnPoint[Random.Range(0,2)].position, cobweb.transform.rotation);
+        GameObject web = cobwebPoolScript.GetObject();
+        _cobweb = web;
+        _cobweb.transform.position = cobwebSpawnPoint[0].position;
+
+        //GameObject web = Instantiate(cobweb, cobwebSpawnPoint[0].position, cobweb.transform.rotation);
+        //web.transform.rotation = Quaternion.Euler(0, 180, 0);
     }
 
     private float GetPlayerLane()

@@ -17,11 +17,11 @@ public class PlayerBehavior : MonoBehaviour
             coinPool.ReleaseObject(other.gameObject);
             coins++;
         }
-        else if (other.CompareTag("Web"))
-        {
-            Destroy(other.gameObject);
-            //Die();
-        }
+        //else if (other.CompareTag("Web"))
+        //{
+        //    Destroy(other.gameObject);
+        //    //Die();
+        //}
     }
 
     #region << Dying Methods >> 

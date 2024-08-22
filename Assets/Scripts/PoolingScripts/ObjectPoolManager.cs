@@ -42,7 +42,6 @@ public class ObjectPoolManager : MonoBehaviour
 
     private void OnTakeFromPool(GameObject obj)
     {
-        //obj.transform.localScale = _localScaled;
         obj.SetActive(true);
         // obstacles 
         // power ups
@@ -70,5 +69,19 @@ public class ObjectPoolManager : MonoBehaviour
     public void ReleaseObject(GameObject obj)
     {
         Pool.Release(obj);
+    }
+
+    public void IsMaxPoolSize(GameObject obj, Vector3 resetPosition)
+    {
+
+        if (parent.childCount > MaxPoolSize)
+        {
+            obj.transform.position = resetPosition;
+            Pool.Release(obj);
+        }
+        else
+        {
+            Debug.Log($"Current Cobews : {parent.childCount}");
+        }
     }
 }

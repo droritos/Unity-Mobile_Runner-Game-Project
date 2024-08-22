@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1410686827554279132}
   - component: {fileID: 5422217720251200796}
   m_Layer: 0
-  m_Name: Cobweb
+  m_Name: CobwebV0
   m_TagString: Web
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

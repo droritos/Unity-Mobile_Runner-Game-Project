@@ -44,8 +44,6 @@ public class SpidyMorals : MonoBehaviour
         _fire += Time.deltaTime;
         _move += Time.deltaTime;
         AutoShoot();
-        //cobwebPoolScript.IsMaxPoolSize(_cobweb, cobwebSpawnPoint[0].position);
-        //Chase();
     }
     private void AutoShoot()
     {
@@ -54,10 +52,9 @@ public class SpidyMorals : MonoBehaviour
             _animator.SetTrigger("Attacking");
             StartCoroutine(WaitForShoot());
             _fire = 0;
+            cobwebPoolScript.IsMaxPoolSize(cobwebSpawnPoint[0].position);
         }
     }
-
-
     private void GrabShoot()
     {
         if (_fire >= fireCooldown && !IsGrabbing && !_isMoving)
@@ -68,8 +65,22 @@ public class SpidyMorals : MonoBehaviour
             web.transform.position = cobwebSpawnPoint[0].position;
 
         }
+    } // Not Relavent at the moment
+
+    private IEnumerator WaitForShoot()
+    {
+        // Wait until animation is done
+        yield return new WaitForSeconds(_animator.GetCurrentAnimatorStateInfo(0).length);
+
+        // Attempt to get an object from the pool
+        GameObject web = cobwebPoolScript.GetObject();
+        cobwebPoolScript.ActiveObjects.Enqueue(web);
+        web.transform.position = cobwebSpawnPoint[0].position;
+        //_cobweb = web; // Reference Type
     }
 
+
+    #region << Chasing Methods >> 
     private void Chase()
     {
         _isMoving = true;
@@ -100,26 +111,12 @@ public class SpidyMorals : MonoBehaviour
             }
         }
     }
-
     private float RandomMoveCooldown()
     {
         float random = Random.Range(0.5f, maxCooldown);
         //Debug.Log($"The Ramdom Value {random}");
         return random;
     }
-
-    private IEnumerator WaitForShoot()
-    {
-        // Wait until animation is done
-        yield return new WaitForSeconds(_animator.GetCurrentAnimatorStateInfo(0).length);
-        GameObject web = cobwebPoolScript.GetObject();
-        _cobweb = web;
-        _cobweb.transform.position = cobwebSpawnPoint[0].position;
-
-        //GameObject web = Instantiate(cobweb, cobwebSpawnPoint[0].position, cobweb.transform.rotation);
-        //web.transform.rotation = Quaternion.Euler(0, 180, 0);
-    }
-
     private float GetPlayerLane()
     {
         float[] lane = new float[3];
@@ -140,6 +137,7 @@ public class SpidyMorals : MonoBehaviour
             return lane[2];
         }
     }
+    #endregion
 
     #region << Animation Methods >>
     public void Grab()

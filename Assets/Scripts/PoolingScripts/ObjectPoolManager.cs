@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.Pool;
 
 public class ObjectPoolManager : MonoBehaviour
@@ -12,6 +13,9 @@ public class ObjectPoolManager : MonoBehaviour
     public ObjectPool<GameObject> Pool;
     [SerializeField] Transform parent;
     private Vector3 _localScaled;
+
+    public Queue<GameObject> ActiveObjects = new Queue<GameObject>();
+
     void Awake()
     {
         Pool = new ObjectPool<GameObject>(
@@ -43,16 +47,12 @@ public class ObjectPoolManager : MonoBehaviour
     private void OnTakeFromPool(GameObject obj)
     {
         obj.SetActive(true);
-        // obstacles 
-        // power ups
     }
 
 
     public void OnReturnedToPool(GameObject obj)
     {
         obj.SetActive(false);
-        //obj.transform.localScale = _localScaled;
-        //obj.transform.rotation = Quaternion.Euler(0f,0f,0f);
         obj.transform.SetParent(parent);
     }
 
@@ -71,17 +71,18 @@ public class ObjectPoolManager : MonoBehaviour
         Pool.Release(obj);
     }
 
-    public void IsMaxPoolSize(GameObject obj, Vector3 resetPosition)
+    public void IsMaxPoolSize(Vector3 resetPosition)
     {
 
-        if (parent.childCount > MaxPoolSize)
+        if (ActiveObjects.Count > MaxPoolSize)
         {
-            obj.transform.position = resetPosition;
-            Pool.Release(obj);
+            GameObject oldestActiveObj = ActiveObjects.Dequeue();  // Get the oldest active object
+            oldestActiveObj.transform.position = resetPosition;
+            Pool.Release(oldestActiveObj);
         }
         else
         {
-            Debug.Log($"Current Cobews : {parent.childCount}");
+            Debug.Log($"Current Cobwebs: {parent.childCount}");
         }
     }
 }

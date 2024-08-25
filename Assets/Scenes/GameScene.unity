@@ -2429,6 +2429,54 @@ MonoBehaviour:
   InitialPoolSize: 25
   MaxPoolSize: 100
   parent: {fileID: 1155634227}
+--- !u!1 &583800896
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 583800897}
+  - component: {fileID: 583800898}
+  m_Layer: 0
+  m_Name: BulletPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &583800897
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 583800896}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 844319496}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &583800898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 583800896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6615e818b09374d46a4890c5cb13c028, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Prefab: {fileID: 4594029462679777626, guid: fed211bd30eda684aaac93cfd22b873d, type: 3}
+  InitialPoolSize: 0
+  MaxPoolSize: 2
+  parent: {fileID: 583800897}
 --- !u!1 &602924353
 GameObject:
   m_ObjectHideFlags: 0
@@ -2493,6 +2541,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 211267b589a98e749bd30091d7b5f69c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &669824429 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 599736567038734800, guid: bdd91695cfcf4b643963af1fce587ef5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1693043961}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &670068011
 GameObject:
   m_ObjectHideFlags: 0
@@ -3103,6 +3157,7 @@ Transform:
   - {fileID: 537420472}
   - {fileID: 1148162940}
   - {fileID: 1882284945}
+  - {fileID: 583800897}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &859339971
@@ -6804,6 +6859,27 @@ PrefabInstance:
     - target: {fileID: 4287198627233576, guid: bdd91695cfcf4b643963af1fce587ef5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5254997523020416429, guid: bdd91695cfcf4b643963af1fce587ef5,
+        type: 3}
+      propertyPath: bullet
+      value: 
+      objectReference: {fileID: 4594029462679777626, guid: fed211bd30eda684aaac93cfd22b873d,
+        type: 3}
+    - target: {fileID: 5254997523020416429, guid: bdd91695cfcf4b643963af1fce587ef5,
+        type: 3}
+      propertyPath: bulletPool
+      value: 
+      objectReference: {fileID: 583800898}
+    - target: {fileID: 5254997523020416429, guid: bdd91695cfcf4b643963af1fce587ef5,
+        type: 3}
+      propertyPath: spawnPoint
+      value: 
+      objectReference: {fileID: 669824429}
+    - target: {fileID: 5254997523020416429, guid: bdd91695cfcf4b643963af1fce587ef5,
+        type: 3}
+      propertyPath: fireColdown
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

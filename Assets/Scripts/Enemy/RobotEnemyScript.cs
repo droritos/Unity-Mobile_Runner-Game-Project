@@ -1,10 +1,16 @@
 using UnityEngine;
+using System.Collections;
+
 
 public class RobotEnemyScript : MonoBehaviour
 {
     [SerializeField] GameObject experienceParticals;
+    [SerializeField] Transform spawnPoint;
     [SerializeField] GameObject bullet;
     [SerializeField] int health = 10;
+    [SerializeField] float fireColdown = 1f;
+    [SerializeField] ObjectPoolManager bulletPool;
+    private float _fire = 0;
     private Animator _animator;
     void Start()
     {
@@ -13,7 +19,7 @@ public class RobotEnemyScript : MonoBehaviour
 
     void Update()
     {
-        
+        ShootProjectile();
     }
 
     
@@ -28,13 +34,32 @@ public class RobotEnemyScript : MonoBehaviour
         }
     }
 
-    private void Shoot()
+    private void ShootProjectile()
     {
+        _fire += Time.deltaTime;
+        if (_fire >= fireColdown)
+        {
+            _animator.SetTrigger("Attack");
+            StartCoroutine(WaitForShoot());
+            _fire = 0;
+            bulletPool.IsMaxPoolSize(spawnPoint.position);
 
+        }
     }
+
 
     private void Die()
     {
 
     }
+
+    private IEnumerator WaitForShoot()
+    {
+        // Wait until animation is done
+        yield return new WaitForSeconds(_animator.GetCurrentAnimatorStateInfo(0).length);
+        // Attempt to get an object from the pool
+        bullet = bulletPool.GetObject();
+        bulletPool.ActiveObjects.Enqueue(bullet);
+    }
+
 }

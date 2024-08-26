@@ -15,5 +15,6 @@ MonoBehaviour:
   objectDistance: -40
   despawnDistance: -110
   CarRoadSpeed: 8.5
-  SideWalkSpeed: 1
+  SideWalkSpeed: 7.5
   CobwebSpeed: 8
+  EnemyProjectileSpeed: 8

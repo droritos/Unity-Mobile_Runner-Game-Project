@@ -15,6 +15,7 @@ TagManager:
   - Building
   - StreetFloor
   - Enemy
+  - EnemyProjectile
   layers:
   - Default
   - TransparentFX

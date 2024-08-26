@@ -1,9 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class ScoreManager : MonoBehaviour
+public class ScoreManager : MonoSingleton<ScoreManager>
 {
     [Header("Text Mesh Pro")]
     [SerializeField] TextMeshProUGUI timeScore;
@@ -51,4 +52,9 @@ public class ScoreManager : MonoBehaviour
         _coinScore = playerBehavior.coins * 10;
     }
 
+    public float GetScore()
+    {
+        return Int32.Parse(score.text);
+    }
+    
 }

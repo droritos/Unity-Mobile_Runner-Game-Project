@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 6340212281695128065}
   m_Layer: 0
   m_Name: CobwebV1
-  m_TagString: Untagged
+  m_TagString: Web
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29,13 +29,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7453804368033802323}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: 0.6302063, w: 0.7764277}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.46206495, y: 0.41075, z: 2.9148698}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 78.131}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8992793503164270513
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -146,6 +146,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ff585b4e3bfc1547a6d1ce53c5e0af3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 5
   speed: {fileID: 11400000, guid: b6632e26ef7d8ef4d8b222d35c1db5ec, type: 2}
-  cobweb: {fileID: 0}
-  lifeTime: 3

@@ -7,6 +7,7 @@ public class PlayerBehavior : MonoBehaviour
     public int coins = 0;
     public bool IsAlive = true;
     public int ExperiencePoints = 0;
+    public int CobwebDamage = 5;
     
 
     [Header("Local Fields")]
@@ -21,6 +22,10 @@ public class PlayerBehavior : MonoBehaviour
         {
             coinPool.ReleaseObject(other.gameObject);
             coins++;
+        }
+        else if (other.CompareTag("EnemyProjectile"))
+        {
+            Debug.Log("I took Damage Loser");
         }
     }
 

@@ -81,9 +81,5 @@ public class ObjectPoolManager : MonoBehaviour
             oldestActiveObj.transform.position = resetPosition;
             Pool.Release(oldestActiveObj);
         }
-        else
-        {
-            Debug.Log($"Current Cobwebs: {parent.childCount}");
-        }
     }
 }

@@ -3,15 +3,19 @@ using System.Collections;
 
 public class RobotEnemyScript : MonoBehaviour
 {
-    [SerializeField] GameObject experienceParticals;
-    [SerializeField] Transform spawnPoint;
-    [SerializeField] GameObject bullet;
+    [Header("Enemy Fields")]
     [SerializeField] int health = 10;
     [SerializeField] float fireColdown = 1f;
-    [SerializeField] ObjectPoolManager bulletPool;
     [SerializeField] float hitDuration = 0.1f; // Duration to keep the object red
-    [SerializeField] Transform robotGFX;
+    [SerializeField] Transform projectileSpawnPoint;
+    [SerializeField] GameObject bullet;
+
+    [Header("Enemy Pools")]
     [SerializeField] ObjectPoolManager enemyPool;
+    [SerializeField] ObjectPoolManager bulletPool;
+
+    [Header("Enemy Visual")]
+    [SerializeField] Transform robotGFX;
 
     private float _fire = 0;
     private Animator _animator;
@@ -30,12 +34,6 @@ public class RobotEnemyScript : MonoBehaviour
         ShootProjectile();
     }
 
-    public void EnemyPooled()
-    {
-        GameObject pooledObject = enemyPool.GetObject();
-
-    }
-
 
     private void OnTriggerEnter(Collider other)
     {
@@ -45,6 +43,19 @@ public class RobotEnemyScript : MonoBehaviour
             Destroy(other.gameObject);
         }
     }
+    public void EnemyPooled(/*Vector3 movePosition, int speed*/)
+    {
+        if (enemyPool.GetObject() != null)
+        {
+            GameObject enemy = enemyPool.GetObject();
+        }
+        //else
+        //{
+        //    GameObject enemy = enemyPool.GetObject();
+        //}
+        //Vector3.Lerp(parent.transform.position, movePosition, speed * Time.deltaTime);
+    }
+
 
     public void TakeDamage(int damage)
     {
@@ -81,14 +92,14 @@ public class RobotEnemyScript : MonoBehaviour
             _animator.SetTrigger("Attack");
             StartCoroutine(WaitForShoot());
             _fire = 0;
-            bulletPool.IsMaxPoolSize(spawnPoint.position);
+            bulletPool.IsMaxPoolSize(projectileSpawnPoint.position);
         }
     }
 
     private void Die()
     {
         // player gets experience points
-        Destroy(gameObject);
+        //enemyPool.ReleaseObject(parent);
     }
 
     private IEnumerator WaitForShoot()
@@ -97,7 +108,7 @@ public class RobotEnemyScript : MonoBehaviour
         yield return new WaitForSeconds(_animator.GetCurrentAnimatorStateInfo(0).length);
         // Attempt to get an object from the pool
         bullet = bulletPool.GetObject();
-        bullet.transform.position = spawnPoint.position;
+        bullet.transform.position = projectileSpawnPoint.position;
         bulletPool.ActiveObjects.Enqueue(bullet);
     }
 }

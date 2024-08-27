@@ -5,21 +5,25 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
 
+    [Header("Enemy Data")]
     [SerializeField] GameObject robotEnemy;
+    [SerializeField] int fallingSpeed = 5;
 
+    [Header("Spawn Points")]
     [SerializeField] Transform leftSpawner;
     [SerializeField] Transform middleSpawner;
     [SerializeField] Transform rightSpawner;
 
-    [SerializeField] RobotEnemyScript enemyScript;
-
-    [SerializeField] int fallingSpeed = 5;
+    [Header("Enemy Belongings")]
+    [SerializeField] List<RobotEnemyScript> enemiesList;
+    [SerializeField] Transform enemyParent;
+    [SerializeField] ObjectPoolManager robotEnemyPool;
 
 
     void Start()
     {
         //DisableSpanwerVisuals();
-        
+        GetEnemis();
     }
 
     void Update()
@@ -27,15 +31,28 @@ public class EnemySpawner : MonoBehaviour
         PoolEnemiesFromSky();
     }
 
+    private void GetEnemis()
+    {
+        for (int i = 0; i < enemyParent.childCount; i++)
+        {
+            robotEnemyPool.GetObject();
+            //enemyParent.GetChild(i).TryGetComponent(out RobotEnemyScript component);
+            //RobotEnemyScript enemy = component;
+            //enemiesList.Add(enemy);
+            //Debug.Log("Enmey List Is : " + enemiesList.Count);
+        }
+    }
+
     private void PoolEnemiesFromSky()
     {
         float score = ScoreManager.Instance.GetScore();
         if (score % 15 == 0 && score != 0)
         {
-            //GameObject enemy = enemyScript.GetObject();
+            enemiesList[0].EnemyPooled();
+            //enemyScript.
             //MakeEnemiesFall(enemy);
         }
-        Debug.Log($"Score {score}");
+        //Debug.Log($"Score {score}");
     }
 
     private void DisableSpanwerVisuals()

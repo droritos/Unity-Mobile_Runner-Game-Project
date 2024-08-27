@@ -9,17 +9,11 @@ public class CoinScript : MonoBehaviour
     public ObjectPoolManager poolCoinScript;
     [SerializeField] int coinChance;
     [SerializeField] Transform coinParent;
-    public List<Transform> coinPieces;
 
     [Header("SpawnPoints")]
     [SerializeField] Transform leftSpawnPoint;
     [SerializeField] Transform middleSpawnPoint;
     [SerializeField] Transform rightpawnPoint;
-
-    //void Start()
-    //{
-    //    GetCoins();
-    //}
     private void Update()
     {
         MoveCoins();
@@ -51,14 +45,6 @@ public class CoinScript : MonoBehaviour
         }
     }
 
-    private void GetCoins()
-    {
-        foreach (Transform obj in coinParent)
-        {
-            coinPieces.Add(obj);
-            //Debug.Log("Added coin piece: " + obj.name);
-        }
-    }
     private void MoveCoins()
     {
         foreach (Transform obj in coinParent)

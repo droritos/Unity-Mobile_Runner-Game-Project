@@ -7390,7 +7390,6 @@ MonoBehaviour:
   poolCoinScript: {fileID: 537420473}
   coinChance: 100
   coinParent: {fileID: 1155634227}
-  coinPieces: []
   leftSpawnPoint: {fileID: 221212662}
   middleSpawnPoint: {fileID: 1433302609}
   rightpawnPoint: {fileID: 670068012}
@@ -7663,6 +7662,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1851190559}
+  - component: {fileID: 1851190560}
   m_Layer: 0
   m_Name: EnemiesSpawner
   m_TagString: Untagged
@@ -7688,6 +7688,26 @@ Transform:
   - {fileID: 257565834}
   m_Father: {fileID: 1687495687}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1851190560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1851190558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10949439c1c63a24dac691f86fd0202a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  robotEnemy: {fileID: 1765116823762149}
+  fallingSpeed: 5
+  leftSpawner: {fileID: 257565834}
+  middleSpawner: {fileID: 110137660}
+  rightSpawner: {fileID: 64853966}
+  enemiesList: []
+  enemyParent: {fileID: 607719466}
+  robotEnemyPool: {fileID: 607719467}
 --- !u!1 &1858174396
 GameObject:
   m_ObjectHideFlags: 0
@@ -8868,6 +8888,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2118627607}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1765116823762149 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2289984442718066409, guid: 9b9fca10fadbf004c865a5009959c8f6,
+    type: 3}
+  m_PrefabInstance: {fileID: 6580705131899829339}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1592404637410954159
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9154,6 +9180,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: EnemyRobot
+      objectReference: {fileID: 0}
+    - target: {fileID: 2289984442718066409, guid: 9b9fca10fadbf004c865a5009959c8f6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3723394003619458650, guid: 9b9fca10fadbf004c865a5009959c8f6,
         type: 3}

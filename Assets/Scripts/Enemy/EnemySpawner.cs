@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-
     [Header("Enemy Data")]
     [SerializeField] GameObject robotEnemy;
     [SerializeField] int fallingSpeed = 5;
@@ -19,50 +18,97 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] Transform enemyParent;
     [SerializeField] ObjectPoolManager robotEnemyPool;
 
+    private bool _wasPooled = false;
+    private float _score;
 
     void Start()
     {
-        //DisableSpanwerVisuals();
-        GetEnemis();
+        GetEnemies();
     }
 
     void Update()
     {
-        PoolEnemiesFromSky();
+        TryPoolEnemies();
     }
 
-    private void GetEnemis()
+    private void GetEnemies()
     {
         for (int i = 0; i < enemyParent.childCount; i++)
         {
-            robotEnemyPool.GetObject();
-            //enemyParent.GetChild(i).TryGetComponent(out RobotEnemyScript component);
-            //RobotEnemyScript enemy = component;
-            //enemiesList.Add(enemy);
-            //Debug.Log("Enmey List Is : " + enemiesList.Count);
+            if (enemyParent.GetChild(i).TryGetComponent(out RobotEnemyScript component))
+            {
+                enemiesList.Add(component);
+            }
         }
     }
 
-    private void PoolEnemiesFromSky()
+    private void TryPoolEnemies()
     {
         float score = ScoreManager.Instance.GetScore();
-        if (score % 15 == 0 && score != 0)
+        if (score % 15 == 0 && score != 0 && !_wasPooled)
         {
-            enemiesList[0].EnemyPooled();
-            //enemyScript.
-            //MakeEnemiesFall(enemy);
+            GameObject enemy = robotEnemyPool.GetObject();
+            Transform chosenSpawnPoint = GetRandomSpawnPoint();
+
+            // Check if there's already an enemy at the chosen position
+            if (IsEnemyAtPosition(chosenSpawnPoint.position))
+            {
+                // Offset the new enemy's position by 3 units along the Z-axis
+                chosenSpawnPoint.position = new Vector3(chosenSpawnPoint.position.x, chosenSpawnPoint.position.y, chosenSpawnPoint.position.z + 3);
+            }
+
+            StartCoroutine(LerpEnemyPosition(enemy, chosenSpawnPoint.position));
+            _wasPooled = true;
         }
-        //Debug.Log($"Score {score}");
+        else if (score % 15 != 0 && _wasPooled)
+        {
+            // Reset the flag when the score is no longer a multiple of 15
+            _wasPooled = false;
+        }
     }
 
-    private void DisableSpanwerVisuals()
+    private Transform GetRandomSpawnPoint()
     {
-        leftSpawner.gameObject.SetActive(false);
-        middleSpawner.gameObject.SetActive(false);
-        rightSpawner.gameObject.SetActive(false);
+        int randomIndex = Random.Range(0, 2);  // Assuming you have three spawn points: Left, Middle, Right
+        switch (randomIndex)
+        {
+            case 0:
+                return leftSpawner;
+            case 1:
+                return middleSpawner;
+            case 2:
+                return rightSpawner;
+            default:
+                return middleSpawner;  // Fallback to middle spawner if something goes wrong
+        }
     }
-    private void MakeEnemiesFall(GameObject enemy)
+
+    private bool IsEnemyAtPosition(Vector3 position)
     {
-        enemy.transform.position = Vector3.MoveTowards(enemy.transform.position, middleSpawner.position, fallingSpeed * Time.deltaTime);
+        foreach (RobotEnemyScript enemy in enemiesList)
+        {
+            if (enemy.gameObject.activeInHierarchy && Vector3.Distance(enemy.transform.position, position) < 1.0f)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private IEnumerator LerpEnemyPosition(GameObject enemy, Vector3 targetPosition)
+    {
+        float elapsedTime = 0f;
+        float journeyTime = 2f;  // Adjust this value for the speed of movement
+        Vector3 startPosition = enemy.transform.position;
+
+        while (elapsedTime < journeyTime)
+        {
+            enemy.transform.position = Vector3.Lerp(startPosition, targetPosition, elapsedTime / journeyTime);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        // Ensure the final position is exactly at the target position
+        enemy.transform.position = targetPosition;
     }
 }

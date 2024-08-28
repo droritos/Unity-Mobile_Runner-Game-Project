@@ -11,7 +11,7 @@ public class RobotEnemyScript : MonoBehaviour
     [SerializeField] GameObject bullet;
 
     [Header("Enemy Pools")]
-    [SerializeField] ObjectPoolManager enemyPool;
+    public ObjectPoolManager EnemyPool;
     [SerializeField] ObjectPoolManager bulletPool;
 
     [Header("Enemy Visual")]
@@ -45,15 +45,7 @@ public class RobotEnemyScript : MonoBehaviour
     }
     public void EnemyPooled(/*Vector3 movePosition, int speed*/)
     {
-        if (enemyPool.GetObject() != null)
-        {
-            GameObject enemy = enemyPool.GetObject();
-        }
-        //else
-        //{
-        //    GameObject enemy = enemyPool.GetObject();
-        //}
-        //Vector3.Lerp(parent.transform.position, movePosition, speed * Time.deltaTime);
+        GameObject enemy = EnemyPool.GetObject();
     }
 
 

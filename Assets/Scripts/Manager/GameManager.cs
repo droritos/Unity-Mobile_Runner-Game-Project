@@ -8,11 +8,13 @@ public class GameManager : MonoSingleton<GameManager>
     [SerializeField] MovingObjectsConfig roadParameters;
     [SerializeField] ReadListFromFile readListFromFile;
     [SerializeField] WebcamCapture webcamCapture;
+    
     [SerializeField] SceneStateManager sceneStateManager;
 
     [Header("Spidy")]
     public PlayerBehavior Player;
     public SpidyMorals SpidyMorals;
+    public PlayerUpgradeManager PlayerUpgradeManager;
 
     [Header("Enemy")]
     public ObjectPoolManager EnemyPool;

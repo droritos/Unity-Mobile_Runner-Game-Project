@@ -1,5 +1,7 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class PlayerBehavior : MonoBehaviour
 {
@@ -7,6 +9,11 @@ public class PlayerBehavior : MonoBehaviour
     public bool IsAlive = true;
     public int ExperiencePoints = 0;
     public int CobwebDamage = 5;
+    public float AttackSpeedMultiplier = 1.0f;
+    public int RicochetLevel = 0;
+    public int PiercingLevel = 0;
+    public int MultiShotLevel = 0;
+    public float CriticalHitChance = 0.05f;
     [HideInInspector] public int coins = 0;
 
     [Header("Private Editable Fields")]
@@ -21,7 +28,6 @@ public class PlayerBehavior : MonoBehaviour
     private void Start()
     {
         _currentHP = maxHealthPoint;
-
     }
 
     private void OnTriggerEnter(Collider other)
@@ -47,10 +53,13 @@ public class PlayerBehavior : MonoBehaviour
         }
     }
 
+
+
     #region << Dying Methods >> 
     private void Die()
     {
-        IsAlive = false;
+        IsAlive = false; // Notice! : When you die its stop the score leveling
+        SceneManager.LoadScene(3);
         // Die Animtaion 
         // Move to next scene 
         Debug.Log("You Died, Loser!");
@@ -58,4 +67,12 @@ public class PlayerBehavior : MonoBehaviour
 
     // This method will be called by an animation event on the player's Grabbed animation
     #endregion
+
+    #region << Upgrade Methods >> 
+    public void RestoreHealth(int amount)
+    {
+        _currentHP = Mathf.Min(_currentHP + amount, maxHealthPoint);
+    }
+    #endregion
+
 }

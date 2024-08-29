@@ -56,6 +56,7 @@ public class RobotEnemyScript : MonoBehaviour
         if (currentHealth <= 0)
         {
             Die();
+            GameManager.Instance.PlayerUpgradeManager.GainExperience(50);
         }
     }
 

@@ -18,6 +18,10 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] Transform enemyParent;
     [SerializeField] ObjectPoolManager robotEnemyPool;
 
+    [Header("Spawner Data")]
+    [SerializeField] int scoreToSpawn = 25;
+
+
     private bool _wasPooled = false;
     private float _score;
     void Update()
@@ -26,8 +30,8 @@ public class EnemySpawner : MonoBehaviour
     }
     private void TryPoolEnemies()
     {
-        float score = ScoreManager.Instance.GetScore();
-        if (score % 15 == 0 && score != 0 && !_wasPooled)
+        _score = ScoreManager.Instance.GetScore();
+        if (_score % scoreToSpawn == 0 && _score != 0 && !_wasPooled)
         {
             GameObject enemy = robotEnemyPool.GetObject();
             if (enemy.TryGetComponent(out RobotEnemyScript component))
@@ -47,7 +51,7 @@ public class EnemySpawner : MonoBehaviour
             StartCoroutine(LerpEnemyPosition(enemy, enemyPosition));
             _wasPooled = true;
         }
-        else if (score % 15 != 0 && _wasPooled)
+        else if (_score % scoreToSpawn != 0 && _wasPooled)
         {
             // Reset the flag when the score is no longer a multiple of 15
             _wasPooled = false;
@@ -82,15 +86,69 @@ public class EnemySpawner : MonoBehaviour
         return false;
     }
 
+    private void SetDiffculty()
+    {
+        if (_score >= 50 && _score < 100)
+        {
+            scoreToSpawn = 30;
+            fallingSpeed = 4;
+        }
+        else if (_score >= 100 && _score < 150)
+        {
+            scoreToSpawn = 25;
+            fallingSpeed = 5;
+        }
+        else if (_score >= 150 && _score < 200)
+        {
+            scoreToSpawn = 20;
+            fallingSpeed = 6;
+        }
+        else if (_score >= 200 && _score < 300)
+        {
+            scoreToSpawn = 15;
+            fallingSpeed = 7;
+        }
+        else if (_score >= 300 && _score < 400)
+        {
+            scoreToSpawn = 12;
+            fallingSpeed = 8;
+        }
+        else if (_score >= 400 && _score < 500)
+        {
+            scoreToSpawn = 10;
+            fallingSpeed = 9;
+        }
+        else if (_score >= 500 && _score < 600)
+        {
+            scoreToSpawn = 8;
+            fallingSpeed = 10;
+        }
+        else if (_score >= 600 && _score < 800)
+        {
+            scoreToSpawn = 7;
+            fallingSpeed = 11;
+        }
+        else if (_score >= 800 && _score < 1000)
+        {
+            scoreToSpawn = 6;
+            fallingSpeed = 12;
+        }
+        else if (_score >= 1000)
+        {
+            scoreToSpawn = 5; // Maximum spawn rate
+            fallingSpeed = 14; // Maximum falling speed
+        }
+    }
+
     private IEnumerator LerpEnemyPosition(GameObject enemy, Vector3 targetPosition)
     {
+        float distance = Vector3.Distance(enemy.transform.position, targetPosition);
         float elapsedTime = 0f;
-        float journeyTime = 2f;  // Adjust this value for the speed of movement
         Vector3 startPosition = enemy.transform.position;
 
-        while (elapsedTime < journeyTime)
+        while (elapsedTime < distance / fallingSpeed)
         {
-            enemy.transform.position = Vector3.Lerp(startPosition, targetPosition, elapsedTime / journeyTime);
+            enemy.transform.position = Vector3.Lerp(startPosition, targetPosition, elapsedTime / (distance / fallingSpeed));
             elapsedTime += Time.deltaTime;
             yield return null;
         }

@@ -10,7 +10,6 @@ public class PlayerBehavior : MonoBehaviour
     public int ExperiencePoints = 0;
     public int CobwebDamage = 5;
     public float AttackSpeedMultiplier = 1.0f;
-    public int RicochetLevel = 0;
     public int PiercingLevel = 0;
     public int MultiShotLevel = 0;
     public float CriticalHitChance = 0.05f;
@@ -19,7 +18,6 @@ public class PlayerBehavior : MonoBehaviour
     [Header("Private Editable Fields")]
     [SerializeField] int maxHealthPoint = 2;
     [SerializeField] ObjectPoolManager coinPool;
-
 
     [Header("Local Fields")]
     private int _currentHP;
@@ -53,8 +51,6 @@ public class PlayerBehavior : MonoBehaviour
         }
     }
 
-
-
     #region << Dying Methods >> 
     private void Die()
     {
@@ -72,6 +68,29 @@ public class PlayerBehavior : MonoBehaviour
     public void RestoreHealth(int amount)
     {
         _currentHP = Mathf.Min(_currentHP + amount, maxHealthPoint);
+    }
+
+    public void IncreasedDamage(int damage)
+    {
+        CobwebDamage += damage;
+    }
+
+    public void IncreasedAttaclSpeed()
+    {
+        GameManager.Instance.SpidyMorals.FireCooldown -= 0.5f;
+    }
+
+    public void Ricochet()
+    {
+        CobwebBullet.Instance.RemainingRicochets++;
+        Debug.Log($"Ricochet Level {CobwebBullet.Instance.RemainingRicochets}");
+
+    }
+
+    public void Piercing()
+    {
+        CobwebBullet.Instance.RemainingPierces++;
+        Debug.Log($"Piercing Level {CobwebBullet.Instance.RemainingPierces}");
     }
     #endregion
 

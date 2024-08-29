@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerUpgradeManager : MonoBehaviour
+public class UpgradeMenu : MonoBehaviour
 {
     public int ExperiencePoints = 0;
 
@@ -12,6 +12,7 @@ public class PlayerUpgradeManager : MonoBehaviour
 
     [Header("Upgrades")]
     [SerializeField] List<Upgrade> availableUpgrades;
+    [SerializeField] Transform upgradesParent;
 
     private PlayerBehavior playerBehavior;
 
@@ -23,6 +24,20 @@ public class PlayerUpgradeManager : MonoBehaviour
 
     private void InitializeUpgrades()
     {
+        // Loop through each child of the upgradesParent
+        foreach (Transform child in upgradesParent)
+        {
+            // Attempt to get the Upgrade component on the child
+            Upgrade upgradeOption = child.GetComponent<Upgrade>();
+
+            // If the child has an Upgrade component, add it to the list
+            if (upgradeOption != null)
+            {
+                availableUpgrades.Add(upgradeOption);
+            }
+        }
+
+        /*
         availableUpgrades = new List<Upgrade>
         {
             new Upgrade { name = "Attack Speed", description = "Increases the rate of fire." },
@@ -33,6 +48,7 @@ public class PlayerUpgradeManager : MonoBehaviour
             new Upgrade { name = "Multi-Shot", description = "Shoots multiple web shots." },
             new Upgrade { name = "Critical Hit Chance", description = "Increases the chance of critical hits." }
         };
+        */
     }
 
     public void GainExperience(int amount)
@@ -75,55 +91,7 @@ public class PlayerUpgradeManager : MonoBehaviour
     {
         chosenUpgrade.ApplyUpgrade(playerBehavior);
     }
+
+
 }
 
-[System.Serializable]
-public class Upgrade
-{
-    public string name;
-    public string description;
-    public Sprite icon;  // For UI representation
-    public int maxLevel = 5;
-    public int currentLevel = 0;
-
-    // Method to apply the upgrade effect based on the current level
-    public void ApplyUpgrade(PlayerBehavior player)
-    {
-        if (currentLevel < maxLevel)
-        {
-            switch (name)
-            {
-                case "Attack Speed":
-                    player.AttackSpeedMultiplier += 0.2f; // Increase attack speed by 20% per level
-                    break;
-                case "Restore Health":
-                    player.RestoreHealth(20); // Restore 20 health per level
-                    break;
-                case "Ricochet":
-                    player.RicochetLevel++; // Increase ricochet effect
-                    break;
-                case "Piercing":
-                    player.PiercingLevel++; // Increase piercing effect
-                    break;
-                case "Increase Damage":
-                    player.CobwebDamage += 2; // Increase damage by 2 per level
-                    break;
-                case "Multi-Shot":
-                    player.MultiShotLevel++; // Increase number of shots
-                    break;
-                case "Critical Hit Chance":
-                    player.CriticalHitChance += 0.05f; // Increase critical hit chance by 5% per level
-                    break;
-                default:
-                    Debug.LogWarning("Unknown upgrade: " + name);
-                    break;
-            }
-            currentLevel++;
-        }
-    }
-
-    public bool CanUpgrade()
-    {
-        return currentLevel < maxLevel;
-    }
-}

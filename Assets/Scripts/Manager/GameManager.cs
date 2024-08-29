@@ -14,11 +14,12 @@ public class GameManager : MonoSingleton<GameManager>
     [Header("Spidy")]
     public PlayerBehavior Player;
     public SpidyMorals SpidyMorals;
-    public PlayerUpgradeManager PlayerUpgradeManager;
+    public UpgradeMenu PlayerUpgradeManager;
 
     [Header("Enemy")]
     public ObjectPoolManager EnemyPool;
     public ObjectPoolManager BulletPool;
+    public EnemySpawner EnemySpawnerScript;
 
     private int _checkPoint = 0;
 

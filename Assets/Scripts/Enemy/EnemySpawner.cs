@@ -14,7 +14,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] Transform rightSpawner;
 
     [Header("Enemy Belongings")]
-    [SerializeField] List<RobotEnemyScript> enemiesList;
+    public List<RobotEnemyScript> EnemiesList;
     [SerializeField] Transform enemyParent;
     [SerializeField] ObjectPoolManager robotEnemyPool;
 
@@ -36,7 +36,7 @@ public class EnemySpawner : MonoBehaviour
             GameObject enemy = robotEnemyPool.GetObject();
             if (enemy.TryGetComponent(out RobotEnemyScript component))
             {
-                enemiesList.Add(component);
+                EnemiesList.Add(component);
             }
 
             Transform chosenSpawnPoint = GetRandomSpawnPoint();
@@ -76,7 +76,7 @@ public class EnemySpawner : MonoBehaviour
 
     private bool IsEnemyAtPosition(Vector3 position)
     {
-        foreach (RobotEnemyScript enemy in enemiesList)
+        foreach (RobotEnemyScript enemy in EnemiesList)
         {
             if (enemy.gameObject.activeInHierarchy && Vector3.Distance(enemy.transform.position, position) < 1.0f)
             {

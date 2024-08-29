@@ -9,7 +9,7 @@ public class SpidyMorals : MonoBehaviour
     public ObjectPoolManager CobwebPoolScript;
 
     [Header("Numbers Data")]
-    [SerializeField] float fireCooldown = 0.5f;
+    public float FireCooldown = 0.5f;
 
     [Header("Private Data")]
     private Animator _animator;
@@ -27,7 +27,7 @@ public class SpidyMorals : MonoBehaviour
     }
     private void AutoShoot()
     {
-        if (_fire >= fireCooldown)
+        if (_fire >= FireCooldown)
         {
             _animator.SetTrigger("Attacking");
             StartCoroutine(WaitForShoot());

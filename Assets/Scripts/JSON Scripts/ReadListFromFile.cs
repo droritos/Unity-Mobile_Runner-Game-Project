@@ -33,7 +33,7 @@ public class ReadListFromFile : MonoBehaviour
                     playerPhotoDisplay.texture = texture;
                 }
 
-                Debug.Log("Player Name: " + player.playerName + ", Player Age: " + player.playerAge);
+                Debug.Log($"Player Name: {player.playerName} , Player Age: {player.playerAge} , Player Coins : {player.coins}");
             }
             return players;
         }
@@ -69,6 +69,7 @@ public class Player
     public string playerName;
     public int playerAge;
     public string photoPath;
+    public int coins;
 }
 
 [System.Serializable]

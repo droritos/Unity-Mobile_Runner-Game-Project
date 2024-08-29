@@ -13,7 +13,6 @@ public class ScoreManager : MonoSingleton<ScoreManager>
 
     [Header("Serialize Data")]
     [SerializeField] PlayerBehavior playerBehavior;
-    [SerializeField] MovingObjectsConfig roadParametersConfig;
 
     [Header("Private Data")]
     private float _totalScore = 0;

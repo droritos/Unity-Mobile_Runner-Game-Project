@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class CobwebBullet : MonoBehaviour
 {
-    [SerializeField] int damage = 5;
     [SerializeField] MovingObjectsConfig speed;
 
     void Update()
@@ -16,7 +15,7 @@ public class CobwebBullet : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            // Enemy TakeDamage();
+            GameManager.Instance.SpidyMorals.CobwebPoolScript.ReleaseObject(this.gameObject);
         }
     }
 }

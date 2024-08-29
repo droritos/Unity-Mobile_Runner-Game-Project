@@ -4,17 +4,25 @@ using UnityEngine;
 public class PlayerBehavior : MonoBehaviour
 {
     [Header("Public Fields")]
-    public int coins = 0;
     public bool IsAlive = true;
     public int ExperiencePoints = 0;
     public int CobwebDamage = 5;
-    
+    [HideInInspector] public int coins = 0;
+
+    [Header("Private Editable Fields")]
+    [SerializeField] int maxHealthPoint = 2;
+    [SerializeField] ObjectPoolManager coinPool;
+
 
     [Header("Local Fields")]
-    [SerializeField] ObjectPoolManager coinPool;
-    [SerializeField] float moveSpeed = 5;
+    private int _currentHP;
     private int _currentLevel;
 
+    private void Start()
+    {
+        _currentHP = maxHealthPoint;
+
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -25,7 +33,17 @@ public class PlayerBehavior : MonoBehaviour
         }
         else if (other.CompareTag("EnemyProjectile"))
         {
-            Debug.Log("I took Damage Loser");
+            TakeDamage();
+            GameManager.Instance.BulletPool.ReleaseObject(other.gameObject);
+        }
+    }
+
+    private void TakeDamage()
+    {
+        _currentHP -= 1;
+        if (_currentHP <= 0)
+        {
+            Die();
         }
     }
 
@@ -35,6 +53,7 @@ public class PlayerBehavior : MonoBehaviour
         IsAlive = false;
         // Die Animtaion 
         // Move to next scene 
+        Debug.Log("You Died, Loser!");
     }
 
     // This method will be called by an animation event on the player's Grabbed animation

@@ -9,8 +9,14 @@ public class GameManager : MonoSingleton<GameManager>
     [SerializeField] ReadListFromFile readListFromFile;
     [SerializeField] WebcamCapture webcamCapture;
     [SerializeField] SceneStateManager sceneStateManager;
+
+    [Header("Spidy")]
     public PlayerBehavior Player;
     public SpidyMorals SpidyMorals;
+
+    [Header("Enemy")]
+    public ObjectPoolManager EnemyPool;
+    public ObjectPoolManager BulletPool;
 
     private int _checkPoint = 0;
 

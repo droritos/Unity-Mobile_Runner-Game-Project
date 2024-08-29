@@ -38,7 +38,6 @@ public class ObjectPoolManager : MonoBehaviour
 
     private GameObject CreatePooledItem()
     {
-        Debug.Log("Creating new pooled item.");
         _localScaled = new Vector3(0.5f, 0.5f, 0.5f);
         var gameobjectprefab = Instantiate(Prefab); // Spawn 
         gameobjectprefab.transform.SetParent(parent);
@@ -48,7 +47,12 @@ public class ObjectPoolManager : MonoBehaviour
 
     private void OnTakeFromPool(GameObject obj)
     {
+        if (obj == null)
+        {
+            Debug.LogWarning($"Object not found : {obj.name}");
+        }
         obj.SetActive(true);
+
     }
 
     public void OnReturnedToPool(GameObject obj)
@@ -59,14 +63,17 @@ public class ObjectPoolManager : MonoBehaviour
 
     public GameObject GetObject()
     {
-        if(Pool.CountInactive <= 0)
-            Debug.Log("Attempting to get object from pool. Current pool size: " + Pool.CountInactive);
         return Pool.Get();
     }
 
     public void ReleaseObject(GameObject obj)
     {
+        if (obj == null)
+        {
+            Debug.LogWarning($"Object not found : {obj.name}");
+        }
         Pool.Release(obj);
+        
     }
     private void OnDestroyPoolObject(GameObject obj)
     {

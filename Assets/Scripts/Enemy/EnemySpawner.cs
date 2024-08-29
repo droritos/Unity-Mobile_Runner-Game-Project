@@ -20,44 +20,31 @@ public class EnemySpawner : MonoBehaviour
 
     private bool _wasPooled = false;
     private float _score;
-
-    void Start()
-    {
-        GetEnemies();
-    }
-
     void Update()
     {
         TryPoolEnemies();
     }
-
-    private void GetEnemies()
-    {
-        for (int i = 0; i < enemyParent.childCount; i++)
-        {
-            if (enemyParent.GetChild(i).TryGetComponent(out RobotEnemyScript component))
-            {
-                enemiesList.Add(component);
-            }
-        }
-    }
-
     private void TryPoolEnemies()
     {
         float score = ScoreManager.Instance.GetScore();
         if (score % 15 == 0 && score != 0 && !_wasPooled)
         {
             GameObject enemy = robotEnemyPool.GetObject();
-            Transform chosenSpawnPoint = GetRandomSpawnPoint();
-
-            // Check if there's already an enemy at the chosen position
-            if (IsEnemyAtPosition(chosenSpawnPoint.position))
+            if (enemy.TryGetComponent(out RobotEnemyScript component))
             {
-                // Offset the new enemy's position by 3 units along the Z-axis
-                chosenSpawnPoint.position = new Vector3(chosenSpawnPoint.position.x, chosenSpawnPoint.position.y, chosenSpawnPoint.position.z + 3);
+                enemiesList.Add(component);
             }
 
-            StartCoroutine(LerpEnemyPosition(enemy, chosenSpawnPoint.position));
+            Transform chosenSpawnPoint = GetRandomSpawnPoint();
+            Vector3 enemyPosition = chosenSpawnPoint.position;
+
+            // Check if there's already an enemy at the chosen position and keep moving along Z-axis if occupied
+            while (IsEnemyAtPosition(enemyPosition))
+            {
+                enemyPosition = new Vector3(enemyPosition.x, enemyPosition.y, enemyPosition.z + 3);
+            }
+
+            StartCoroutine(LerpEnemyPosition(enemy, enemyPosition));
             _wasPooled = true;
         }
         else if (score % 15 != 0 && _wasPooled)

@@ -53,7 +53,7 @@ public class PlayerMovement : MonoSingleton<PlayerMovement>
             _targetPosition = new Vector3(this.transform.position.x - horizontalMoveRange, this.transform.position.y, this.transform.position.z);
             _isMoving = true;
         }
-        Debug.Log("Player Moving Left");
+        //Debug.Log("Player Moving Left");
     }
 
     public void MoveLeft()
@@ -64,7 +64,7 @@ public class PlayerMovement : MonoSingleton<PlayerMovement>
             _targetPosition = new Vector3(this.transform.position.x + horizontalMoveRange, this.transform.position.y, this.transform.position.z);
             _isMoving = true;
         }
-        Debug.Log("Player Moving Right");
+        //Debug.Log("Player Moving Right");
     }
 
     public void Jump()

@@ -4,18 +4,12 @@ using UnityEngine;
 
 public class WallGarbage : MonoBehaviour
 {
-    [SerializeField] BuildingObjectPool buildingObjectPool;
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Web"))
+        if (other.CompareTag("EnemyProjectile"))
         {
-            Destroy(other.gameObject);
-        }
-        else if (other.CompareTag("Building"))
-        {
-            Debug.Log("Remove Building");
-            buildingObjectPool.ReleaseObject(other.gameObject);
+            GameManager.Instance.BulletPool.ReleaseObject(other.gameObject);
+            Debug.Log("Enemy bullet realsed");
         }
     }
-
 }

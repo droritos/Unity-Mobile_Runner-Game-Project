@@ -392,7 +392,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 7ef51a24c76f81a4c93da6be03f47a6e,
         type: 3}
       propertyPath: m_Name
-      value: FakeSpidy
+      value: SpidyPlayer
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 7ef51a24c76f81a4c93da6be03f47a6e,
         type: 3}
@@ -647,6 +647,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7ef51a24c76f81a4c93da6be03f47a6e,
         type: 3}
       insertIndex: -1
+      addedObject: {fileID: 1280396278694654293}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7ef51a24c76f81a4c93da6be03f47a6e,
+        type: 3}
+      insertIndex: -1
       addedObject: {fileID: 6410431374692790571}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7ef51a24c76f81a4c93da6be03f47a6e,
         type: 3}
@@ -700,9 +704,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coins: 0
   IsAlive: 1
-  playerScreenPhoto: {fileID: 0}
+  ExperiencePoints: 0
+  CobwebDamage: 5
+  maxHealthPoint: 2
   coinPool: {fileID: 0}
-  chaser: {fileID: 0}
   moveSpeed: 10
 --- !u!114 &5724642034250212118
 MonoBehaviour:
@@ -722,6 +727,28 @@ MonoBehaviour:
   horizontalMoveRange: 1.6
   verticalOffset: 1
   verticalMoveRange: 1.5
+--- !u!114 &1280396278694654293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 652299339805946986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 255cd7ef44c0ea042b04b12dcd6b6bbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsGrabbing: 0
+  CobwebSpawnPoint:
+  - {fileID: 6957835799963775398}
+  CobwebPoolScript: {fileID: 0}
+  cobweb: {fileID: 7453804368033802323, guid: be0f4fd961a1ef14896a5e8444c60473, type: 3}
+  player: {fileID: 0}
+  moveSpeed: 5
+  fireCooldown: 2
+  maxCooldown: 2.5
+  animationOffset: {x: 0, y: 0, z: 0}
 --- !u!65 &6410431374692790571
 BoxCollider:
   m_ObjectHideFlags: 0

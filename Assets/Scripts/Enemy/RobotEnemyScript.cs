@@ -4,15 +4,12 @@ using System.Collections;
 public class RobotEnemyScript : MonoBehaviour
 {
     [Header("Enemy Fields")]
-    [SerializeField] int health = 10;
+    [SerializeField] int maxHealth = 5;
     [SerializeField] float fireColdown = 1f;
     [SerializeField] float hitDuration = 0.1f; // Duration to keep the object red
     [SerializeField] Transform projectileSpawnPoint;
-    [SerializeField] GameObject bullet;
 
     [Header("Enemy Pools")]
-    public ObjectPoolManager EnemyPool;
-    [SerializeField] ObjectPoolManager bulletPool;
 
     [Header("Enemy Visual")]
     [SerializeField] Transform robotGFX;
@@ -20,6 +17,12 @@ public class RobotEnemyScript : MonoBehaviour
     private float _fire = 0;
     private Animator _animator;
     private Renderer objectRenderer;
+    private GameObject _bulletProjectile;
+    private int currentHealth;
+
+    private ObjectPoolManager bulletPool;
+    private ObjectPoolManager enemyPool;
+
 
     void Start()
     {
@@ -27,6 +30,7 @@ public class RobotEnemyScript : MonoBehaviour
 
         // Find the Renderer in the child object "Robot1"
         objectRenderer = robotGFX.GetComponent<Renderer>();
+
     }
 
     void Update()
@@ -40,22 +44,16 @@ public class RobotEnemyScript : MonoBehaviour
         if (other.CompareTag("Web"))
         {
             TakeDamage(GameManager.Instance.Player.CobwebDamage);
-            Destroy(other.gameObject);
         }
     }
-    public void EnemyPooled(/*Vector3 movePosition, int speed*/)
-    {
-        GameObject enemy = EnemyPool.GetObject();
-    }
-
 
     public void TakeDamage(int damage)
     {
         // Decrease health or dead
-        health -= damage;
+        currentHealth -= damage;
         StartCoroutine(HitAnimation());
 
-        if (health <= 0)
+        if (currentHealth <= 0)
         {
             Die();
         }
@@ -73,6 +71,11 @@ public class RobotEnemyScript : MonoBehaviour
             if (objectRenderer != null)
                 objectRenderer.material.color = Color.white;
 
+            //Debug.Log($"Ouch You Hit Me");
+        }
+        else
+        {
+            Debug.Log("Object Renderer Not Found");
         }
     }
 
@@ -84,14 +87,27 @@ public class RobotEnemyScript : MonoBehaviour
             _animator.SetTrigger("Attack");
             StartCoroutine(WaitForShoot());
             _fire = 0;
-            bulletPool.IsMaxPoolSize(projectileSpawnPoint.position);
         }
     }
 
     private void Die()
     {
-        // player gets experience points
-        //enemyPool.ReleaseObject(parent);
+        if (GameManager.Instance.EnemyPool != null)
+        {
+            GameManager.Instance.EnemyPool.ReleaseObject(this.gameObject);
+            this.transform.position = GameManager.Instance.EnemyPool.transform.position;
+            ResetEnemy();
+        }
+        else
+        {
+            Debug.LogWarning("Enemy Pool Not Found");
+        }
+    }
+
+    private void ResetEnemy()
+    {
+        currentHealth = maxHealth;
+        objectRenderer.material.color = Color.white;
     }
 
     private IEnumerator WaitForShoot()
@@ -99,8 +115,7 @@ public class RobotEnemyScript : MonoBehaviour
         // Wait until animation is done
         yield return new WaitForSeconds(_animator.GetCurrentAnimatorStateInfo(0).length);
         // Attempt to get an object from the pool
-        bullet = bulletPool.GetObject();
-        bullet.transform.position = projectileSpawnPoint.position;
-        bulletPool.ActiveObjects.Enqueue(bullet);
+        _bulletProjectile = GameManager.Instance.BulletPool.GetObject();
+        _bulletProjectile.transform.position = projectileSpawnPoint.position;
     }
 }

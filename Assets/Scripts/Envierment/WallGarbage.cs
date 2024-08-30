@@ -9,7 +9,11 @@ public class WallGarbage : MonoBehaviour
         if (other.CompareTag("EnemyProjectile"))
         {
             GameManager.Instance.BulletPool.ReleaseObject(other.gameObject);
-            Debug.Log("Enemy bullet realsed");
+            //Debug.Log("Enemy bullet realsed");
+        }
+        else if (other.CompareTag("Web"))
+        {
+            GameManager.Instance.SpidyMorals.CobwebPoolScript.ReleaseObject(other.gameObject);
         }
     }
 }

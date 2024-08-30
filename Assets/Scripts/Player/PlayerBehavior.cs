@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,11 +10,21 @@ public class PlayerBehavior : MonoBehaviour
     public bool IsAlive = true;
     public int ExperiencePoints = 0;
     public int CobwebDamage = 5;
+    [HideInInspector] public int coins = 0;
+
+    [Header("Upgrades Fields")]
     public float AttackSpeedMultiplier = 1.0f;
-    public int PiercingLevel = 0;
     public int MultiShotLevel = 0;
     public float CriticalHitChance = 0.05f;
-    [HideInInspector] public int coins = 0;
+    public float CobwebScaler = 0;
+    public int CobwebPiercingLevel = 0;
+
+    public int PiercingLevel = 1;
+    public int CobwebDamageLevel = 1;
+    public int CobwebScaleLevel = 1;
+    public int AttackSpeedLevel = 1;
+
+
 
     [Header("Private Editable Fields")]
     [SerializeField] int maxHealthPoint = 2;
@@ -64,33 +75,35 @@ public class PlayerBehavior : MonoBehaviour
     // This method will be called by an animation event on the player's Grabbed animation
     #endregion
 
-    #region << Upgrade Methods >> 
+    #region << Upgrade Methods - Buttons >> 
     public void RestoreHealth(int amount)
     {
         _currentHP = Mathf.Min(_currentHP + amount, maxHealthPoint);
     }
 
-    public void IncreasedDamage(int damage)
+    public void IncreasedDamage(TextMeshProUGUI levelText)
     {
-        CobwebDamage += damage;
+        CobwebDamage += 2;
+        levelText.text = $"LVL : {CobwebDamageLevel.ToString()}";
     }
 
-    public void IncreasedAttaclSpeed()
+    public void IncreasedAttaclSpeed(TextMeshProUGUI levelText)
     {
-        GameManager.Instance.SpidyMorals.FireCooldown -= 0.5f;
-    }
-
-    public void Ricochet()
-    {
-        CobwebBullet.Instance.RemainingRicochets++;
-        Debug.Log($"Ricochet Level {CobwebBullet.Instance.RemainingRicochets}");
+        GameManager.Instance.SpidyMorals.FireCooldown -= 0.2f;
+        levelText.text = $"LVL : {AttackSpeedLevel.ToString()}";
 
     }
 
-    public void Piercing()
+    public void IncreaseWebSize(TextMeshProUGUI levelText)
     {
-        CobwebBullet.Instance.RemainingPierces++;
-        Debug.Log($"Piercing Level {CobwebBullet.Instance.RemainingPierces}");
+        CobwebScaler += 30f;
+        levelText.text = $"LVL : {CobwebScaleLevel.ToString()}";
+
+    }
+    public void Piercing(TextMeshProUGUI levelText)
+    {
+        CobwebPiercingLevel++;
+        levelText.text = $"LVL : {PiercingLevel.ToString()}";
     }
     #endregion
 

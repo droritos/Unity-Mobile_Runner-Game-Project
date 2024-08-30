@@ -15,7 +15,7 @@ public class EnemySpawner : MonoBehaviour
 
     [Header("Enemy Belongings")]
     public List<RobotEnemyScript> EnemiesList;
-    [SerializeField] Transform enemyParent;
+    public Transform EnemyParent;
     [SerializeField] ObjectPoolManager robotEnemyPool;
 
     [Header("Spawner Data")]
@@ -81,6 +81,10 @@ public class EnemySpawner : MonoBehaviour
             if (enemy.gameObject.activeInHierarchy && Vector3.Distance(enemy.transform.position, position) < 1.0f)
             {
                 return true;
+            }
+            else if (!enemy.gameObject.activeInHierarchy)
+            {
+                EnemiesList.Remove(enemy);
             }
         }
         return false;

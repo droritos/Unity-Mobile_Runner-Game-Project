@@ -14,7 +14,7 @@ public class GameManager : MonoSingleton<GameManager>
     [Header("Spidy")]
     public PlayerBehavior Player;
     public SpidyMorals SpidyMorals;
-    public UpgradeMenu PlayerUpgradeManager;
+    public UpgradeMenu UpgradeMenuScript;
 
     [Header("Enemy")]
     public ObjectPoolManager EnemyPool;

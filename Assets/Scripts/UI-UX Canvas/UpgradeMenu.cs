@@ -19,7 +19,7 @@ public class UpgradeMenu : MonoBehaviour
     private void Start()
     {
         playerBehavior = GameManager.Instance.Player;
-        InitializeUpgrades();
+        upgradesParent.gameObject.SetActive(false);
     }
 
     private void InitializeUpgrades()
@@ -36,19 +36,6 @@ public class UpgradeMenu : MonoBehaviour
                 availableUpgrades.Add(upgradeOption);
             }
         }
-
-        /*
-        availableUpgrades = new List<Upgrade>
-        {
-            new Upgrade { name = "Attack Speed", description = "Increases the rate of fire." },
-            new Upgrade { name = "Restore Health", description = "Restores some health.", maxLevel = 3 },
-            new Upgrade { name = "Ricochet", description = "Web shots ricochet to another lane." },
-            new Upgrade { name = "Piercing", description = "Web shots pierce through enemies." },
-            new Upgrade { name = "Increase Damage", description = "Increases damage output." },
-            new Upgrade { name = "Multi-Shot", description = "Shoots multiple web shots." },
-            new Upgrade { name = "Critical Hit Chance", description = "Increases the chance of critical hits." }
-        };
-        */
     }
 
     public void GainExperience(int amount)
@@ -72,26 +59,31 @@ public class UpgradeMenu : MonoBehaviour
 
     private void ShowUpgradeOptions()
     {
-        // Pick 3 random upgrades to offer to the player
-        List<Upgrade> upgradesToShow = new List<Upgrade>();
-        while (upgradesToShow.Count < 3)
+        // First, deactivate all children to ensure a clean slate
+        foreach (Transform child in upgradesParent)
         {
-            Upgrade randomUpgrade = availableUpgrades[Random.Range(0, availableUpgrades.Count)];
-            if (randomUpgrade.CanUpgrade() && !upgradesToShow.Contains(randomUpgrade))
+            child.gameObject.SetActive(false);
+        }
+
+        int activatedCount = 0;
+
+        // Continue until 3 unique children are activated
+        while (activatedCount < 3)
+        {
+            // Randomly select a child from upgradesParent
+            Transform randomChild = upgradesParent.GetChild(Random.Range(0, upgradesParent.childCount));
+
+            // Only activate the child if it is currently inactive
+            if (!randomChild.gameObject.activeSelf)
             {
-                upgradesToShow.Add(randomUpgrade);
+                randomChild.gameObject.SetActive(true);
+                activatedCount++;
             }
         }
 
-        // Example: Automatically apply the first upgrade (you would normally let the player choose)
-        ApplyUpgrade(upgradesToShow[0]);
+        // Make sure the upgradesParent is visible
+        upgradesParent.gameObject.SetActive(true);
     }
-
-    public void ApplyUpgrade(Upgrade chosenUpgrade)
-    {
-        chosenUpgrade.ApplyUpgrade(playerBehavior);
-    }
-
 
 }
 

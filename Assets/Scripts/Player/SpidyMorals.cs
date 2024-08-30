@@ -9,7 +9,7 @@ public class SpidyMorals : MonoBehaviour
     public ObjectPoolManager CobwebPoolScript;
 
     [Header("Numbers Data")]
-    public float FireCooldown = 0.5f;
+    public float FireCooldown = 2f;
 
     [Header("Private Data")]
     private Animator _animator;

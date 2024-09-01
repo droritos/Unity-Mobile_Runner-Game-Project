@@ -8,7 +8,6 @@ public class GameManager : MonoSingleton<GameManager>
     [SerializeField] MovingObjectsConfig roadParameters;
     [SerializeField] ReadListFromFile readListFromFile;
     [SerializeField] WebcamCapture webcamCapture;
-    
     [SerializeField] SceneStateManager sceneStateManager;
 
     [Header("Spidy")]
@@ -20,6 +19,7 @@ public class GameManager : MonoSingleton<GameManager>
     public ObjectPoolManager EnemyPool;
     public ObjectPoolManager BulletPool;
     public EnemySpawner EnemySpawnerScript;
+
 
     private int _checkPoint = 0;
 

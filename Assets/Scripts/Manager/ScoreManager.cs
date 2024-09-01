@@ -7,7 +7,6 @@ using UnityEngine;
 public class ScoreManager : MonoSingleton<ScoreManager>
 {
     [Header("Text Mesh Pro")]
-    [SerializeField] TextMeshProUGUI timeScore;
     [SerializeField] TextMeshProUGUI coins;
     [SerializeField] TextMeshProUGUI score;
 
@@ -18,6 +17,7 @@ public class ScoreManager : MonoSingleton<ScoreManager>
     private float _totalScore = 0;
     private float _survivedScore;
     private int _coinScore;
+    private float _levelUpBonus = 0;
 
 
     void Update()
@@ -30,9 +30,15 @@ public class ScoreManager : MonoSingleton<ScoreManager>
     {
         SetTimeScore();
         SetCoins();
-        _totalScore = _coinScore + _survivedScore;
+        ScoreText();
+    }
+
+    private void ScoreText()
+    {
+        _totalScore = _coinScore + _survivedScore + _levelUpBonus;
         score.text = Mathf.FloorToInt(_totalScore).ToString();
     }
+
     private void UpdateCoins()
     {
         coins.text = _coinScore.ToString();
@@ -55,5 +61,8 @@ public class ScoreManager : MonoSingleton<ScoreManager>
     {
         return Int32.Parse(score.text);
     }
-    
+    public void AddToScore(float gainedScore)
+    {
+        _levelUpBonus += gainedScore;
+    }
 }

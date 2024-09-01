@@ -4,14 +4,13 @@ using UnityEngine;
 public class UpgradeMenu : MonoBehaviour
 {
     public int ExperiencePoints = 0;
+    public int CurrentLevel = 1;
 
     [Header("Leveling System")]
     [SerializeField] int baseExperienceToLevel = 100;
     [SerializeField] float experienceGrowthFactor = 1.5f;
-    private int _currentLevel = 1;
 
     [Header("Upgrades")]
-    [SerializeField] List<Upgrade> availableUpgrades;
     [SerializeField] Transform upgradesParent;
 
     private PlayerBehavior playerBehavior;
@@ -22,27 +21,11 @@ public class UpgradeMenu : MonoBehaviour
         upgradesParent.gameObject.SetActive(false);
     }
 
-    private void InitializeUpgrades()
-    {
-        // Loop through each child of the upgradesParent
-        foreach (Transform child in upgradesParent)
-        {
-            // Attempt to get the Upgrade component on the child
-            Upgrade upgradeOption = child.GetComponent<Upgrade>();
-
-            // If the child has an Upgrade component, add it to the list
-            if (upgradeOption != null)
-            {
-                availableUpgrades.Add(upgradeOption);
-            }
-        }
-    }
-
     public void GainExperience(int amount)
     {
         ExperiencePoints += amount;
-
-        int experienceRequired = Mathf.RoundToInt(baseExperienceToLevel * Mathf.Pow(experienceGrowthFactor, _currentLevel - 1));
+        Debug.Log($"Gained EXP {ExperiencePoints}");
+        int experienceRequired = Mathf.RoundToInt(baseExperienceToLevel * Mathf.Pow(experienceGrowthFactor, CurrentLevel - 1));
 
         if (ExperiencePoints >= experienceRequired)
         {
@@ -50,11 +33,17 @@ public class UpgradeMenu : MonoBehaviour
         }
     }
 
-    private void LevelUp()
+    public void LevelUp()
     {
         ExperiencePoints = 0;
-        _currentLevel++;
+        CurrentLevel++;
+        ScoreManager.Instance.AddToScore(250);
         ShowUpgradeOptions();
+    }
+
+    public int GetLevel()
+    {
+        return CurrentLevel;
     }
 
     private void ShowUpgradeOptions()

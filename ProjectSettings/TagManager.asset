@@ -16,6 +16,7 @@ TagManager:
   - StreetFloor
   - Enemy
   - EnemyProjectile
+  - LvLUp
   layers:
   - Default
   - TransparentFX

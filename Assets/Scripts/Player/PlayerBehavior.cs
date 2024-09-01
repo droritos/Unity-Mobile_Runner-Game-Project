@@ -29,6 +29,7 @@ public class PlayerBehavior : MonoBehaviour
     [Header("Private Editable Fields")]
     [SerializeField] int maxHealthPoint = 2;
     [SerializeField] ObjectPoolManager coinPool;
+    [SerializeField] ObjectPoolManager lvlUpPool;
 
     [Header("Local Fields")]
     private int _currentHP;
@@ -45,6 +46,11 @@ public class PlayerBehavior : MonoBehaviour
         {
             coinPool.ReleaseObject(other.gameObject);
             coins++;
+        }
+        else if (other.CompareTag("LvLUp"))
+        {
+            lvlUpPool.ReleaseObject(other.gameObject);
+            GameManager.Instance.UpgradeMenuScript.LevelUp();
         }
         else if (other.CompareTag("EnemyProjectile"))
         {
@@ -72,6 +78,18 @@ public class PlayerBehavior : MonoBehaviour
         Debug.Log("You Died, Loser!");
     }
 
+    public int LevelReachWhenDied()
+    {
+        if (!IsAlive)
+        {
+            return GameManager.Instance.UpgradeMenuScript.CurrentLevel;
+        }
+        else
+        {
+            return -1;
+        }
+    }
+
     // This method will be called by an animation event on the player's Grabbed animation
     #endregion
 
@@ -97,13 +115,14 @@ public class PlayerBehavior : MonoBehaviour
     public void IncreaseWebSize(TextMeshProUGUI levelText)
     {
         CobwebScaler += 30f;
+        CobwebScaleLevel++;
         levelText.text = $"LVL : {CobwebScaleLevel.ToString()}";
 
     }
     public void Piercing(TextMeshProUGUI levelText)
     {
         CobwebPiercingLevel++;
-        levelText.text = $"LVL : {PiercingLevel.ToString()}";
+        levelText.text = $"LVL : {CobwebPiercingLevel.ToString()}";
     }
     #endregion
 

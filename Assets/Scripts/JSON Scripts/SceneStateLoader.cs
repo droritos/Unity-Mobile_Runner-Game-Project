@@ -35,7 +35,6 @@ public class SceneStateLoader : MonoBehaviour
                 if (type != null)
                 {
                     Component component = newObj.AddComponent(type);
-                    JsonUtility.FromJsonOverwrite(compState.json, component);
                 }
             }
         }

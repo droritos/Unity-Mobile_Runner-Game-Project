@@ -1,14 +1,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CoinScript : MonoBehaviour
+public class CollactablesManager : MonoBehaviour
 {
     [SerializeField] MovingObjectsConfig MovingObjectsSO;
 
-    [Header("Coin Pool Fields")]
-    public ObjectPoolManager poolCoinScript;
-    [SerializeField] int coinChance;
-    [SerializeField] Transform coinParent;
+    [Header("Collactable Pool Fields")]
+    [SerializeField] Transform CollactableParent;
+    [SerializeField] Vector3 CollectableOffset;
+    public ObjectPoolManager CollectableObjectPool;
+    public float PoolChance;
+
 
     [Header("SpawnPoints")]
     [SerializeField] Transform leftSpawnPoint;
@@ -16,17 +18,17 @@ public class CoinScript : MonoBehaviour
     [SerializeField] Transform rightpawnPoint;
     private void Update()
     {
-        MoveCoins();
+        MoveObject();
     }
 
-    public void CoinPooled()
+    public void CollectablePooled()
     {
-        GameObject pooledObject = poolCoinScript.GetObject();
-        pooledObject.transform.position = RandomSpawnPoint();
+        GameObject pooledObject = CollectableObjectPool.GetObject();
+        pooledObject.transform.position = RandomSpawnPoint() + CollectableOffset;
     }
-    public void ReleaseCoin(GameObject coin)
+    public void ReleaseMe(GameObject collatableObject)
     {
-        poolCoinScript.ReleaseObject(coin);
+        CollectableObjectPool.ReleaseObject(collatableObject);
     }
 
     private Vector3 RandomSpawnPoint()
@@ -45,13 +47,14 @@ public class CoinScript : MonoBehaviour
         }
     }
 
-    private void MoveCoins()
+    private void MoveObject()
     {
-        foreach (Transform obj in coinParent)
+        foreach (Transform obj in CollactableParent)
         {
             if (obj.gameObject.activeSelf)
             {
                 obj.Translate(MovingObjectsSO.CarRoadSpeed * Time.deltaTime * Vector3.back);
+
             }
         }
     }

@@ -10,11 +10,9 @@ public class WallManager : MonoBehaviour
     [SerializeField] Transform SidewalkLeftStartPos;
     [SerializeField] Transform StreetFloorParent;
 
-    [Header("Coin Pool Fields")]
-    [SerializeField] CoinScript coinScript;
-    [SerializeField] ObjectPoolManager poolCoinScript;
-    [SerializeField] Vector3 coinOffset;
-    [SerializeField] int coinChance;
+    [Header("Collectable Pool Fields")]
+    [SerializeField] CollactablesManager coinContainer;
+    [SerializeField] CollactablesManager lvlUpContainer;
 
     [Header("Building Pool Fields")]
     public BuildingObjectPool BuildingObjectPool;
@@ -25,18 +23,26 @@ public class WallManager : MonoBehaviour
     {
         if (other.CompareTag("Floor"))
         {
-            other.transform.position = FloorStartPos.position; // Other is the Floor
-            coinScript.CoinPooled();
-
-            //if (RandomObstacleChance(coinChance))
-            //{
-            //}
-
+            if (RandomObstacleChance(lvlUpContainer.PoolChance))
+            {
+                // Take LevelUp Object 
+                other.transform.position = FloorStartPos.position; // Other is the Floor
+                lvlUpContainer.CollectablePooled();
+            }
+            else
+            {
+                // Take Coin Object
+                other.transform.position = FloorStartPos.position; // Other is the Floor
+                coinContainer.CollectablePooled();
+            }
         }
         else if (other.CompareTag("Coin"))
         {
-            coinScript.poolCoinScript.ReleaseObject(other.gameObject);
-
+            coinContainer.CollectableObjectPool.ReleaseObject(other.gameObject);
+        }
+        else if (other.CompareTag("LvLUp"))
+        {
+            lvlUpContainer.CollectableObjectPool.ReleaseObject(other.gameObject);
         }
         else if (other.CompareTag("SidewalkRight"))
         {
@@ -56,60 +62,11 @@ public class WallManager : MonoBehaviour
         }
     }
 
-    #region << Coin Related Methods >> 
-    private void PlaceObstacleOnFloor(GameObject poolObject, Transform floor, string objectType)
-    {
-        // Get the GroundController component from the parent of the floor
-        GroundController current = floor.GetComponentInParent<GroundController>();
-
-        // Retrieve the bounds for the specified object type
-        Bounds bounds = current.GetBounds(objectType);
-
-        // Calculate the x, y, z coordinates for placing the obstacle
-        float x = RandomPosition(bounds.size.x);
-
-        // Create a Vector3 for the new position
-        Vector3 position = new Vector3(x, coinOffset.y, 0);
-
-        // Set the position of the poolObject to the calculated position
-        poolObject.transform.position = position;
-
-        // Set the parent of the poolObject to the floor, keeping its local position
-        poolObject.transform.SetParent(floor, false);
-    }
-    private void RemoveObstacleOnFloor(Transform floor)
-    {
-        for (int i = 0; i < floor.childCount; i++)
-        {
-            Transform child = floor.GetChild(i);
-            if (child.childCount > 0)
-            {
-                GameObject obstacle = child.GetChild(0).gameObject;
-                poolCoinScript.ReleaseObject(obstacle);
-                Debug.Log($"Released obstacle: {obstacle.name}");
-            }
-        }
-    }
-    private bool RandomObstacleChance(int odd)
+    #region << Pool Related Methods >> 
+    private bool RandomObstacleChance(float odd)
     {
         int chance = Random.Range(0, 100);
         return chance <= odd; // % chance to place an obstacle
-    }
-    private float RandomPosition(float axisPosition)
-    {
-        List<float> floats = new List<float>();
-        axisPosition = Mathf.Floor(axisPosition / 3); // Getting an int number
-        float axisPositionLeft = axisPosition - coinOffset.x; // Left trail path of obstacles
-        floats.Add(axisPositionLeft);
-
-        float axisPositionMiddle = 0f; // Middle trail path of obstacles
-        floats.Add(axisPositionMiddle);
-
-        float axisPositionRight = (axisPosition - (axisPosition * 2)) + coinOffset.x; // Right trail path of obstacles
-        floats.Add(axisPositionRight);
-
-        int index = Random.Range(0, floats.Count);
-        return floats[index];
     }
     #endregion
 

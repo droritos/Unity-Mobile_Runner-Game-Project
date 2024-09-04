@@ -3,9 +3,6 @@ using UnityEngine;
 
 public class UpgradeMenu : MonoBehaviour
 {
-    public int ExperiencePoints = 0;
-    public int CurrentLevel = 1;
-
     [Header("Leveling System")]
     [SerializeField] int baseExperienceToLevel = 100;
     [SerializeField] float experienceGrowthFactor = 1.5f;
@@ -13,39 +10,37 @@ public class UpgradeMenu : MonoBehaviour
     [Header("Upgrades")]
     [SerializeField] Transform upgradesParent;
 
-    private PlayerBehavior playerBehavior;
+    private PlayerBehavior _playerBehavior;
+    private int _experiencePoints = 0;
 
     private void Start()
     {
-        playerBehavior = GameManager.Instance.Player;
+        _playerBehavior = GameManager.Instance.Player;
         upgradesParent.gameObject.SetActive(false);
     }
 
     public void GainExperience(int amount)
     {
-        ExperiencePoints += amount;
-        Debug.Log($"Gained EXP {ExperiencePoints}");
-        int experienceRequired = Mathf.RoundToInt(baseExperienceToLevel * Mathf.Pow(experienceGrowthFactor, CurrentLevel - 1));
+        _experiencePoints += amount;
+        int experienceRequired = Mathf.RoundToInt(baseExperienceToLevel * Mathf.Pow(experienceGrowthFactor, _playerBehavior.playerArtitube.GetLevel() - 1));
 
-        if (ExperiencePoints >= experienceRequired)
+        // Update the experience slider as EXP is gained
+        UpdateExperienceSlider(experienceRequired);
+
+        if (_experiencePoints >= experienceRequired)
         {
-            LevelUp();
+            HandleLevelUp();
         }
     }
 
-    public void LevelUp()
+    public void HandleLevelUp()
     {
-        ExperiencePoints = 0;
-        CurrentLevel++;
+        _experiencePoints = 0;
+        _playerBehavior.playerArtitube.LevelUp();
         ScoreManager.Instance.AddToScore(250);
         ShowUpgradeOptions();
+        UpdateExperienceSlider();
     }
-
-    public int GetLevel()
-    {
-        return CurrentLevel;
-    }
-
     private void ShowUpgradeOptions()
     {
         // First, deactivate all children to ensure a clean slate
@@ -73,6 +68,18 @@ public class UpgradeMenu : MonoBehaviour
         // Make sure the upgradesParent is visible
         upgradesParent.gameObject.SetActive(true);
     }
+    private void UpdateExperienceSlider(int experienceRequired = -1)
+    {
+        if (_playerBehavior.playerArtitube != null)
+        {
+            if (experienceRequired == -1)
+            {
+                experienceRequired = Mathf.RoundToInt(baseExperienceToLevel * Mathf.Pow(experienceGrowthFactor, _playerBehavior.playerArtitube.GetLevel() - 1));
+            }
 
+            // Update the slider value in PlayerArtitube based on current EXP progress
+            _playerBehavior.playerArtitube.UpdateExperienceSlider((float)_experiencePoints / experienceRequired);
+        }
+    }
 }
 

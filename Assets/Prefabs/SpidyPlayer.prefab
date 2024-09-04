@@ -656,6 +656,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 5666819483444843738}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7ef51a24c76f81a4c93da6be03f47a6e,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5987557964724888047}
   m_SourcePrefab: {fileID: 100100000, guid: 7ef51a24c76f81a4c93da6be03f47a6e, type: 3}
 --- !u!4 &164027789239561936 stripped
 Transform:
@@ -702,13 +706,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 211267b589a98e749bd30091d7b5f69c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coins: 0
+  playerArtitube: {fileID: 5987557964724888047}
   IsAlive: 1
-  ExperiencePoints: 0
   CobwebDamage: 5
-  maxHealthPoint: 2
+  coins: 0
+  AttackSpeedMultiplier: 1
+  MultiShotLevel: 0
+  CriticalHitChance: 0.05
+  CobwebScaler: 0
+  CobwebPiercingLevel: 0
+  PiercingLevel: 1
+  CobwebDamageLevel: 1
+  CobwebScaleLevel: 1
+  AttackSpeedLevel: 1
   coinPool: {fileID: 0}
-  moveSpeed: 10
+  lvlUpPool: {fileID: 0}
 --- !u!114 &5724642034250212118
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -739,16 +751,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 255cd7ef44c0ea042b04b12dcd6b6bbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsGrabbing: 0
   CobwebSpawnPoint:
   - {fileID: 6957835799963775398}
   CobwebPoolScript: {fileID: 0}
-  cobweb: {fileID: 7453804368033802323, guid: be0f4fd961a1ef14896a5e8444c60473, type: 3}
-  player: {fileID: 0}
-  moveSpeed: 5
-  fireCooldown: 2
-  maxCooldown: 2.5
-  animationOffset: {x: 0, y: 0, z: 0}
+  FireCooldown: 2
 --- !u!65 &6410431374692790571
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -797,3 +803,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &5987557964724888047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 652299339805946986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffa70e5c4c73a5e419cfc5e97d7adee0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthSlider: {fileID: 0}
+  maxHealthPoint: 5
+  healthSliderText: {fileID: 0}
+  experienceSlider: {fileID: 0}
+  experienceSliderText: {fileID: 0}
+  levelText: {fileID: 0}

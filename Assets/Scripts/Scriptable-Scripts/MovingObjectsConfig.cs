@@ -9,16 +9,16 @@ public class MovingObjectsConfig : ScriptableObject // Note : Inhireted from Scr
     public float despawnDistance = -110f;
     
     [Header("Speed")]
-    public float CarRoadSpeed = 1.0f;
-    public float SideWalkSpeed = 1.0f;
+    public float CollectableSpeed = 1.0f;
     public float CobwebSpeed = 8;
     public float EnemyProjectileSpeed = 8;
+    public float SideWalkSpeed = 8;
 
     private void OnValidate()
     {
-        if (CarRoadSpeed < 8.5f)
+        if (CollectableSpeed < 8.5f)
         {
-            CarRoadSpeed = 8.5f;
+            CollectableSpeed = 8.5f;
         }
     }
 }

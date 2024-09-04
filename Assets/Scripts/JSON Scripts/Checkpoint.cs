@@ -17,7 +17,7 @@ public class Checkpoint : MonoBehaviour
     void Update()
     {
         _score = ScoreManager.Instance.GetScore();
-        if (_score >= lastSavedScore + saveScoreThreshold)
+        if (_score >= lastSavedScore + saveScoreThreshold && _sceneStateManager != null)
         {
             _sceneStateManager.SaveSceneState(saveFileName);
             lastSavedScore = (int)_score; // Update the last saved score

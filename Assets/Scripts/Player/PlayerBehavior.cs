@@ -7,8 +7,7 @@ using UnityEngine.SceneManagement;
 public class PlayerBehavior : MonoBehaviour
 {
     [Header("Public Fields")]
-    public bool IsAlive = true;
-    public int ExperiencePoints = 0;
+    public PlayerArtitube playerArtitube;
     public int CobwebDamage = 5;
     [HideInInspector] public int coins = 0;
 
@@ -24,22 +23,12 @@ public class PlayerBehavior : MonoBehaviour
     public int CobwebScaleLevel = 1;
     public int AttackSpeedLevel = 1;
 
-
-
     [Header("Private Editable Fields")]
-    [SerializeField] int maxHealthPoint = 2;
     [SerializeField] ObjectPoolManager coinPool;
     [SerializeField] ObjectPoolManager lvlUpPool;
 
     [Header("Local Fields")]
     private int _currentHP;
-    private int _currentLevel;
-
-    private void Start()
-    {
-        _currentHP = maxHealthPoint;
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Coin"))
@@ -50,39 +39,20 @@ public class PlayerBehavior : MonoBehaviour
         else if (other.CompareTag("LvLUp"))
         {
             lvlUpPool.ReleaseObject(other.gameObject);
-            GameManager.Instance.UpgradeMenuScript.LevelUp();
+            GameManager.Instance.UpgradeMenuScript.HandleLevelUp();
         }
         else if (other.CompareTag("EnemyProjectile"))
         {
-            TakeDamage();
+            playerArtitube.TakeDamage(1);
             GameManager.Instance.BulletPool.ReleaseObject(other.gameObject);
         }
     }
-
-    private void TakeDamage()
-    {
-        _currentHP -= 1;
-        if (_currentHP <= 0)
-        {
-            Die();
-        }
-    }
-
     #region << Dying Methods >> 
-    private void Die()
-    {
-        IsAlive = false; // Notice! : When you die its stop the score leveling
-        SceneManager.LoadScene(3);
-        // Die Animtaion 
-        // Move to next scene 
-        Debug.Log("You Died, Loser!");
-    }
-
     public int LevelReachWhenDied()
     {
-        if (!IsAlive)
+        if (!playerArtitube.IsAlive())
         {
-            return GameManager.Instance.UpgradeMenuScript.CurrentLevel;
+            return playerArtitube.GetLevel();
         }
         else
         {
@@ -94,9 +64,9 @@ public class PlayerBehavior : MonoBehaviour
     #endregion
 
     #region << Upgrade Methods - Buttons >> 
-    public void RestoreHealth(int amount)
+    public void RestoreHealth(int amountInPercentage)
     {
-        _currentHP = Mathf.Min(_currentHP + amount, maxHealthPoint);
+        playerArtitube.RestoreHealth(amountInPercentage);
     }
 
     public void IncreasedDamage(TextMeshProUGUI levelText)

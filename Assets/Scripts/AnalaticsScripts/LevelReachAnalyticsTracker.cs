@@ -42,7 +42,7 @@ public class LevelReachAnalyticsTracker : MonoBehaviour
                     { "levelDiedOn", _reachedLevel }
                 };
 
-                AnalyticsService.Instance.CustomData(eventName, eventParams);
+                AnalyticsService.Instance.RecordEvent(eventName);
                 AnalyticsService.Instance.Flush(); // Ensure the data is sent immediately
                 Debug.Log($"Analytics event '{eventName}' sent with level: {_reachedLevel}");
             }

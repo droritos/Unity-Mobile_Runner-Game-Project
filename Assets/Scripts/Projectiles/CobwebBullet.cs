@@ -29,10 +29,6 @@ public class CobwebBullet : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            Debug.Log("CobwebBullet hit an enemy: " + other.name);
-
-            // Apply damage or other logic here
-
             // Check if the bullet can pierce more enemies
             if (RemainingPierces > 0)
             {
@@ -43,7 +39,6 @@ public class CobwebBullet : MonoBehaviour
             // If no more pierces or ricochets are left, release the bullet back to the pool
             GameManager.Instance.SpidyMorals.CobwebPoolScript.ReleaseObject(this.gameObject);
             ResetWeb();
-            Debug.Log("Bullet released back to the pool.");
         }
         else if (other.CompareTag("Wall"))
         {

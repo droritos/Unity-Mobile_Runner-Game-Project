@@ -76,21 +76,28 @@ public class EnemySpawner : MonoBehaviour
 
     private bool IsEnemyAtPosition(Vector3 position)
     {
-        foreach (RobotEnemyScript enemy in EnemiesList)
+        for (int i = EnemiesList.Count - 1; i >= 0; i--)
         {
-            if (enemy.gameObject.activeInHierarchy && Vector3.Distance(enemy.transform.position, position) < 1.0f)
+            RobotEnemyScript enemy = EnemiesList[i];
+
+            // Remove inactive enemies
+            if (!enemy.gameObject.activeInHierarchy)
             {
-                return true;
+                EnemiesList.RemoveAt(i);
+                continue;
             }
-            else if (!enemy.gameObject.activeInHierarchy)
+
+            // Check if the enemy is at the given position
+            if (Vector3.Distance(enemy.transform.position, position) < 1.0f)
             {
-                EnemiesList.Remove(enemy);
+                return true; // An enemy is found at the position
             }
         }
-        return false;
+
+        return false; // No enemy at this position
     }
 
-    private void SetDiffculty()
+        private void SetDiffculty()
     {
         if (_score >= 50 && _score < 100)
         {

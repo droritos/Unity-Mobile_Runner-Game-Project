@@ -42,7 +42,7 @@ public class GroundController : MonoBehaviour
 
     private void Update()
     {
-        MoveObjects(groundPieces, floorConfig.CarRoadSpeed);
+        MoveObjects(groundPieces, floorConfig.CollectableSpeed);
         MoveObjects(sidewalkRightPieces, floorConfig.SideWalkSpeed);
         MoveObjects(sidewalkLeftPieces, floorConfig.SideWalkSpeed);
         MoveChildObjects(StreetFloorParent, floorConfig.SideWalkSpeed);

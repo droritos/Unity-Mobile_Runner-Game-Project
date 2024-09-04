@@ -8,16 +8,21 @@ public class CollactablesManager : MonoBehaviour
     [Header("Collactable Pool Fields")]
     [SerializeField] Transform CollactableParent;
     [SerializeField] Vector3 CollectableOffset;
+    [SerializeField] int addSpeedPower = 0;
     public ObjectPoolManager CollectableObjectPool;
     public float PoolChance;
-
 
     [Header("SpawnPoints")]
     [SerializeField] Transform leftSpawnPoint;
     [SerializeField] Transform middleSpawnPoint;
     [SerializeField] Transform rightpawnPoint;
+
+    private int _speed;
+
+
     private void Update()
     {
+        _speed = (int)MovingObjectsSO.CollectableSpeed + addSpeedPower;
         MoveObject();
     }
 
@@ -53,8 +58,7 @@ public class CollactablesManager : MonoBehaviour
         {
             if (obj.gameObject.activeSelf)
             {
-                obj.Translate(MovingObjectsSO.CarRoadSpeed * Time.deltaTime * Vector3.back);
-
+                obj.Translate(_speed * Time.deltaTime * Vector3.back);
             }
         }
     }

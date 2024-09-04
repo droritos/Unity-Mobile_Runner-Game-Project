@@ -25,7 +25,7 @@ public class GameManager : MonoSingleton<GameManager>
 
     public float SetFloorSpeed()
     {
-        roadParameters.CarRoadSpeed = floorSpeed;
+        roadParameters.CollectableSpeed = floorSpeed;
         return floorSpeed;
     }
 

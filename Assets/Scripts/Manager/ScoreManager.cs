@@ -16,7 +16,7 @@ public class ScoreManager : MonoSingleton<ScoreManager>
     [Header("Private Data")]
     private float _totalScore = 0;
     private float _survivedScore;
-    private int _coinScore;
+    private int _coinCollected;
     private float _levelUpBonus = 0;
 
 
@@ -35,13 +35,13 @@ public class ScoreManager : MonoSingleton<ScoreManager>
 
     private void ScoreText()
     {
-        _totalScore = _coinScore + _survivedScore + _levelUpBonus;
+        _totalScore = _coinCollected + _survivedScore + _levelUpBonus;
         score.text = Mathf.FloorToInt(_totalScore).ToString();
     }
 
     private void UpdateCoins()
     {
-        coins.text = _coinScore.ToString();
+        coins.text = _coinCollected.ToString();
     }
 
     private void SetTimeScore()
@@ -54,7 +54,7 @@ public class ScoreManager : MonoSingleton<ScoreManager>
 
     private void SetCoins()
     {
-        _coinScore = playerBehavior.coins * 10;
+        _coinCollected = playerBehavior.coins * 10;
     }
 
     public float GetScore()
@@ -64,5 +64,10 @@ public class ScoreManager : MonoSingleton<ScoreManager>
     public void AddToScore(float gainedScore)
     {
         _levelUpBonus += gainedScore;
+    }
+
+    public int GetCoinsCollected()
+    {
+        return _coinCollected;
     }
 }

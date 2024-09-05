@@ -86,8 +86,20 @@ public class PlayerArtitube : MonoBehaviour
     private void Die()
     {
         _isAlive = false;
+        AddCollectedCoins();
         SceneManager.LoadScene(3);
         Debug.Log("You Died, Loser!");
+    }
+
+    private static void AddCollectedCoins()
+    {
+        int currentCoins = PlayerPrefs.GetInt("PlayerCoins", 0); // Get total coins from PlayerPrefs
+        int coinsCollectedThisSession = ScoreManager.Instance.GetCoinsCollected(); // Coins collected this session
+
+        int updatedTotalCoins = currentCoins + coinsCollectedThisSession; // Add current to session collected
+        PlayerPrefs.SetInt("PlayerCoins", updatedTotalCoins); // Save the updated total
+
+        PlayerPrefs.Save(); // Ensure the data is persisted immediately
     }
     #endregion
 

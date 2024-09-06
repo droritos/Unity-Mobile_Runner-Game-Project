@@ -19,7 +19,7 @@ public class CoinCollected : MonoBehaviour
     private void UpdatePlayerCoins()
     {
         _totalCoins += _coinsGathered;
-        totalCoinsText.text = $"Coins: {_totalCoins}";
+        totalCoinsText.text = $"{_totalCoins}";
 
         // Save to PlayerPrefs to ensure persistence
         PlayerPrefs.SetInt("PlayerCoins", _totalCoins);

@@ -15,6 +15,15 @@ public class MainMenuScript : MonoBehaviour
 
     private void Start()
     {
+        //HandleSceneStateManager();
+
+        // Check for existing save file and update the button text
+        CheckForSaveFile();
+        UpdatePlayButtonText();
+    }
+
+    private void HandleSceneStateManager()
+    {
         // Check if the SceneStateManager already exists in the scene
         _sceneStateManager = FindObjectOfType<SceneStateManager>();
 
@@ -26,10 +35,6 @@ public class MainMenuScript : MonoBehaviour
             DontDestroyOnLoad(manager); // Prevent the SceneStateManager from being destroyed on scene load
             Debug.Log("SceneStateManager created and set to DontDestroyOnLoad.");
         }
-
-        // Check for existing save file and update the button text
-        CheckForSaveFile();
-        UpdatePlayButtonText();
     }
 
     private void CheckForSaveFile()

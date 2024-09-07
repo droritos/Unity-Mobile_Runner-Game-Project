@@ -12,8 +12,8 @@ using UnityEngine.UI;
 public class PlayerArtitube : MonoBehaviour
 {
     [Header("Health")]
+    public int MaxHealthPoint = 2;
     [SerializeField] Slider healthSlider;
-    [SerializeField] int maxHealthPoint = 2;
     [SerializeField] TextMeshProUGUI healthSliderText;
 
     [Header("Experience")]
@@ -33,14 +33,14 @@ public class PlayerArtitube : MonoBehaviour
     #region << Health Managing >>
     public void SetHealthPoint()
     {
-        _currentHealhPoint = maxHealthPoint;
+        _currentHealhPoint = MaxHealthPoint;
         SetMaxHealthBar();
     }
 
     public void TakeDamage(int damage)
     {
         _currentHealhPoint -= damage;
-        _currentHealhPoint = Mathf.Clamp(_currentHealhPoint, 0, maxHealthPoint);
+        _currentHealhPoint = Mathf.Clamp(_currentHealhPoint, 0, MaxHealthPoint);
         ChangeHPSliderValue();
         if (_currentHealhPoint <= 0 || healthSlider.value == healthSlider.minValue)
         {
@@ -51,14 +51,14 @@ public class PlayerArtitube : MonoBehaviour
     {
         // Calculate the health points to restore based on the percentage
         healthRestorePercentage /= 100;
-        int healthToRestore = Mathf.FloorToInt(maxHealthPoint * healthRestorePercentage);
+        int healthToRestore = Mathf.FloorToInt(MaxHealthPoint * healthRestorePercentage);
         Debug.Log($"health to restore {healthToRestore}");
 
         // Add the restored health to the current health
         _currentHealhPoint += healthToRestore;
 
         // Ensure the health doesn't exceed the maximum health
-        _currentHealhPoint = Mathf.Clamp(_currentHealhPoint, 0, maxHealthPoint);
+        _currentHealhPoint = Mathf.Clamp(_currentHealhPoint, 0, MaxHealthPoint);
 
         // Update the health slider based on the new health percentage
         ChangeHPSliderValue();
@@ -70,7 +70,7 @@ public class PlayerArtitube : MonoBehaviour
     private void ChangeHPSliderValue()
     {
         // Calculate the health percentage and update the slider
-        float healthPercentage = (float)_currentHealhPoint / (float)maxHealthPoint;
+        float healthPercentage = (float)_currentHealhPoint / (float)MaxHealthPoint;
         healthSlider.value = healthPercentage; // Value is between 0 and 1
         UpdateHealthText();
     }

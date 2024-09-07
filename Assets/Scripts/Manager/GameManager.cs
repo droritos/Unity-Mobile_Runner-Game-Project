@@ -8,7 +8,6 @@ public class GameManager : MonoSingleton<GameManager>
     [SerializeField] MovingObjectsConfig roadParameters;
     [SerializeField] ReadListFromFile readListFromFile;
     [SerializeField] WebcamCapture webcamCapture;
-    [SerializeField] SceneStateManager sceneStateManager;
 
     [Header("Spidy")]
     public PlayerBehavior Player;
@@ -18,34 +17,10 @@ public class GameManager : MonoSingleton<GameManager>
     [Header("Enemy")]
     public ObjectPoolManager EnemyPool;
     public ObjectPoolManager BulletPool;
-    public EnemySpawner EnemySpawnerScript;
-
-
-    private int _checkPoint = 0;
-
-    public float SetFloorSpeed()
-    {
-        roadParameters.CollectableSpeed = floorSpeed;
-        return floorSpeed;
-    }
 
     private void Start()
     {
         readListFromFile.LoadPlayerData();
         StartCoroutine(webcamCapture.RequestCameraPermissionCoroutine());
-    }
-
-    private void Update()
-    {
-        //AutoSave();
-    }
-
-    private void AutoSave()
-    {
-        if (Player.coins % 5 == 0)
-        {
-            _checkPoint++;
-            sceneStateManager.SaveSceneState($"checkPoint_{_checkPoint}");
-        }
     }
 }

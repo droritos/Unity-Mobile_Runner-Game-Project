@@ -4,9 +4,6 @@ using UnityEngine.Pool;
 
 public class ObjectPoolManager : MonoBehaviour
 {
-
-// create bone section so voxels can be connected to it
-
     public GameObject Prefab;
     public int InitialPoolSize = 50;
     public int MaxPoolSize = 100;

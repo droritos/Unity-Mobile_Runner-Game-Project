@@ -66,28 +66,6 @@ public class PlayerMovement : MonoSingleton<PlayerMovement>
         }
         //Debug.Log("Player Moving Right");
     }
-
-    public void Jump()
-    {
-        if (!_isMoving)
-        {
-            _boxCollider.center *= 2;
-            Animator.SetTrigger("Jumping");
-            StartCoroutine(WaitForAnimationToFinish());
-        }
-        Debug.Log("Player Jumping");
-    }
-
-    public void Slide()
-    {
-        if (!_isMoving)
-        {
-            _boxCollider.center /= 2;
-            Animator.SetTrigger("Sliding");
-            StartCoroutine(WaitForAnimationToFinish());
-        }
-        Debug.Log("Player Sliding");
-    }
     private IEnumerator WaitForAnimationToFinish()
     {
         // Wait until animation is done

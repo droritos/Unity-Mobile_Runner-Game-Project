@@ -5,7 +5,6 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     [Header("Enemy Data")]
-    [SerializeField] GameObject robotEnemy;
     [SerializeField] int fallingSpeed = 5;
 
     [Header("Spawn Points")]

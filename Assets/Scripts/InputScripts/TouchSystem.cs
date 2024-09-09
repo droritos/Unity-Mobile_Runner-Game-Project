@@ -54,20 +54,6 @@ public class TouchSystem : MonoBehaviour
                             //Debug.Log("Left Swipe");
                         }
                     }
-                    else
-                    {
-                        //vertical
-                        if (swipeDirection.y > 0)
-                        {
-                            _player.Jump();
-                            Debug.Log("Up Swipe");
-                        }
-                        else
-                        {
-                            _player.Slide();
-                            Debug.Log("Down Swipe");
-                        }
-                    }
                     break;
             }
         }

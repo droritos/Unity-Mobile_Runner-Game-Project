@@ -11,8 +11,12 @@ using UnityEngine.UI;
 /// </summary>
 public class PlayerArtitube : MonoBehaviour
 {
+    public int PlayerCurrentLevel = 1;
+    public int CurrentHealhPoint;
+    public int ExperiencePoints = 0;
+
+
     [Header("Health")]
-    public int MaxHealthPoint = 2;
     [SerializeField] Slider healthSlider;
     [SerializeField] TextMeshProUGUI healthSliderText;
 
@@ -21,28 +25,28 @@ public class PlayerArtitube : MonoBehaviour
     [SerializeField] TextMeshProUGUI experienceSliderText;
     [SerializeField] TextMeshProUGUI levelText;
 
-    private int _playerCurrentLevel = 1;
-    private int _currentHealhPoint;
+    private PlayerStatsConfig _playerStatsConfig;
     private bool _isAlive = true;
 
     private void Start()
     {
+        this._playerStatsConfig = GameManager.Instance.Player.playerStatsConfig;
         SetHealthPoint();
         SetExperiencePoints();
     }
     #region << Health Managing >>
     public void SetHealthPoint()
     {
-        _currentHealhPoint = MaxHealthPoint;
+        CurrentHealhPoint = _playerStatsConfig.MaxHealthPoint;
         SetMaxHealthBar();
     }
 
     public void TakeDamage(int damage)
     {
-        _currentHealhPoint -= damage;
-        _currentHealhPoint = Mathf.Clamp(_currentHealhPoint, 0, MaxHealthPoint);
+        CurrentHealhPoint -= damage;
+        CurrentHealhPoint = Mathf.Clamp(CurrentHealhPoint, 0, _playerStatsConfig.MaxHealthPoint);
         ChangeHPSliderValue();
-        if (_currentHealhPoint <= 0 || healthSlider.value == healthSlider.minValue)
+        if (CurrentHealhPoint <= 0 || healthSlider.value == healthSlider.minValue)
         {
             Die();
         }
@@ -51,14 +55,14 @@ public class PlayerArtitube : MonoBehaviour
     {
         // Calculate the health points to restore based on the percentage
         healthRestorePercentage /= 100;
-        int healthToRestore = Mathf.FloorToInt(MaxHealthPoint * healthRestorePercentage);
+        int healthToRestore = Mathf.RoundToInt(_playerStatsConfig.MaxHealthPoint * healthRestorePercentage);
         Debug.Log($"health to restore {healthToRestore}");
 
         // Add the restored health to the current health
-        _currentHealhPoint += healthToRestore;
+        CurrentHealhPoint += healthToRestore;
 
         // Ensure the health doesn't exceed the maximum health
-        _currentHealhPoint = Mathf.Clamp(_currentHealhPoint, 0, MaxHealthPoint);
+        CurrentHealhPoint = Mathf.Clamp(CurrentHealhPoint, 0, _playerStatsConfig.MaxHealthPoint);
 
         // Update the health slider based on the new health percentage
         ChangeHPSliderValue();
@@ -70,7 +74,7 @@ public class PlayerArtitube : MonoBehaviour
     private void ChangeHPSliderValue()
     {
         // Calculate the health percentage and update the slider
-        float healthPercentage = (float)_currentHealhPoint / (float)MaxHealthPoint;
+        float healthPercentage = (float)CurrentHealhPoint / (float)_playerStatsConfig.MaxHealthPoint;
         healthSlider.value = healthPercentage; // Value is between 0 and 1
         UpdateHealthText();
     }
@@ -79,9 +83,10 @@ public class PlayerArtitube : MonoBehaviour
         healthSlider.value = 1;
         healthSlider.maxValue = 1;
     }
-    private void UpdateHealthText()
+    public void UpdateHealthText()
     {
-        healthSliderText.text = $"{100 * healthSlider.value}%";
+        //healthSliderText.text = $"{100 * healthSlider.value}%";
+        healthSliderText.text = CurrentHealhPoint.ToString();
     }
     private void Die()
     {
@@ -111,20 +116,26 @@ public class PlayerArtitube : MonoBehaviour
     }
     public int GetLevel()
     {
-        return _playerCurrentLevel;
+        return PlayerCurrentLevel;
     }
     public void LevelUp()
     {
-        _playerCurrentLevel++;
-        levelText.text = _playerCurrentLevel.ToString();
+        PlayerCurrentLevel++;
+        UpdateLevelText();
     }
+
+    public void UpdateLevelText()
+    {
+        levelText.text = PlayerCurrentLevel.ToString();
+    }
+
     private void SetExperiencePoints()
     {
         experienceSlider.value = 0;
         experienceSlider.maxValue = 1;
         UpdateExperienceText();
     }
-    private void UpdateExperienceText()
+    public void UpdateExperienceText()
     {
         experienceSliderText.text = $"{Mathf.RoundToInt(100 * experienceSlider.value)}%";
     }

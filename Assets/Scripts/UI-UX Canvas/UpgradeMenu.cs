@@ -11,23 +11,23 @@ public class UpgradeMenu : MonoBehaviour
     [SerializeField] Transform upgradesParent;
 
     private PlayerBehavior _playerBehavior;
-    private int _experiencePoints = 0;
 
     private void Start()
     {
         _playerBehavior = GameManager.Instance.Player;
         upgradesParent.gameObject.SetActive(false);
+        GainExperience(0); // Easy way to update the UI when you Resume - (_playerBehavior.Load())
     }
 
     public void GainExperience(int amount)
     {
-        _experiencePoints += amount;
-        int experienceRequired = Mathf.RoundToInt(baseExperienceToLevel * Mathf.Pow(experienceGrowthFactor, _playerBehavior.playerArtitube.GetLevel() - 1));
+        _playerBehavior.PlayerArtitube.ExperiencePoints += amount;
+        int experienceRequired = Mathf.RoundToInt(baseExperienceToLevel * Mathf.Pow(experienceGrowthFactor, _playerBehavior.PlayerArtitube.GetLevel() - 1));
 
         // Update the experience slider as EXP is gained
         UpdateExperienceSlider(experienceRequired);
 
-        if (_experiencePoints >= experienceRequired)
+        if (_playerBehavior.PlayerArtitube.ExperiencePoints >= experienceRequired)
         {
             HandleLevelUp();
         }
@@ -35,8 +35,8 @@ public class UpgradeMenu : MonoBehaviour
 
     public void HandleLevelUp()
     {
-        _experiencePoints = 0;
-        _playerBehavior.playerArtitube.LevelUp();
+        _playerBehavior.PlayerArtitube.ExperiencePoints = 0;
+        _playerBehavior.PlayerArtitube.LevelUp();
         ScoreManager.Instance.AddToScore(250);
         ShowUpgradeOptions();
         UpdateExperienceSlider();
@@ -70,15 +70,15 @@ public class UpgradeMenu : MonoBehaviour
     }
     private void UpdateExperienceSlider(int experienceRequired = -1)
     {
-        if (_playerBehavior.playerArtitube != null)
+        if (_playerBehavior.PlayerArtitube != null)
         {
             if (experienceRequired == -1)
             {
-                experienceRequired = Mathf.RoundToInt(baseExperienceToLevel * Mathf.Pow(experienceGrowthFactor, _playerBehavior.playerArtitube.GetLevel() - 1));
+                experienceRequired = Mathf.RoundToInt(baseExperienceToLevel * Mathf.Pow(experienceGrowthFactor, _playerBehavior.PlayerArtitube.GetLevel() - 1));
             }
 
             // Update the slider value in PlayerArtitube based on current EXP progress
-            _playerBehavior.playerArtitube.UpdateExperienceSlider((float)_experiencePoints / experienceRequired);
+            _playerBehavior.PlayerArtitube.UpdateExperienceSlider((float)_playerBehavior.PlayerArtitube.ExperiencePoints / experienceRequired);
         }
     }
 }

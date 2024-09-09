@@ -8,7 +8,7 @@ public class ScoreManager : MonoSingleton<ScoreManager>
 {
     [Header("Text Mesh Pro")]
     [SerializeField] TextMeshProUGUI coins;
-    [SerializeField] TextMeshProUGUI score;
+    [SerializeField] TextMeshProUGUI difficultyScaler;
 
     [Header("Serialize Data")]
     [SerializeField] PlayerBehavior playerBehavior;
@@ -33,10 +33,10 @@ public class ScoreManager : MonoSingleton<ScoreManager>
         ScoreText();
     }
 
-    private void ScoreText()
+    private void ScoreText() // Do Not Delete Me!!! , I am connection to the enemy spawner
     {
         _totalScore = _coinCollected + _survivedScore + _levelUpBonus;
-        score.text = Mathf.FloorToInt(_totalScore).ToString();
+        difficultyScaler.text = Mathf.FloorToInt(_totalScore).ToString();
     }
 
     private void UpdateCoins()
@@ -46,7 +46,7 @@ public class ScoreManager : MonoSingleton<ScoreManager>
 
     private void SetTimeScore()
     {
-        if (playerBehavior.playerArtitube.IsAlive()) // When false , stops adding points to the score
+        if (playerBehavior.PlayerArtitube.IsAlive()) // When false , stops adding points to the score
         {
             _survivedScore += Time.deltaTime * 5;
         }
@@ -54,12 +54,12 @@ public class ScoreManager : MonoSingleton<ScoreManager>
 
     private void SetCoins()
     {
-        _coinCollected = playerBehavior.coins * 10;
+        _coinCollected = playerBehavior.coinsCollected * 10;
     }
 
     public float GetScore()
     {
-        return Int32.Parse(score.text);
+        return Int32.Parse(difficultyScaler.text);
     }
     public void AddToScore(float gainedScore)
     {

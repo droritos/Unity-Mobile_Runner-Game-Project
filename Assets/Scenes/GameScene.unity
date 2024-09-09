@@ -648,7 +648,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 100%
+  m_text: 999
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
@@ -6600,7 +6600,7 @@ PrefabInstance:
     - target: {fileID: 3387146581779176359, guid: e4aee84548258304296a448cfe11869e,
         type: 3}
       propertyPath: m_Name
-      value: ScoreEXP
+      value: DifficultyScaler
       objectReference: {fileID: 0}
     - target: {fileID: 3387146581779176359, guid: e4aee84548258304296a448cfe11869e,
         type: 3}
@@ -9804,6 +9804,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1689871848}
   m_CullTransparentMesh: 1
+--- !u!114 &1727266111 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5987557964724888047, guid: 1d2edae00096627499be46148c1d5f73,
+    type: 3}
+  m_PrefabInstance: {fileID: 4568376583230422436}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffa70e5c4c73a5e419cfc5e97d7adee0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1727393483
 GameObject:
   m_ObjectHideFlags: 0
@@ -10929,6 +10941,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1916601067}
   m_CullTransparentMesh: 1
+--- !u!1 &1938397863
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1938397864}
+  - component: {fileID: 1938397865}
+  m_Layer: 0
+  m_Name: SaveManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1938397864
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1938397863}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1946287043}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1938397865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1938397863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20ef4eac6f198e141945a6735357114f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fileName: Save In Game Data.game
+  playerStatsConfig: {fileID: 0}
 --- !u!1001 &1943614578
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10997,6 +11055,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bf689a09327b4ab45aa63b955cad57c1, type: 3}
+--- !u!4 &1946287043 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5810970405014561224, guid: 9f02ab7a155f6a540a7283e224a7a763,
+    type: 3}
+  m_PrefabInstance: {fileID: 863958833176378682}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1951586987
 GameObject:
   m_ObjectHideFlags: 0
@@ -12161,6 +12225,11 @@ PrefabInstance:
       propertyPath: playerBehavior
       value: 
       objectReference: {fileID: 626220436}
+    - target: {fileID: 2425870566888012354, guid: 9f02ab7a155f6a540a7283e224a7a763,
+        type: 3}
+      propertyPath: difficultyScaler
+      value: 
+      objectReference: {fileID: 1106956042}
     - target: {fileID: 3255482831958250750, guid: 9f02ab7a155f6a540a7283e224a7a763,
         type: 3}
       propertyPath: Player
@@ -12268,7 +12337,11 @@ PrefabInstance:
       objectReference: {fileID: 607719467}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 5810970405014561224, guid: 9f02ab7a155f6a540a7283e224a7a763,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1938397864}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f02ab7a155f6a540a7283e224a7a763, type: 3}
 --- !u!1001 &1592404637410954159
@@ -12513,6 +12586,17 @@ PrefabInstance:
       propertyPath: lvlUpPool
       value: 
       objectReference: {fileID: 3868675417535144561}
+    - target: {fileID: 4882980638434973063, guid: 1d2edae00096627499be46148c1d5f73,
+        type: 3}
+      propertyPath: PlayerArtitube
+      value: 
+      objectReference: {fileID: 1727266111}
+    - target: {fileID: 4882980638434973063, guid: 1d2edae00096627499be46148c1d5f73,
+        type: 3}
+      propertyPath: playerStatsConfig
+      value: 
+      objectReference: {fileID: 11400000, guid: 1904f4b2a317cb24aad0ce5ae06b6e50,
+        type: 2}
     - target: {fileID: 5987557964724888047, guid: 1d2edae00096627499be46148c1d5f73,
         type: 3}
       propertyPath: levelText

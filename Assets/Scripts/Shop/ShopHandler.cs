@@ -11,24 +11,14 @@ public class ShopHandler : MonoBehaviour
     [SerializeField] int critChanceLevel = 1;
     [SerializeField] int hpRestoreLevel = 1;    
     
-    private void TestTesty()
-    {
-        GameManager.Instance.Player.CobwebDamage = damageLevel;
-        Debug.Log($"You accessing cobweb damage varible {damageLevel}");
-    }
-
     public void MaxHealthPoint()
     {
-        Debug.Log($"Befor : {GameManager.Instance.Player.playerArtitube.MaxHealthPoint}");
         maxHealthLevel++;
-        GameManager.Instance.Player.playerArtitube.MaxHealthPoint += maxHealthLevel;
-        Debug.Log($"After : {GameManager.Instance.Player.playerArtitube.MaxHealthPoint}");
     }
 
     public void Damage()
     {
         damageLevel ++;
-        GameManager.Instance.Player.CobwebDamage += damageLevel;
     }
 
     public void AttackSpeed()
@@ -46,7 +36,6 @@ public class ShopHandler : MonoBehaviour
     public void CritRateChance()
     {
         critChanceLevel++;
-        GameManager.Instance.Player.CriticalChance += 10;
     }
 
 }

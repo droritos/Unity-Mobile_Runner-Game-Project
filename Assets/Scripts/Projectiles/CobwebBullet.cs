@@ -7,19 +7,15 @@ public class CobwebBullet : MonoBehaviour
     public float ProjectileScaler;
     public int RemainingPierces;
 
+    private Vector3 _originalScale;
+
     private void Start()
     {
-        ProjectileScaler = GameManager.Instance.Player.CobwebScaler;
+        _originalScale = this.transform.localScale;
+        ProjectileScaler = GameManager.Instance.Player.playerStatsConfig.CobwebScaler;
         SetProjectileSize(ProjectileScaler);
-        RemainingPierces = GameManager.Instance.Player.CobwebPiercingLevel;
+        RemainingPierces = GameManager.Instance.Player.playerStatsConfig.CobwebPiercingLevel;
     }
-
-    private void SetProjectileSize(float percentage)
-    {
-        float scalingFactor = 1 + (percentage / 100f);
-        this.transform.localScale *= scalingFactor;
-    }
-
     void Update()
     {
         this.transform.Translate(speed.CobwebSpeed * Time.deltaTime * Vector3.forward);
@@ -46,19 +42,19 @@ public class CobwebBullet : MonoBehaviour
             ResetWeb();
         }
     }
-
-    // Method to set both ricochet and piercing levels when the bullet is fired
-    public void SetPiercingAndRicochetLevels(int piercingLevel, int ricochetLevel)
+    private void SetProjectileSize(float percentage)
     {
-        RemainingPierces = piercingLevel;
-        ProjectileScaler = ricochetLevel;
-        Debug.Log("Bullet initialized with " + RemainingPierces + " pierces and " + ProjectileScaler + " ricochets.");
-    }
+        float scalingFactor = 1 + (percentage / 100f);
 
+        // Reset to original scale first, then apply the scaling factor
+        this.transform.localScale = _originalScale * scalingFactor;
+        Debug.Log($"Web localScale = {this.transform.localScale}");
+    }
     private void ResetWeb()
     {
-        ProjectileScaler = GameManager.Instance.Player.CobwebScaler;
+        ProjectileScaler = GameManager.Instance.Player.playerStatsConfig.CobwebScaler;
+        Debug.Log($"Web ProjectileScaler = {ProjectileScaler}");
         SetProjectileSize(ProjectileScaler);
-        RemainingPierces = GameManager.Instance.Player.CobwebPiercingLevel;
+        RemainingPierces = GameManager.Instance.Player.playerStatsConfig.CobwebPiercingLevel;
     }
 }

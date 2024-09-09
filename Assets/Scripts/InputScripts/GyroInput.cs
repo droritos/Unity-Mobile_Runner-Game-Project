@@ -36,17 +36,6 @@ public class GyroInput : MonoBehaviour
                     RightShaken();
                 }
             }
-            else
-            {
-                if (acceleration.y > 0)
-                {
-                    UpShaken();
-                }
-                else
-                {
-                    DownShaken();
-                }
-            }
         }
     }
 
@@ -60,17 +49,5 @@ public class GyroInput : MonoBehaviour
     {
         Debug.Log("Device shaken to the left");
         _player.MoveRight();
-    }
-
-    private void UpShaken()
-    {
-        Debug.Log("Device shaken up");
-        _player.Jump();
-    }
-
-    private void DownShaken()
-    {
-        Debug.Log("Device shaken down");
-        _player.Slide();
     }
 }

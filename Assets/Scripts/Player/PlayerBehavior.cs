@@ -4,20 +4,12 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 
-public class PlayerBehavior : MonoBehaviour
+public class PlayerBehavior : MonoBehaviour, ISavabale
 {
     [Header("Public Fields")]
-    public PlayerArtitube playerArtitube;
-    [HideInInspector] public int coins = 0;
-
-    [Header("Player Stats")]
-    public int CobwebDamage = 5;
-    public float AttackSpeedMultiplier = 1.0f;
-    public int MultiShotLevel = 0;
-    public float CriticalHitChance = 0.05f;
-    public float CobwebScaler = 0;
-    public int CobwebPiercingLevel = 0;
-    public int CriticalChance = 10;
+    public PlayerArtitube PlayerArtitube;
+    public PlayerStatsConfig playerStatsConfig;
+    [HideInInspector] public int coinsCollected = 0;
 
     [Header("In Game Upgrade Levels")]
     private int _piercingLevel = 1;
@@ -28,15 +20,12 @@ public class PlayerBehavior : MonoBehaviour
     [Header("Private Editable Fields")]
     [SerializeField] ObjectPoolManager coinPool;
     [SerializeField] ObjectPoolManager lvlUpPool;
-
-    [Header("Local Fields")]
-    private int _currentHP;
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Coin"))
         {
             coinPool.ReleaseObject(other.gameObject);
-            coins++;
+            coinsCollected++;
         }
         else if (other.CompareTag("LvLUp"))
         {
@@ -45,16 +34,16 @@ public class PlayerBehavior : MonoBehaviour
         }
         else if (other.CompareTag("EnemyProjectile"))
         {
-            playerArtitube.TakeDamage(1);
+            PlayerArtitube.TakeDamage(1);
             GameManager.Instance.BulletPool.ReleaseObject(other.gameObject);
         }
     }
     #region << Dying Methods >> 
     public int LevelReachWhenDied()
     {
-        if (!playerArtitube.IsAlive())
+        if (!PlayerArtitube.IsAlive())
         {
-            return playerArtitube.GetLevel();
+            return PlayerArtitube.GetLevel();
         }
         else
         {
@@ -66,14 +55,14 @@ public class PlayerBehavior : MonoBehaviour
     public int ApplyDamage()
     {
         int chance = Random.Range(0, 100);
-        if (chance >= CriticalChance)
+        if (chance >= playerStatsConfig.CriticalChance)
         {
             Debug.Log($"U did Crit nice one!");
-            return CobwebDamage * 2;
+            return playerStatsConfig.CobwebDamage * 2;
         }
         else
         {
-            return CobwebDamage;
+            return playerStatsConfig.CobwebDamage;
         }
     }
 
@@ -81,14 +70,14 @@ public class PlayerBehavior : MonoBehaviour
     #region << Upgrade Methods - Buttons >> 
     public void RestoreHealth(int amountInPercentage)
     {
-        playerArtitube.RestoreHealth(amountInPercentage);
+        PlayerArtitube.RestoreHealth(amountInPercentage);
     }
 
     public void IncreasedDamage(TextMeshProUGUI levelText)
     {
-        CobwebDamage += 2;
+        playerStatsConfig.CobwebDamage += 2;
         _cobwebDamageLevel++;
-        levelText.text = $"LVL : {_cobwebDamageLevel.ToString()}";
+        levelText.text = $"LVL : {_cobwebDamageLevel}";
     }
 
     public void IncreasedAttackSpeed(TextMeshProUGUI levelText)
@@ -101,17 +90,52 @@ public class PlayerBehavior : MonoBehaviour
 
     public void IncreaseWebSize(TextMeshProUGUI levelText)
     {
-        CobwebScaler += 30f;
+        playerStatsConfig.CobwebScaler += 30f;
         _cobwebScaleLevel++;
         levelText.text = $"LVL : {_cobwebScaleLevel.ToString()}";
 
     }
     public void Piercing(TextMeshProUGUI levelText)
     {
-        CobwebPiercingLevel++;
+        playerStatsConfig.CobwebPiercingLevel++;
         _piercingLevel++;
         levelText.text = $"LVL : {_piercingLevel.ToString()}";
+        Debug.Log($"Piercing : { playerStatsConfig.CobwebPiercingLevel}"); // Neeed to be followed if not reset
     }
     #endregion
 
+    #region << In Game Save & Load Function - Resume >>
+    public void Save(ref GameData data)
+    {
+        data.PlayerPositionX = this.transform.position.x;
+        data.CoinsCollected = this.coinsCollected;
+
+        data.CurrentHealhPoint = PlayerArtitube.CurrentHealhPoint;
+        data.PlayerCurrentLevel = PlayerArtitube.PlayerCurrentLevel;
+
+        data.ExperiencePoints = PlayerArtitube.ExperiencePoints;
+        //Debug.Log("Saved Pos");
+    }
+    public void Load(GameData data)
+    {
+        // Loading Player Posotion , only X is matter
+        Vector3 newPosition = this.transform.position;
+        newPosition.x = data.PlayerPositionX;
+        this.transform.position = newPosition;
+
+        // Loading Player collected coins
+        coinsCollected = data.CoinsCollected;
+
+        // Loading Player health point + update UI
+        PlayerArtitube.CurrentHealhPoint = data.CurrentHealhPoint;
+        PlayerArtitube.UpdateHealthText();
+
+        // Loading Player level + update UI
+        PlayerArtitube.PlayerCurrentLevel = data.PlayerCurrentLevel;
+        PlayerArtitube.UpdateLevelText();
+
+        // Loading Player current experience + update UI
+        PlayerArtitube.ExperiencePoints = data.ExperiencePoints;
+    }
+    #endregion
 }

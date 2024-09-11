@@ -9,7 +9,9 @@ public class ShopHandler : MonoBehaviour
     [SerializeField] int attackSpeed = 1;
     [SerializeField] int totalCoinGainedLevel = 1;
     [SerializeField] int critChanceLevel = 1;
-    [SerializeField] int hpRestoreLevel = 1;    
+    [SerializeField] int hpRestoreLevel = 1;
+
+    [SerializeField] PlayerStatsConfig playerStatsConfig;
     
     public void MaxHealthPoint()
     {
@@ -24,7 +26,7 @@ public class ShopHandler : MonoBehaviour
     public void AttackSpeed()
     {
         attackSpeed++;
-        GameManager.Instance.SpidyMorals.FireCooldown -= 0.1f;
+        playerStatsConfig.FireCooldown -= 0.1f;
     }
 
     public void TotalCoinsGained()

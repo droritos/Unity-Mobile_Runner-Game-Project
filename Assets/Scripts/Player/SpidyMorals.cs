@@ -8,15 +8,14 @@ public class SpidyMorals : MonoBehaviour
     [SerializeField] Transform[] CobwebSpawnPoint;
     public ObjectPoolManager CobwebPoolScript;
 
-    [Header("Numbers Data")]
-    public float FireCooldown = 2f;
-
     [Header("Private Data")]
     private Animator _animator;
     private float _fire = 0;
+    private PlayerStatsConfig _playerStatsConfig;
     
     void Start()
     {
+        this._playerStatsConfig = GameManager.Instance.Player.PlayerStatsConfig;
         _animator = GetComponent<Animator>();
     }
 
@@ -27,7 +26,7 @@ public class SpidyMorals : MonoBehaviour
     }
     private void AutoShoot()
     {
-        if (_fire >= FireCooldown)
+        if (_fire >= _playerStatsConfig.FireCooldown)
         {
             _animator.SetTrigger("Attacking");
             StartCoroutine(WaitForShoot());

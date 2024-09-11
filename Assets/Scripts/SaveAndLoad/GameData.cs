@@ -2,6 +2,8 @@
 [System.Serializable]
 public class GameData
 {
+    public bool IsPlayerSurvived;
+
     public int PlayerCurrentLevel;
     public int CoinsCollected;
     public int CurrentHealhPoint;
@@ -14,7 +16,7 @@ public class GameData
 
     public int MaxHealthPoint;
     public int CobwebDamage;
-    public float AttackSpeedMultiplier;
+    public float FireCooldown;
     public float CobwebScaler;
     public int CobwebPiercingLevel;
     public int CriticalChance;

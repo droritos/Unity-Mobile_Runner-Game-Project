@@ -27,7 +27,7 @@ public class PlayerData : MonoSingleton<PlayerData>
         int playerAge = int.Parse(playerAgeInput.text);
         writeListToFile.SavePlayerData(playerName, playerAge, "capturedImage.png");
         LastTimeLogin = DateTime.Now.Date.ToString();
-        this.coins = GameManager.Instance.Player.coinsCollected;
+        this.coins = GameManager.Instance.Player.CoinsGathered;
     }
 
     public void LoadProfile()
@@ -35,7 +35,7 @@ public class PlayerData : MonoSingleton<PlayerData>
         List<Player> players = readListFromFile.LoadPlayerData();
         playerNameInput.text = players[0].playerName;
         playerAgeInput.text = players[0].playerAge.ToString();
-        GameManager.Instance.Player.coinsCollected = this.coins;
+        GameManager.Instance.Player.CoinsGathered = this.coins;
     }
 
 }

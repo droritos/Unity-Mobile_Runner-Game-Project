@@ -67,4 +67,18 @@ public class FileDataHandler
             Debug.LogError($"Error Occured when trying to sace data to file : {fullPath} {e}");
         }
     }
+
+    public void DeleteSaveFile()
+    {
+        string fullPath = Path.Combine(_dataDirPath, _dataFileName);
+        if (File.Exists(fullPath))
+        {
+            File.Delete(fullPath);
+            Debug.Log("Save file deleted.");
+        }
+        else
+        {
+            Debug.Log("No save file to delete.");
+        }
+    }
 }

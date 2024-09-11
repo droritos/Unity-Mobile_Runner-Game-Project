@@ -12,9 +12,9 @@ public class CobwebBullet : MonoBehaviour
     private void Start()
     {
         _originalScale = this.transform.localScale;
-        ProjectileScaler = GameManager.Instance.Player.playerStatsConfig.CobwebScaler;
+        ProjectileScaler = GameManager.Instance.Player.PlayerStatsConfig.CobwebScaler;
         SetProjectileSize(ProjectileScaler);
-        RemainingPierces = GameManager.Instance.Player.playerStatsConfig.CobwebPiercingLevel;
+        RemainingPierces = GameManager.Instance.Player.PlayerStatsConfig.CobwebPiercingLevel;
     }
     void Update()
     {
@@ -48,13 +48,13 @@ public class CobwebBullet : MonoBehaviour
 
         // Reset to original scale first, then apply the scaling factor
         this.transform.localScale = _originalScale * scalingFactor;
-        Debug.Log($"Web localScale = {this.transform.localScale}");
+        //Debug.Log($"Web localScale = {this.transform.localScale}");
     }
     private void ResetWeb()
     {
-        ProjectileScaler = GameManager.Instance.Player.playerStatsConfig.CobwebScaler;
-        Debug.Log($"Web ProjectileScaler = {ProjectileScaler}");
+        ProjectileScaler = GameManager.Instance.Player.PlayerStatsConfig.CobwebScaler;
+        //Debug.Log($"Web ProjectileScaler = {ProjectileScaler}");
         SetProjectileSize(ProjectileScaler);
-        RemainingPierces = GameManager.Instance.Player.playerStatsConfig.CobwebPiercingLevel;
+        RemainingPierces = GameManager.Instance.Player.PlayerStatsConfig.CobwebPiercingLevel;
     }
 }

@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameManager : MonoSingleton<GameManager>
 {
-    [SerializeField] float floorSpeed;
-    [SerializeField] MovingObjectsConfig roadParameters;
+    [Header("Reading Saved Data")]
     [SerializeField] ReadListFromFile readListFromFile;
     [SerializeField] WebcamCapture webcamCapture;
 
@@ -20,7 +20,8 @@ public class GameManager : MonoSingleton<GameManager>
 
     private void Start()
     {
-        readListFromFile.LoadPlayerData();
-        StartCoroutine(webcamCapture.RequestCameraPermissionCoroutine());
+        //readListFromFile.LoadPlayerData();
+        //StartCoroutine(webcamCapture.RequestCameraPermissionCoroutine());
     }
+
 }

@@ -8,8 +8,8 @@ public class PlayerBehavior : MonoBehaviour, ISavabale
 {
     [Header("Public Fields")]
     public PlayerArtitube PlayerArtitube;
-    public PlayerStatsConfig playerStatsConfig;
-    [HideInInspector] public int coinsCollected = 0;
+    public PlayerStatsConfig PlayerStatsConfig;
+    [HideInInspector] public int CoinsGathered = 0;
 
     [Header("In Game Upgrade Levels")]
     private int _piercingLevel = 1;
@@ -25,7 +25,7 @@ public class PlayerBehavior : MonoBehaviour, ISavabale
         if (other.CompareTag("Coin"))
         {
             coinPool.ReleaseObject(other.gameObject);
-            coinsCollected++;
+            CoinsGathered++;
         }
         else if (other.CompareTag("LvLUp"))
         {
@@ -55,14 +55,14 @@ public class PlayerBehavior : MonoBehaviour, ISavabale
     public int ApplyDamage()
     {
         int chance = Random.Range(0, 100);
-        if (chance >= playerStatsConfig.CriticalChance)
+        if (chance <= PlayerStatsConfig.CriticalChance)
         {
             Debug.Log($"U did Crit nice one!");
-            return playerStatsConfig.CobwebDamage * 2;
+            return PlayerStatsConfig.CobwebDamage * 2;
         }
         else
         {
-            return playerStatsConfig.CobwebDamage;
+            return PlayerStatsConfig.CobwebDamage;
         }
     }
 
@@ -75,46 +75,59 @@ public class PlayerBehavior : MonoBehaviour, ISavabale
 
     public void IncreasedDamage(TextMeshProUGUI levelText)
     {
-        playerStatsConfig.CobwebDamage += 2;
+        PlayerStatsConfig.CobwebDamage += 2;
         _cobwebDamageLevel++;
         levelText.text = $"LVL : {_cobwebDamageLevel}";
     }
 
     public void IncreasedAttackSpeed(TextMeshProUGUI levelText)
     {
-        GameManager.Instance.SpidyMorals.FireCooldown -= 0.2f;
+        PlayerStatsConfig.FireCooldown -= 0.2f;
         _attackSpeedLevel++;
         levelText.text = $"LVL : {_attackSpeedLevel.ToString()}";
+        Debug.Log($"Fire Cooldown upgraded to {PlayerStatsConfig.FireCooldown} from {PlayerStatsConfig.FireCooldown + 0.2f}");
 
     }
 
     public void IncreaseWebSize(TextMeshProUGUI levelText)
     {
-        playerStatsConfig.CobwebScaler += 30f;
+        PlayerStatsConfig.CobwebScaler += 30f;
         _cobwebScaleLevel++;
         levelText.text = $"LVL : {_cobwebScaleLevel.ToString()}";
 
     }
     public void Piercing(TextMeshProUGUI levelText)
     {
-        playerStatsConfig.CobwebPiercingLevel++;
+        PlayerStatsConfig.CobwebPiercingLevel++;
         _piercingLevel++;
         levelText.text = $"LVL : {_piercingLevel.ToString()}";
-        Debug.Log($"Piercing : { playerStatsConfig.CobwebPiercingLevel}"); // Neeed to be followed if not reset
     }
+
+    public void IncreseCriticalChance(TextMeshProUGUI levelText)
+    {
+        PlayerStatsConfig.CriticalChance += 10;
+        Debug.Log($"Critical Chance : {PlayerStatsConfig.CriticalChance}");
+    }
+
     #endregion
 
     #region << In Game Save & Load Function - Resume >>
     public void Save(ref GameData data)
     {
         data.PlayerPositionX = this.transform.position.x;
-        data.CoinsCollected = this.coinsCollected;
+        data.CoinsCollected = this.CoinsGathered;
 
         data.CurrentHealhPoint = PlayerArtitube.CurrentHealhPoint;
         data.PlayerCurrentLevel = PlayerArtitube.PlayerCurrentLevel;
 
         data.ExperiencePoints = PlayerArtitube.ExperiencePoints;
-        //Debug.Log("Saved Pos");
+
+        data.CobwebDamage = PlayerStatsConfig.CobwebDamage;
+        data.FireCooldown = PlayerStatsConfig.FireCooldown;
+        data.CobwebScaler = PlayerStatsConfig.CobwebScaler;
+        data.CobwebPiercingLevel = PlayerStatsConfig.CobwebPiercingLevel;
+        data.CriticalChance = PlayerStatsConfig.CriticalChance;
+        Debug.Log($"Saved CR {PlayerStatsConfig.CriticalChance} On Game Data - {data.CriticalChance}");
     }
     public void Load(GameData data)
     {
@@ -124,7 +137,7 @@ public class PlayerBehavior : MonoBehaviour, ISavabale
         this.transform.position = newPosition;
 
         // Loading Player collected coins
-        coinsCollected = data.CoinsCollected;
+        CoinsGathered = data.CoinsCollected;
 
         // Loading Player health point + update UI
         PlayerArtitube.CurrentHealhPoint = data.CurrentHealhPoint;
@@ -136,6 +149,13 @@ public class PlayerBehavior : MonoBehaviour, ISavabale
 
         // Loading Player current experience + update UI
         PlayerArtitube.ExperiencePoints = data.ExperiencePoints;
+
+        // Loading Player current stats
+        PlayerStatsConfig.CobwebDamage = data.CobwebDamage;
+        PlayerStatsConfig.FireCooldown = data.FireCooldown;
+        PlayerStatsConfig.CobwebScaler = data.CobwebScaler;
+        PlayerStatsConfig.CobwebPiercingLevel = data.CobwebPiercingLevel;
+        PlayerStatsConfig.CriticalChance = data.CriticalChance;
     }
     #endregion
 }

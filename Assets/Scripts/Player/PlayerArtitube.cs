@@ -30,7 +30,7 @@ public class PlayerArtitube : MonoBehaviour
 
     private void Start()
     {
-        this._playerStatsConfig = GameManager.Instance.Player.playerStatsConfig;
+        this._playerStatsConfig = GameManager.Instance.Player.PlayerStatsConfig;
         SetHealthPoint();
         SetExperiencePoints();
     }
@@ -39,6 +39,7 @@ public class PlayerArtitube : MonoBehaviour
     {
         CurrentHealhPoint = _playerStatsConfig.MaxHealthPoint;
         SetMaxHealthBar();
+        //Debug.Log($"Current HP : {CurrentHealhPoint} | Map HP {_playerStatsConfig.MaxHealthPoint}");
     }
 
     public void TakeDamage(int damage)
@@ -85,7 +86,6 @@ public class PlayerArtitube : MonoBehaviour
     }
     public void UpdateHealthText()
     {
-        //healthSliderText.text = $"{100 * healthSlider.value}%";
         healthSliderText.text = CurrentHealhPoint.ToString();
     }
     private void Die()
@@ -93,6 +93,7 @@ public class PlayerArtitube : MonoBehaviour
         _isAlive = false;
         AddCollectedCoins();
         SceneManager.LoadScene(3);
+        SaveManager.Instance.DeleteFileSavedFile();
         Debug.Log("You Died, Loser!");
     }
 
@@ -122,6 +123,7 @@ public class PlayerArtitube : MonoBehaviour
     {
         PlayerCurrentLevel++;
         UpdateLevelText();
+        SaveManager.Instance.CallSaveGameMethod();
     }
 
     public void UpdateLevelText()

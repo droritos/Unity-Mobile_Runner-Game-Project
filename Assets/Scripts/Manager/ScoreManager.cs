@@ -54,7 +54,7 @@ public class ScoreManager : MonoSingleton<ScoreManager>
 
     private void SetCoins()
     {
-        _coinCollected = playerBehavior.coinsCollected * 10;
+        _coinCollected = playerBehavior.CoinsGathered * 10;
     }
 
     public float GetScore()

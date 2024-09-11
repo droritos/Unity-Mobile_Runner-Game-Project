@@ -7,9 +7,15 @@ using TMPro;
 
 public class MainMenuScript : MonoBehaviour
 {
+    [SerializeField] SaveManager saveManager;
     [SerializeField] TextMeshProUGUI playButtonText; // Reference to the Text component of the Play button
-
     private bool _hasSaveFile; // Boolean to track if a save file exists
+
+
+    private void Start()
+    {
+        //UpdatePlayButtonText();
+    }
 
     public void PlayTheGameButton()
     {
@@ -38,6 +44,11 @@ public class MainMenuScript : MonoBehaviour
     {
         SceneManager.LoadScene(0);
     }
+    public void ShopMenu()
+    {
+        SceneManager.LoadScene(4);
+    }
+
     public void MenuSwitcher(GameObject menu)
     {
         if (menu.activeInHierarchy)
@@ -49,7 +60,7 @@ public class MainMenuScript : MonoBehaviour
     #region << Continue Game >>
     private void CheckForSaveFile()
     {
-        string saveFilePath = Path.Combine(Application.persistentDataPath, "checkpoint_save.json");
+        string saveFilePath = Path.Combine(Application.persistentDataPath, "Save In Game Data.game");
         Debug.Log($"Checking for save file at: {saveFilePath}");
         _hasSaveFile = File.Exists(saveFilePath); // Set the boolean based on whether the file exists
         Debug.Log($"Found Saved Data : {_hasSaveFile}");
@@ -57,13 +68,13 @@ public class MainMenuScript : MonoBehaviour
 
     private void UpdatePlayButtonText()
     {
-        if (_hasSaveFile && playButtonText != null)
+        if (playButtonText != null)
         {
-            playButtonText.text = "Continue Game";
+            playButtonText.text = "Continue";
         }
-        else if (!_hasSaveFile && playButtonText != null)
+        else if (playButtonText != null)
         {
-            playButtonText.text = "Start Game";
+            playButtonText.text = "New Game";
         }
     }
     #endregion

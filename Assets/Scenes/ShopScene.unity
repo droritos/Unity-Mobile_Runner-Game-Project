@@ -420,8 +420,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1805672898}
-  - {fileID: 1828631985}
   - {fileID: 405653911}
+  - {fileID: 1828631985}
   - {fileID: 2037779689}
   - {fileID: 1555732470}
   - {fileID: 297494040}
@@ -737,7 +737,7 @@ GameObject:
   - component: {fileID: 297494042}
   - component: {fileID: 297494041}
   m_Layer: 5
-  m_Name: Upgrade
+  m_Name: TotalCoins
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -808,7 +808,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 297494042}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1397966145}
+        m_TargetAssemblyTypeName: ShopHandler, Assembly-CSharp
+        m_MethodName: TotalCoinsGained
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &297494042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1333,7 +1345,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 405653913}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1397966145}
+        m_TargetAssemblyTypeName: ShopHandler, Assembly-CSharp
+        m_MethodName: Damage
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &405653913
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2892,7 +2916,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2be80c740839ae24b8e57aa19b633ba9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneStateManagerPrefab: {fileID: 0}
+  saveManager: {fileID: 0}
   playButtonText: {fileID: 0}
 --- !u!114 &1397966145
 MonoBehaviour:
@@ -2906,12 +2930,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 701f089c77d6b5f4b94cb14aa9172fd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealthLevel: 1
-  damageLevel: 1
-  attackSpeed: 1
-  totalCoinGainedLevel: 1
-  critChanceLevel: 1
-  hpRestoreLevel: 1
+  playerStatsConfig: {fileID: 0}
+  maxHealthLevelText: {fileID: 0}
+  damageLevelText: {fileID: 0}
+  attackSpeedText: {fileID: 0}
+  totalCoinGainedLevelText: {fileID: 0}
+  critChanceLevelText: {fileID: 0}
+  hpRestoreLevelText: {fileID: 0}
+  maxHealthLevelCostText: {fileID: 0}
+  damageLevelCostText: {fileID: 0}
+  attackSpeedCostText: {fileID: 0}
+  totalCoinGainedLevelCostText: {fileID: 0}
+  critChanceLevelCostText: {fileID: 0}
+  hpRestoreLevelCostText: {fileID: 0}
+  coinCollected: {fileID: 0}
+  costMultiplier: 0
 --- !u!1 &1515993147
 GameObject:
   m_ObjectHideFlags: 0
@@ -3192,7 +3225,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1555732472}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1397966145}
+        m_TargetAssemblyTypeName: ShopHandler, Assembly-CSharp
+        m_MethodName: CritRateChance
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1555732472
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3450,6 +3495,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: ShopHandler, Assembly-CSharp
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1397966145}
         m_TargetAssemblyTypeName: ShopHandler, Assembly-CSharp
         m_MethodName: MaxHealthPoint
@@ -3584,7 +3641,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1828631987}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1397966145}
+        m_TargetAssemblyTypeName: ShopHandler, Assembly-CSharp
+        m_MethodName: AttackSpeed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1828631987
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4377,7 +4446,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2037779691}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1397966145}
+        m_TargetAssemblyTypeName: ShopHandler, Assembly-CSharp
+        m_MethodName: HealthRestored
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2037779691
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -68,9 +68,9 @@ public class PlayerBehavior : MonoBehaviour, ISavabale
 
 
     #region << Upgrade Methods - Buttons >> 
-    public void RestoreHealth(int amountInPercentage)
+    public void RestoreHealth()
     {
-        PlayerArtitube.RestoreHealth(amountInPercentage);
+        PlayerArtitube.RestoreHealth();
     }
 
     public void IncreasedDamage(TextMeshProUGUI levelText)

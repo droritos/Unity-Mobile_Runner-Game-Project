@@ -52,15 +52,10 @@ public class PlayerArtitube : MonoBehaviour
             Die();
         }
     }
-    public void RestoreHealth(float healthRestorePercentage)
+    public void RestoreHealth()
     {
-        // Calculate the health points to restore based on the percentage
-        healthRestorePercentage /= 100;
-        int healthToRestore = Mathf.RoundToInt(_playerStatsConfig.MaxHealthPoint * healthRestorePercentage);
-        Debug.Log($"health to restore {healthToRestore}");
-
         // Add the restored health to the current health
-        CurrentHealhPoint += healthToRestore;
+        CurrentHealhPoint += _playerStatsConfig.HealthToRestore;
 
         // Ensure the health doesn't exceed the maximum health
         CurrentHealhPoint = Mathf.Clamp(CurrentHealhPoint, 0, _playerStatsConfig.MaxHealthPoint);
@@ -91,21 +86,31 @@ public class PlayerArtitube : MonoBehaviour
     private void Die()
     {
         _isAlive = false;
-        AddCollectedCoins();
+        AddCollectedCoins(_playerStatsConfig.CoinsMultiplier);
         SceneManager.LoadScene(3);
         SaveManager.Instance.DeleteFileSavedFile();
         Debug.Log("You Died, Loser!");
     }
 
-    private static void AddCollectedCoins()
+    private static void AddCollectedCoins(float multiplyCoins)
     {
+        // Ensure multiplier is at least 1
+        multiplyCoins = Mathf.Max(1f, multiplyCoins);
+
         int currentCoins = PlayerPrefs.GetInt("PlayerCoins", 0); // Get total coins from PlayerPrefs
         int coinsCollectedThisSession = ScoreManager.Instance.GetCoinsCollected(); // Coins collected this session
 
-        int updatedTotalCoins = currentCoins + coinsCollectedThisSession; // Add current to session collected
+        // Apply multiplier and round to nearest int
+        coinsCollectedThisSession = Mathf.RoundToInt(coinsCollectedThisSession * multiplyCoins);
+
+        // Add to total coins
+        int updatedTotalCoins = currentCoins + coinsCollectedThisSession;
         PlayerPrefs.SetInt("PlayerCoins", updatedTotalCoins); // Save the updated total
 
         PlayerPrefs.Save(); // Ensure the data is persisted immediately
+
+        // Optional Debug Log
+        Debug.Log($"Coins Collected: {coinsCollectedThisSession}, Multiplier: {multiplyCoins}, Total Coins: {updatedTotalCoins}");
     }
     #endregion
 

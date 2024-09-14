@@ -14,14 +14,13 @@ public class GameManager : MonoSingleton<GameManager>
     public SpidyMorals SpidyMorals;
     public UpgradeMenu UpgradeMenuScript;
 
+
     [Header("Enemy")]
     public ObjectPoolManager EnemyPool;
     public ObjectPoolManager BulletPool;
 
     private void Start()
     {
-        //readListFromFile.LoadPlayerData();
-        //StartCoroutine(webcamCapture.RequestCameraPermissionCoroutine());
+        Player.PlayerStatsConfig.SetStats();
     }
-
 }

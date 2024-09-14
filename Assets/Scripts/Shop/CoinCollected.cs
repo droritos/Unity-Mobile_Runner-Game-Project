@@ -2,10 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CoinCollected : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI totalCoinsText;
+    [SerializeField] TextMeshProUGUI coinsGatheredText;
+    [SerializeField] Button addCoinsSecretButton;
+
     private int _coinsGathered;
     private int _totalCoins;
 
@@ -14,6 +18,13 @@ public class CoinCollected : MonoBehaviour
     {
         _coinsGathered = PlayerPrefs.GetInt("PlayerCoins" , 0);
         UpdatePlayerCoins();
+
+        if(coinsGatheredText != null)
+            coinsGatheredText.text = PlayerPrefs.GetInt("CoinsFromThisSessin", 0).ToString();
+
+        if (addCoinsSecretButton != null)
+            SetSecretButton();
+
     }
     public bool TryBuyUpgrade(int cost)
     {
@@ -25,20 +36,28 @@ public class CoinCollected : MonoBehaviour
         }
         else
         {
-            WarninningMoney();
+            WarninningMoneyAnimation();
             Debug.Log("Not Enough Money");
             return false;
         }
+    }
+    public void SetSecretButton()
+    {
+        // Buttons to add currency coins for check the ShopHandler is working
+        addCoinsSecretButton.onClick.RemoveAllListeners();
+        addCoinsSecretButton.onClick.AddListener(UpdatePlayerCoins);
     }
 
     private void UpdatePlayerCoins()
     {
         _totalCoins += _coinsGathered;
-        totalCoinsText.text = $"{_totalCoins}";
+        if(totalCoinsText != null)
+            totalCoinsText.text = $"{_totalCoins}";
 
         // Save to PlayerPrefs to ensure persistence
         PlayerPrefs.SetInt("PlayerCoins", _totalCoins);
         PlayerPrefs.Save();
+        //Debug.Log($"Total : {_totalCoins}, Gathered {_coinsGathered}");
     }
 
     private void DeductCoins(int cost)
@@ -63,7 +82,7 @@ public class CoinCollected : MonoBehaviour
         totalCoinsText.text = currentCoins.ToString(); // Update the UI element showing the coins
     }
 
-    private void WarninningMoney()
+    private void WarninningMoneyAnimation()
     {
         // Start the coroutine to flash the text
         StartCoroutine(FlashTextRed());
@@ -75,11 +94,8 @@ public class CoinCollected : MonoBehaviour
         Color originalColor = totalCoinsText.color; // Store the original color of the text
         Color warningColor = Color.red; // Set the warning color to red
 
-        int flashCount = 3; // Number of times to flash
         float flashDuration = 0.3f; // Duration of each flash
 
-        for (int i = 0; i < flashCount; i++)
-        {
             // Change the color to red
             totalCoinsText.color = warningColor;
             yield return new WaitForSeconds(flashDuration);
@@ -87,6 +103,5 @@ public class CoinCollected : MonoBehaviour
             // Change the color back to the original
             totalCoinsText.color = originalColor;
             yield return new WaitForSeconds(flashDuration);
-        }
     }
 }

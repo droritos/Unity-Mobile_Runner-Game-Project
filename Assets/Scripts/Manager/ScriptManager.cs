@@ -32,6 +32,7 @@ public class ScriptManager : MonoBehaviour
                 scriptTouch.SetActive(true);
                 break;
         }
+        Debug.Log($"Input Type Chosen {canvasSelected}");
     }
 
     private void DisableScripts()

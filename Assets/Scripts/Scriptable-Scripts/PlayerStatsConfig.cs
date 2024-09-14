@@ -31,12 +31,32 @@ public class PlayerStatsConfig : ScriptableObject
     public int TotalCoinGainedLevel = 1;
     public int CritChanceLevel = 1;
     public int HpRestoreLevel = 1;
-
-
-
     private void OnEnable()
     {
         InitializedStats();
+    }
+    public void SetStats()
+    {
+        InitializedStats();
+    }
+    public void ResetStats()
+    {
+        G_MaxHealthPoint = 2;
+        G_CobwebDamage = 5;
+        G_FireCooldown = 2.0f;
+        G_CobwebScaler = 0;
+        G_CobwebPiercingLevel = 0;
+        G_CriticalChance = 10;
+        G_HealthToRestore = 2;
+        G_CoinsMultiplier = 1;
+
+        MaxHealthLevel = 1;
+        DamageLevel = 1;
+        AttackSpeed = 1;
+        TotalCoinGainedLevel = 1;
+        CritChanceLevel = 1;
+        HpRestoreLevel = 1;
+        Debug.Log("Stats Has Been Reset");
     }
 
     private void InitializedStats()
@@ -49,8 +69,5 @@ public class PlayerStatsConfig : ScriptableObject
         CriticalChance = G_CriticalChance;
         HealthToRestore = G_HealthToRestore;
         CoinsMultiplier = G_CoinsMultiplier;
-        //Debug.Log("Stats Initialized. e.g. - Fire Rate : " + FireCooldown);
     }
-
-
 }

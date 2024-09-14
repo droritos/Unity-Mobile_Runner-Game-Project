@@ -7,8 +7,8 @@ using TMPro;
 
 public class MainMenuScript : MonoBehaviour
 {
-    [SerializeField] SaveManager saveManager;
     [SerializeField] TextMeshProUGUI playButtonText; // Reference to the Text component of the Play button
+    [SerializeField] PlayerStatsConfig playerStatsConfigHolder;
     private bool _hasSaveFile; // Boolean to track if a save file exists
 
 
@@ -17,24 +17,11 @@ public class MainMenuScript : MonoBehaviour
         //UpdatePlayButtonText();
     }
 
+
+    #region << Scenes Movers>>
     public void PlayTheGameButton()
     {
         SceneManager.LoadScene(2);
-    }
-    public void SetInputButtons()
-    {
-        PlayerPrefs.SetInt("ButtonSelected", 1);
-        Debug.Log("buttons");
-    }
-    public void SetInputTouch()
-    {
-        PlayerPrefs.SetInt("ButtonSelected", 0);
-        Debug.Log("touch");
-    }
-    public void SetInputGyro()
-    {
-        PlayerPrefs.SetInt("ButtonSelected", 2);
-        Debug.Log("Gyroo");
     }
     public void OpenSetingsMenu()
     {
@@ -48,7 +35,28 @@ public class MainMenuScript : MonoBehaviour
     {
         SceneManager.LoadScene(4);
     }
+    #endregion
 
+    #region << Touch Settings >>
+    public void SetInputButtons()
+    {
+        PlayerPrefs.SetInt("ButtonSelected", 1);
+        Input.gyro.enabled = false;
+        Debug.Log("buttons");
+    }
+    public void SetInputTouch()
+    {
+        PlayerPrefs.SetInt("ButtonSelected", 0);
+        Input.gyro.enabled = false;
+        Debug.Log("touch");
+    }
+    public void SetInputGyro()
+    {
+        PlayerPrefs.SetInt("ButtonSelected", 2);
+        Input.gyro.enabled = true;
+        Debug.Log("Gyroo");
+    }
+    #endregion
     public void MenuSwitcher(GameObject menu)
     {
         if (menu.activeInHierarchy)
@@ -77,5 +85,8 @@ public class MainMenuScript : MonoBehaviour
             playButtonText.text = "New Game";
         }
     }
+
+
+
     #endregion
 }

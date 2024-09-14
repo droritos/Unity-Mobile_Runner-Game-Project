@@ -33,13 +33,14 @@ public class PlayerArtitube : MonoBehaviour
         this._playerStatsConfig = GameManager.Instance.Player.PlayerStatsConfig;
         SetHealthPoint();
         SetExperiencePoints();
+        ChangeHPSliderValue(); 
     }
     #region << Health Managing >>
     public void SetHealthPoint()
     {
         CurrentHealhPoint = _playerStatsConfig.MaxHealthPoint;
         SetMaxHealthBar();
-        //Debug.Log($"Current HP : {CurrentHealhPoint} | Map HP {_playerStatsConfig.MaxHealthPoint}");
+        Debug.Log($"Current HP : {CurrentHealhPoint} | Map HP By Global {_playerStatsConfig.G_MaxHealthPoint}");
     }
 
     public void TakeDamage(int damage)
@@ -62,6 +63,7 @@ public class PlayerArtitube : MonoBehaviour
 
         // Update the health slider based on the new health percentage
         ChangeHPSliderValue();
+        Debug.Log($"Restoring {_playerStatsConfig.HealthToRestore} to your health");
     }
     public bool IsAlive()
     {
@@ -102,6 +104,7 @@ public class PlayerArtitube : MonoBehaviour
 
         // Apply multiplier and round to nearest int
         coinsCollectedThisSession = Mathf.RoundToInt(coinsCollectedThisSession * multiplyCoins);
+        PlayerPrefs.SetInt("CoinsFromThisSessin", coinsCollectedThisSession);
 
         // Add to total coins
         int updatedTotalCoins = currentCoins + coinsCollectedThisSession;

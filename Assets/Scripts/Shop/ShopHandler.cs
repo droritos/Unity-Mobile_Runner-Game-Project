@@ -1,4 +1,5 @@
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,17 +12,17 @@ public class ShopHandler : MonoBehaviour
     [SerializeField] TextMeshProUGUI maxHealthLevelText;
     [SerializeField] TextMeshProUGUI damageLevelText;
     [SerializeField] TextMeshProUGUI attackSpeedText;
-    [SerializeField] TextMeshProUGUI totalCoinGainedLevelText;
-    [SerializeField] TextMeshProUGUI critChanceLevelText;
     [SerializeField] TextMeshProUGUI hpRestoreLevelText;
+    [SerializeField] TextMeshProUGUI critChanceLevelText;
+    [SerializeField] TextMeshProUGUI totalCoinGainedLevelText;
 
     [Header("Upgrade Cost Text")]
     [SerializeField] TextMeshProUGUI maxHealthLevelCostText;
     [SerializeField] TextMeshProUGUI damageLevelCostText;
     [SerializeField] TextMeshProUGUI attackSpeedCostText;
-    [SerializeField] TextMeshProUGUI totalCoinGainedLevelCostText;
-    [SerializeField] TextMeshProUGUI critChanceLevelCostText;
     [SerializeField] TextMeshProUGUI hpRestoreLevelCostText;
+    [SerializeField] TextMeshProUGUI critChanceLevelCostText;
+    [SerializeField] TextMeshProUGUI totalCoinGainedLevelCostText;
 
     [Header("Coin Data")]
     [SerializeField] CoinCollected coinCollected;
@@ -30,8 +31,8 @@ public class ShopHandler : MonoBehaviour
     private void Start()
     {
         InitializedUpgradeLevels();
+        InitializeUpgradeCosts();
     }
-
     public void MaxHealthPoint()
     {
         if (!PurchaseBuyUpgrade(maxHealthLevelCostText)) return;
@@ -123,5 +124,28 @@ public class ShopHandler : MonoBehaviour
         totalCoinGainedLevelText.text = SetLevelText(playerStatsConfig.TotalCoinGainedLevel);
         critChanceLevelText.text = SetLevelText(playerStatsConfig.CritChanceLevel);
         hpRestoreLevelText.text = SetLevelText(playerStatsConfig.HpRestoreLevel);
+    }
+    private void InitializeUpgradeCosts()
+    {
+        // Load upgrade levels from the ScriptableObject (playerStatsConfig)
+        int maxHealthLevel = playerStatsConfig.MaxHealthLevel;
+        int damageLevel = playerStatsConfig.DamageLevel;
+        int attackSpeedLevel = playerStatsConfig.AttackSpeed;
+        int totalCoinGainedLevel = playerStatsConfig.TotalCoinGainedLevel;
+        int critChanceLevel = playerStatsConfig.CritChanceLevel;
+        int hpRestoreLevel = playerStatsConfig.HpRestoreLevel;
+
+        // Calculate and update the cost text for each upgrade
+        maxHealthLevelCostText.text = Mathf.RoundToInt(GetCostForLevel(maxHealthLevel)).ToString();
+        damageLevelCostText.text = Mathf.RoundToInt(GetCostForLevel(damageLevel)).ToString();
+        attackSpeedCostText.text = Mathf.RoundToInt(GetCostForLevel(attackSpeedLevel)).ToString();
+        totalCoinGainedLevelCostText.text = Mathf.RoundToInt(GetCostForLevel(totalCoinGainedLevel)).ToString();
+        critChanceLevelCostText.text = Mathf.RoundToInt(GetCostForLevel(critChanceLevel)).ToString();
+        hpRestoreLevelCostText.text = Mathf.RoundToInt(GetCostForLevel(hpRestoreLevel)).ToString();
+    }
+    private float GetCostForLevel(int level)
+    {
+        int baseCost = 50; // Set your base cost here
+        return baseCost * Mathf.Pow(costMultiplier, level);
     }
 }

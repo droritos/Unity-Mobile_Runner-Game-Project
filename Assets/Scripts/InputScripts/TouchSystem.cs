@@ -4,7 +4,7 @@ public class TouchSystem : MonoBehaviour
 {
     
     Vector2 startPos;
-    float minSwipeDist = 30; // Minimum Ssize of swipe
+    float minSwipeDist = 30; // Minimum Size of swipe
     float startTime;
     float touchDuration;
     private PlayerMovement _player;

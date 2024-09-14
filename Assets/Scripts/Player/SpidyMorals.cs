@@ -17,6 +17,7 @@ public class SpidyMorals : MonoBehaviour
     {
         this._playerStatsConfig = GameManager.Instance.Player.PlayerStatsConfig;
         _animator = GetComponent<Animator>();
+        Debug.Log($"Your fire rate is {_playerStatsConfig.FireCooldown} By global {_playerStatsConfig.G_FireCooldown}");
     }
 
     void Update()

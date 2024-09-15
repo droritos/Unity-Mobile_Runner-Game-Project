@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoSingleton<GameManager>
 {
@@ -22,5 +20,17 @@ public class GameManager : MonoSingleton<GameManager>
     private void Start()
     {
         Player.PlayerStatsConfig.SetStats();
+    }
+    public void ResetStage()
+    {
+        if (SaveManager.Instance != null)
+        {
+            SaveManager.Instance.DeleteFileSavedFile();
+            SceneManager.LoadScene(2);
+        }
+        else
+        {
+            Debug.LogWarning("No Save Manager Exits!");
+        }
     }
 }

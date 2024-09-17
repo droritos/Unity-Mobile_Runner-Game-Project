@@ -12,14 +12,23 @@ public class GameManager : MonoSingleton<GameManager>
     public SpidyMorals SpidyMorals;
     public UpgradeMenu UpgradeMenuScript;
 
-
     [Header("Enemy")]
     public ObjectPoolManager EnemyPool;
     public ObjectPoolManager BulletPool;
 
+    [Header("Menus")]
+    [SerializeField] GameObject generalMenu;
+    [SerializeField] GameObject upgradeMenu;
+
+
     private void Start()
     {
         Player.PlayerStatsConfig.SetStats();
+    }
+
+    private void Update()
+    {
+        PauseGameWhenMenuVisible(upgradeMenu);
     }
     public void ResetStage()
     {
@@ -31,6 +40,18 @@ public class GameManager : MonoSingleton<GameManager>
         else
         {
             Debug.LogWarning("No Save Manager Exits!");
+        }
+    }
+
+    public void PauseGameWhenMenuVisible(GameObject menu)
+    {
+        if (menu.activeSelf)
+        {
+            Time.timeScale = 0f;
+        }
+        else
+        {
+            Time.timeScale = 1f;
         }
     }
 }

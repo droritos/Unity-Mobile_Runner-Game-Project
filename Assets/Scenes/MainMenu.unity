@@ -134,8 +134,9 @@ GameObject:
   - component: {fileID: 48993938}
   - component: {fileID: 48993937}
   - component: {fileID: 48993936}
+  - component: {fileID: 48993944}
+  - component: {fileID: 48993943}
   - component: {fileID: 48993935}
-  - component: {fileID: 48993941}
   - component: {fileID: 48993942}
   m_Layer: 5
   m_Name: Canvas
@@ -157,8 +158,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playButtonText: {fileID: 1353064013}
-  playerStatsConfigHolder: {fileID: 11400000, guid: 1904f4b2a317cb24aad0ce5ae06b6e50,
-    type: 2}
 --- !u!114 &48993936
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -244,20 +243,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &48993941
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 48993934}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fcdc75d2d1f29a74ea30d61c6ac54061, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  myButton: {fileID: 0}
-  eventName: button_click
 --- !u!114 &48993942
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -273,6 +258,32 @@ MonoBehaviour:
   totalCoinsText: {fileID: 827626340}
   coinsGatheredText: {fileID: 0}
   addCoinsSecretButton: {fileID: 0}
+--- !u!114 &48993943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 48993934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20ef4eac6f198e141945a6735357114f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fileName: Shop Upgrades Data.game
+--- !u!114 &48993944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 48993934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb6b90d4eb3388c42af2e6dfe20ccce7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerStatsConfig: {fileID: 11400000, guid: 1904f4b2a317cb24aad0ce5ae06b6e50, type: 2}
 --- !u!1 &112306037
 GameObject:
   m_ObjectHideFlags: 0

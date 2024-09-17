@@ -30,68 +30,74 @@ public class ShopHandler : MonoBehaviour
 
     private void Start()
     {
+        Debug.Log("Load Shop Stats");
         InitializedUpgradeLevels();
         InitializeUpgradeCosts();
+    }
+    public void SaveUpgrades()
+    {
+        playerStatsConfig.SavePlayerConfig();
+        //SaveManager.Instance.CallSaveGameMethod();
     }
     public void MaxHealthPoint()
     {
         if (!PurchaseBuyUpgrade(maxHealthLevelCostText)) return;
 
         // Directly modify player stats
-        playerStatsConfig.MaxHealthLevel++;
+        playerStatsConfig.ShopMaxHealthLevel++;
         playerStatsConfig.G_MaxHealthPoint++;
 
-        maxHealthLevelText.text = SetLevelText(playerStatsConfig.MaxHealthLevel);
+        maxHealthLevelText.text = SetLevelText(playerStatsConfig.ShopMaxHealthLevel);
     }
 
     public void Damage()
     {
         if (!PurchaseBuyUpgrade(damageLevelCostText)) return;
 
-        playerStatsConfig.DamageLevel++;
+        playerStatsConfig.ShopDamageLevel++;
         playerStatsConfig.G_CobwebDamage++;
 
-        damageLevelText.text = SetLevelText(playerStatsConfig.DamageLevel);
+        damageLevelText.text = SetLevelText(playerStatsConfig.ShopDamageLevel);
     }
 
     public void AttackSpeed()
     {
         if (!PurchaseBuyUpgrade(attackSpeedCostText)) return;
 
-        playerStatsConfig.AttackSpeed++;
+        playerStatsConfig.ShopAttackSpeed++;
         playerStatsConfig.G_FireCooldown -= 0.1f;
 
-        attackSpeedText.text = SetLevelText(playerStatsConfig.AttackSpeed);
+        attackSpeedText.text = SetLevelText(playerStatsConfig.ShopAttackSpeed);
     }
 
     public void TotalCoinsGained()
     {
         if (!PurchaseBuyUpgrade(totalCoinGainedLevelCostText)) return;
 
-        playerStatsConfig.TotalCoinGainedLevel++;
+        playerStatsConfig.ShopTotalCoinGainedLevel++;
         playerStatsConfig.G_CoinsMultiplier += 0.5f;
 
-        totalCoinGainedLevelText.text = SetLevelText(playerStatsConfig.TotalCoinGainedLevel);
+        totalCoinGainedLevelText.text = SetLevelText(playerStatsConfig.ShopTotalCoinGainedLevel);
     }
 
     public void CritRateChance()
     {
         if (!PurchaseBuyUpgrade(critChanceLevelCostText)) return;
 
-        playerStatsConfig.CritChanceLevel++;
+        playerStatsConfig.ShopCritChanceLevel++;
         playerStatsConfig.G_CriticalChance += 5;
 
-        critChanceLevelText.text = SetLevelText(playerStatsConfig.CritChanceLevel);
+        critChanceLevelText.text = SetLevelText(playerStatsConfig.ShopCritChanceLevel);
     }
 
     public void HealthRestored()
     {
         if (!PurchaseBuyUpgrade(hpRestoreLevelCostText)) return;
 
-        playerStatsConfig.HpRestoreLevel++;
+        playerStatsConfig.ShopHpRestoreLevel++;
         playerStatsConfig.G_HealthToRestore++;
 
-        hpRestoreLevelText.text = SetLevelText(playerStatsConfig.HpRestoreLevel);
+        hpRestoreLevelText.text = SetLevelText(playerStatsConfig.ShopHpRestoreLevel);
     }
 
     private bool PurchaseBuyUpgrade(TextMeshProUGUI upgradeCostText)
@@ -118,22 +124,22 @@ public class ShopHandler : MonoBehaviour
 
     private void InitializedUpgradeLevels()
     {
-        maxHealthLevelText.text = SetLevelText(playerStatsConfig.MaxHealthLevel);
-        damageLevelText.text = SetLevelText(playerStatsConfig.DamageLevel);
-        attackSpeedText.text = SetLevelText(playerStatsConfig.AttackSpeed);
-        totalCoinGainedLevelText.text = SetLevelText(playerStatsConfig.TotalCoinGainedLevel);
-        critChanceLevelText.text = SetLevelText(playerStatsConfig.CritChanceLevel);
-        hpRestoreLevelText.text = SetLevelText(playerStatsConfig.HpRestoreLevel);
+        maxHealthLevelText.text = SetLevelText(playerStatsConfig.ShopMaxHealthLevel);
+        damageLevelText.text = SetLevelText(playerStatsConfig.ShopDamageLevel);
+        attackSpeedText.text = SetLevelText(playerStatsConfig.ShopAttackSpeed);
+        totalCoinGainedLevelText.text = SetLevelText(playerStatsConfig.ShopTotalCoinGainedLevel);
+        critChanceLevelText.text = SetLevelText(playerStatsConfig.ShopCritChanceLevel);
+        hpRestoreLevelText.text = SetLevelText(playerStatsConfig.ShopHpRestoreLevel);
     }
     private void InitializeUpgradeCosts()
     {
         // Load upgrade levels from the ScriptableObject (playerStatsConfig)
-        int maxHealthLevel = playerStatsConfig.MaxHealthLevel;
-        int damageLevel = playerStatsConfig.DamageLevel;
-        int attackSpeedLevel = playerStatsConfig.AttackSpeed;
-        int totalCoinGainedLevel = playerStatsConfig.TotalCoinGainedLevel;
-        int critChanceLevel = playerStatsConfig.CritChanceLevel;
-        int hpRestoreLevel = playerStatsConfig.HpRestoreLevel;
+        int maxHealthLevel = playerStatsConfig.ShopMaxHealthLevel;
+        int damageLevel = playerStatsConfig.ShopDamageLevel;
+        int attackSpeedLevel = playerStatsConfig.ShopAttackSpeed;
+        int totalCoinGainedLevel = playerStatsConfig.ShopTotalCoinGainedLevel;
+        int critChanceLevel = playerStatsConfig.ShopCritChanceLevel;
+        int hpRestoreLevel = playerStatsConfig.ShopHpRestoreLevel;
 
         // Calculate and update the cost text for each upgrade
         maxHealthLevelCostText.text = Mathf.RoundToInt(GetCostForLevel(maxHealthLevel)).ToString();

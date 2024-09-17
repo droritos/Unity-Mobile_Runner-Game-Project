@@ -20,9 +20,9 @@ MonoBehaviour:
   G_CriticalChance: 10
   G_HealthToRestore: 2
   G_CoinsMultiplier: 1
-  MaxHealthLevel: 1
-  DamageLevel: 1
-  AttackSpeed: 1
-  TotalCoinGainedLevel: 1
-  CritChanceLevel: 1
-  HpRestoreLevel: 1
+  ShopMaxHealthLevel: 1
+  ShopDamageLevel: 1
+  ShopAttackSpeed: 1
+  ShopTotalCoinGainedLevel: 1
+  ShopCritChanceLevel: 1
+  ShopHpRestoreLevel: 1

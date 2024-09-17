@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class GyroInput : MonoBehaviour
 {
-    [SerializeField] float minShakeInterval = 0.5f;
     [SerializeField] float shakeDetectionThreshold = 1.0f;
     [SerializeField] float minShakeEffort = 5f;
 

@@ -91,6 +91,7 @@ public class PlayerArtitube : MonoBehaviour
         AddCollectedCoins(_playerStatsConfig.CoinsMultiplier);
         SceneManager.LoadScene(3);
         SaveManager.Instance.DeleteFileSavedFile();
+        EventManager.InvokeGameOver(this);
         Debug.Log("You Died, Loser!");
     }
 

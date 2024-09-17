@@ -40,7 +40,7 @@ public class SaveManager : MonoSingleton<SaveManager>
 
         _fileDataHandler.Save(_gameData);
 
-        Debug.Log("Saving");
+        //Debug.Log("Saving");
     }
 
     private void LoadGame()
@@ -52,7 +52,7 @@ public class SaveManager : MonoSingleton<SaveManager>
             NewGame();
             Debug.Log("No Data Found, Applying New Game");
         }
-        else // Found the file than intilize the saved data to the player
+        else // Found the file than intilize the saved data to the object
         {
             foreach (ISavabale savingObject in _savingObjects)
             {
@@ -60,7 +60,6 @@ public class SaveManager : MonoSingleton<SaveManager>
             }
             Debug.Log("Loaded");
         }
-
     }
     private List<ISavabale> FindAllSavingObjects()
     {
@@ -68,12 +67,12 @@ public class SaveManager : MonoSingleton<SaveManager>
         return new List<ISavabale>(savabales);
     }
 
-    /*
-private void OnApplicationQuit()
-{
+    //    /*
+    //private void OnApplicationQuit()
+    //{
 
-    SaveGame();
-}
-*/ // OnApplicationQuit
+    //    SaveGame();
+    //}
+    //*/ // OnApplicationQuit
 
 }

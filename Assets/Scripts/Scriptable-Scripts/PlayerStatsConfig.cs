@@ -24,16 +24,24 @@ public class PlayerStatsConfig : ScriptableObject
     [NonSerialized] public int HealthToRestore;
     [NonSerialized] public float CoinsMultiplier;
 
-    [Header("In Shpp Upgrades Level")]
-    public int MaxHealthLevel = 1;
-    public int DamageLevel = 1;
-    public int AttackSpeed = 1;
-    public int TotalCoinGainedLevel = 1;
-    public int CritChanceLevel = 1;
-    public int HpRestoreLevel = 1;
+    [Header("In Shop Upgrades Level")]
+    public int ShopMaxHealthLevel = 1;
+    public int ShopDamageLevel = 1;
+    public int ShopAttackSpeed = 1;
+    public int ShopTotalCoinGainedLevel = 1;
+    public int ShopCritChanceLevel = 1;
+    public int ShopHpRestoreLevel = 1;
     private void OnEnable()
     {
         InitializedStats();
+    }
+    public void SavePlayerConfig()
+    {
+        if (SaveManager.Instance != null)
+        {
+            SaveManager.Instance.CallSaveGameMethod();
+            Debug.Log("SO Called - CallSaveGameMethod");
+        }
     }
     public void SetStats()
     {
@@ -50,15 +58,51 @@ public class PlayerStatsConfig : ScriptableObject
         G_HealthToRestore = 2;
         G_CoinsMultiplier = 1;
 
-        MaxHealthLevel = 1;
-        DamageLevel = 1;
-        AttackSpeed = 1;
-        TotalCoinGainedLevel = 1;
-        CritChanceLevel = 1;
-        HpRestoreLevel = 1;
+        ShopMaxHealthLevel = 1;
+        ShopDamageLevel = 1;
+        ShopAttackSpeed = 1;
+        ShopTotalCoinGainedLevel = 1;
+        ShopCritChanceLevel = 1;
+        ShopHpRestoreLevel = 1;
         Debug.Log("Stats Has Been Reset");
     }
 
+
+    //public void Save(ref GameData data)
+    //{
+    //    data.MaxHealthPoint = G_MaxHealthPoint;
+    //    data.CobwebDamage = G_CobwebDamage;
+    //    data.FireCooldown = G_FireCooldown;
+    //    data.CriticalChance = G_CriticalChance;
+    //    data.CoinsMultiplier = G_CoinsMultiplier;
+    //    data.HealthToRestore = G_HealthToRestore;
+
+    //    data.MaxHealthLevelShop = ShopMaxHealthLevel;
+    //    data.AttackSpeedShop = ShopAttackSpeed;
+    //    data.CritChanceLevelShop = ShopCritChanceLevel;
+    //    data.HpRestoreLevelShop = ShopHpRestoreLevel;
+    //    data.DamageLevelShop = ShopDamageLevel;
+    //    data.TotalCoinGainedLevelShop = ShopTotalCoinGainedLevel;
+    //    Debug.Log($"Max HP Global: {G_MaxHealthPoint} |  From GameData {data.MaxHealthPoint} | In Shop Level {ShopMaxHealthLevel} From GD: {data.MaxHealthLevelShop}");
+    //}
+
+    //public void Load(GameData data)
+    //{
+    //    G_MaxHealthPoint = data.MaxHealthPoint;
+    //    G_CobwebDamage = data.CobwebDamage;
+    //    G_FireCooldown = data.FireCooldown;
+    //    G_CriticalChance = data.CriticalChance;
+    //    G_CoinsMultiplier = data.CoinsMultiplier;
+    //    G_HealthToRestore = data.HealthToRestore;
+
+    //    ShopMaxHealthLevel = data.MaxHealthLevelShop;
+    //    ShopAttackSpeed = data.AttackSpeedShop;
+    //    ShopCritChanceLevel = data.CritChanceLevelShop;
+    //    ShopHpRestoreLevel = data.HpRestoreLevelShop;
+    //    ShopDamageLevel = data.DamageLevelShop;
+    //    ShopTotalCoinGainedLevel = data.TotalCoinGainedLevelShop;
+    //    Debug.Log($"Max HP Global: {G_MaxHealthPoint} |  From GameData {data.MaxHealthPoint} | In Shop Level {ShopMaxHealthLevel} From GD: {data.MaxHealthLevelShop}");
+    //}
     private void InitializedStats()
     {
         MaxHealthPoint = G_MaxHealthPoint;
@@ -70,4 +114,18 @@ public class PlayerStatsConfig : ScriptableObject
         HealthToRestore = G_HealthToRestore;
         CoinsMultiplier = G_CoinsMultiplier;
     }
+
+    //private float SetStatValue(float stat, int level)
+    //{
+    //    return (stat * level);  
+    //}
+    //private void UpdateStatsValue() // Deafult Stats * Level
+    //{
+    //    SetStatValue(2, ShopMaxHealthLevel);
+    //    SetStatValue(5, ShopDamageLevel);
+    //    SetStatValue(2.0f, ShopAttackSpeed);
+    //    SetStatValue(10, ShopCritChanceLevel);
+    //    SetStatValue(2, ShopHpRestoreLevel);
+    //    SetStatValue(1, ShopTotalCoinGainedLevel);
+    //}
 }

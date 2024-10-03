@@ -5,6 +5,7 @@ using UnityEngine;
 public class DailyRewards : MonoBehaviour
 {
     public int LastDate;
+    new PlayerBehavior playerBehavior;
 
     public int Day_1;
     public GameObject OFF_1;
@@ -235,6 +236,7 @@ public class DailyRewards : MonoBehaviour
         PlayerPrefs.SetInt("Day 1", 2);
 
         ManageReward();
+        playerBehavior.CoinsGathered += 5;
     }
 
     public void GetReward_2()
@@ -248,6 +250,7 @@ public class DailyRewards : MonoBehaviour
         PlayerPrefs.SetInt("Day 2", 2);
 
         ManageReward();
+        playerBehavior.CoinsGathered += 10;
     }
 
     public void GetReward_3()
@@ -261,6 +264,7 @@ public class DailyRewards : MonoBehaviour
         PlayerPrefs.SetInt("Day 3", 2);
 
         ManageReward();
+        playerBehavior.CoinsGathered += 15;
     }
 
     public void GetReward_4()
@@ -274,6 +278,7 @@ public class DailyRewards : MonoBehaviour
         PlayerPrefs.SetInt("Day 4", 2);
 
         ManageReward();
+        playerBehavior.CoinsGathered += 20;
     }
 
     public void GetReward_5()
@@ -287,6 +292,7 @@ public class DailyRewards : MonoBehaviour
         PlayerPrefs.SetInt("Day 5", 2);
 
         ManageReward();
+        playerBehavior.CoinsGathered += 25;
     }
 
     public void GetReward_6()
@@ -300,6 +306,7 @@ public class DailyRewards : MonoBehaviour
         PlayerPrefs.SetInt("Day 6", 2);
 
         ManageReward();
+        playerBehavior.CoinsGathered += 30;
     }
 
     public void GetReward_7()
@@ -313,5 +320,6 @@ public class DailyRewards : MonoBehaviour
         PlayerPrefs.SetInt("Day 7", 2);
 
         ManageReward();
+        playerBehavior.CoinsGathered += 40;
     }
 }

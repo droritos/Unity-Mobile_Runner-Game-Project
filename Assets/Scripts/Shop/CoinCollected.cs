@@ -9,14 +9,14 @@ public class CoinCollected : MonoBehaviour
     [SerializeField] TextMeshProUGUI totalCoinsText;
     [SerializeField] TextMeshProUGUI coinsGatheredText;
     [SerializeField] Button addCoinsSecretButton;
+    public int CoinsGathered;
 
-    private int _coinsGathered;
     private int _totalCoins;
 
     // Start is called before the first frame update
     void Start()
     {
-        _coinsGathered = PlayerPrefs.GetInt("PlayerCoins" , 0);
+        CoinsGathered = PlayerPrefs.GetInt("PlayerCoins" , 0);
         UpdatePlayerCoins();
 
         if(coinsGatheredText != null)
@@ -50,7 +50,7 @@ public class CoinCollected : MonoBehaviour
 
     private void UpdatePlayerCoins()
     {
-        _totalCoins += _coinsGathered;
+        _totalCoins += CoinsGathered;
         if(totalCoinsText != null)
             totalCoinsText.text = $"{_totalCoins}";
 

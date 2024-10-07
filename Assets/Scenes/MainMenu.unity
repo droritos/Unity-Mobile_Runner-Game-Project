@@ -258,6 +258,7 @@ MonoBehaviour:
   totalCoinsText: {fileID: 827626340}
   coinsGatheredText: {fileID: 0}
   addCoinsSecretButton: {fileID: 0}
+  CoinsGathered: 0
 --- !u!114 &48993943
 MonoBehaviour:
   m_ObjectHideFlags: 0

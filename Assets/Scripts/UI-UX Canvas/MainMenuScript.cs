@@ -27,6 +27,15 @@ public class MainMenuScript : MonoBehaviour
     {
         SceneManager.LoadScene(4);
     }
+    public void GoToDailyScene()
+    {
+        SceneManager.LoadScene(5);
+    }
+    public void QuitGame()
+    {
+        print("Exit Game");
+        Application.Quit();
+    }
     #endregion
 
     #region << Touch Settings >>
@@ -42,7 +51,7 @@ public class MainMenuScript : MonoBehaviour
         Input.gyro.enabled = false;
         Debug.Log("touch");
     }
-    public void SetInputGyro()
+    public void SetInputGyro() // Not Relevant
     {
         PlayerPrefs.SetInt("ButtonSelected", 2);
         Input.gyro.enabled = true;

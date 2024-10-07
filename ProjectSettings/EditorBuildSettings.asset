@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ShopScene.unity
     guid: 8172149a08b82864aa266a8f64e466a4
+  - enabled: 1
+    path: Assets/Scenes/DailyRewardScreen.unity
+    guid: 25e67da0321cfe64bae21f7c2ca05544
   m_configObjects: {}

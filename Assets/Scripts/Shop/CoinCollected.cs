@@ -48,6 +48,17 @@ public class CoinCollected : MonoBehaviour
         addCoinsSecretButton.onClick.AddListener(UpdatePlayerCoins);
     }
 
+    public void AddCoinByDailyRewards(int dailyCoinAmount)
+    {
+        _totalCoins += dailyCoinAmount;
+        if (totalCoinsText != null)
+            totalCoinsText.text = $"{_totalCoins}";
+
+        // Save to PlayerPrefs to ensure persistence
+        PlayerPrefs.SetInt("PlayerCoins", _totalCoins);
+        PlayerPrefs.Save();
+    }
+
     private void UpdatePlayerCoins()
     {
         _totalCoins += CoinsGathered;
@@ -57,7 +68,6 @@ public class CoinCollected : MonoBehaviour
         // Save to PlayerPrefs to ensure persistence
         PlayerPrefs.SetInt("PlayerCoins", _totalCoins);
         PlayerPrefs.Save();
-        //Debug.Log($"Total : {_totalCoins}, Gathered {_coinsGathered}");
     }
 
     private void DeductCoins(int cost)

@@ -6,6 +6,7 @@ public class DailyRewards : MonoBehaviour
 {
     public int LastDate;
     new PlayerBehavior playerBehavior;
+    [SerializeField] CoinCollected coinHandler;
 
     public int Day_1;
     public GameObject OFF_1;
@@ -236,7 +237,8 @@ public class DailyRewards : MonoBehaviour
         PlayerPrefs.SetInt("Day 1", 2);
 
         ManageReward();
-        playerBehavior.CoinsGathered += 5;
+        //playerBehavior.CoinsGathered += 5;
+        coinHandler.AddCoinByDailyRewards(5);
     }
 
     public void GetReward_2()
@@ -250,7 +252,9 @@ public class DailyRewards : MonoBehaviour
         PlayerPrefs.SetInt("Day 2", 2);
 
         ManageReward();
-        playerBehavior.CoinsGathered += 10;
+        //playerBehavior.CoinsGathered += 10;
+        coinHandler.AddCoinByDailyRewards(10);
+
     }
 
     public void GetReward_3()
@@ -264,7 +268,9 @@ public class DailyRewards : MonoBehaviour
         PlayerPrefs.SetInt("Day 3", 2);
 
         ManageReward();
-        playerBehavior.CoinsGathered += 15;
+        //playerBehavior.CoinsGathered += 15;
+        coinHandler.AddCoinByDailyRewards(15);
+
     }
 
     public void GetReward_4()
@@ -278,7 +284,9 @@ public class DailyRewards : MonoBehaviour
         PlayerPrefs.SetInt("Day 4", 2);
 
         ManageReward();
-        playerBehavior.CoinsGathered += 20;
+        //playerBehavior.CoinsGathered += 20;
+        coinHandler.AddCoinByDailyRewards(20);
+
     }
 
     public void GetReward_5()
@@ -292,7 +300,9 @@ public class DailyRewards : MonoBehaviour
         PlayerPrefs.SetInt("Day 5", 2);
 
         ManageReward();
-        playerBehavior.CoinsGathered += 25;
+        //playerBehavior.CoinsGathered += 25;
+        coinHandler.AddCoinByDailyRewards(25);
+
     }
 
     public void GetReward_6()
@@ -306,7 +316,9 @@ public class DailyRewards : MonoBehaviour
         PlayerPrefs.SetInt("Day 6", 2);
 
         ManageReward();
-        playerBehavior.CoinsGathered += 30;
+        //playerBehavior.CoinsGathered += 30;
+        coinHandler.AddCoinByDailyRewards(30);
+
     }
 
     public void GetReward_7()
@@ -320,6 +332,8 @@ public class DailyRewards : MonoBehaviour
         PlayerPrefs.SetInt("Day 7", 2);
 
         ManageReward();
-        playerBehavior.CoinsGathered += 40;
+        //playerBehavior.CoinsGathered += 40;
+        coinHandler.AddCoinByDailyRewards(40);
+
     }
 }

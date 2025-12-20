@@ -5766,7 +5766,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 626220436}
         m_TargetAssemblyTypeName: PlayerBehavior, Assembly-CSharp
-        m_MethodName: IncreseCriticalChance
+        m_MethodName: IncreaseCriticalChance
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 992864611}
@@ -8717,18 +8717,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1689871848}
   m_CullTransparentMesh: 1
---- !u!114 &1727266111 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5987557964724888047, guid: 1d2edae00096627499be46148c1d5f73,
-    type: 3}
-  m_PrefabInstance: {fileID: 4568376583230422436}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ffa70e5c4c73a5e419cfc5e97d7adee0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1727266112 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5724642034250212118, guid: 1d2edae00096627499be46148c1d5f73,
@@ -11004,28 +10992,6 @@ PrefabInstance:
       propertyPath: CobwebPoolScript
       value: 
       objectReference: {fileID: 1882284946}
-    - target: {fileID: 2915547558510360400, guid: 1d2edae00096627499be46148c1d5f73,
-        type: 3}
-      propertyPath: m_Materials.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2915547558510360400, guid: 1d2edae00096627499be46148c1d5f73,
-        type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: -4565884009001823619, guid: 7d182779589efc9458aabcd93004dc6c,
-        type: 3}
-    - target: {fileID: 4497291406707624491, guid: 1d2edae00096627499be46148c1d5f73,
-        type: 3}
-      propertyPath: m_Materials.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4497291406707624491, guid: 1d2edae00096627499be46148c1d5f73,
-        type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: -4035007195344712661, guid: 7ef51a24c76f81a4c93da6be03f47a6e,
-        type: 3}
     - target: {fileID: 4882980638434973063, guid: 1d2edae00096627499be46148c1d5f73,
         type: 3}
       propertyPath: coinPool
@@ -11036,45 +11002,6 @@ PrefabInstance:
       propertyPath: lvlUpPool
       value: 
       objectReference: {fileID: 3868675417535144561}
-    - target: {fileID: 4882980638434973063, guid: 1d2edae00096627499be46148c1d5f73,
-        type: 3}
-      propertyPath: PlayerArtitube
-      value: 
-      objectReference: {fileID: 1727266111}
-    - target: {fileID: 4882980638434973063, guid: 1d2edae00096627499be46148c1d5f73,
-        type: 3}
-      propertyPath: PlayerStatsConfig
-      value: 
-      objectReference: {fileID: 11400000, guid: 1904f4b2a317cb24aad0ce5ae06b6e50,
-        type: 2}
-    - target: {fileID: 4882980638434973063, guid: 1d2edae00096627499be46148c1d5f73,
-        type: 3}
-      propertyPath: playerStatsConfig
-      value: 
-      objectReference: {fileID: 11400000, guid: 1904f4b2a317cb24aad0ce5ae06b6e50,
-        type: 2}
-    - target: {fileID: 4950549755940277826, guid: 1d2edae00096627499be46148c1d5f73,
-        type: 3}
-      propertyPath: m_Materials.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4950549755940277826, guid: 1d2edae00096627499be46148c1d5f73,
-        type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 5929983026740258406, guid: 242b5231ebbbee84abb6ca4cb7910f11,
-        type: 3}
-    - target: {fileID: 5222189087808342362, guid: 1d2edae00096627499be46148c1d5f73,
-        type: 3}
-      propertyPath: m_Materials.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5222189087808342362, guid: 1d2edae00096627499be46148c1d5f73,
-        type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: -4677719430916549955, guid: 7ef51a24c76f81a4c93da6be03f47a6e,
-        type: 3}
     - target: {fileID: 5987557964724888047, guid: 1d2edae00096627499be46148c1d5f73,
         type: 3}
       propertyPath: levelText

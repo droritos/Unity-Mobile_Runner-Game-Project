@@ -15,7 +15,7 @@ public class GyroInput : MonoBehaviour
     private void Start()
     {
         EnableGyro();  // Enable the gyroscope
-        _player = FindObjectOfType<PlayerMovement>();
+        _player = GameManager.Instance.PlayerManager.PlayerMovement;
         _lastShakeTime = Time.time;
         shakeDetectionThreshold *= shakeDetectionThreshold;
     }

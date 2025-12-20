@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SpidyMorals : MonoBehaviour
 {
+    
+    
     [Header("Public Data")]
     [SerializeField] Transform[] CobwebSpawnPoint;
     public ObjectPoolManager CobwebPoolScript;
@@ -16,7 +18,7 @@ public class SpidyMorals : MonoBehaviour
     void Start()
     {
         this._playerStatsConfig = GameManager.Instance.Player.PlayerStatsConfig;
-        _animator = GetComponent<Animator>();
+        _animator = GameManager.Instance.PlayerManager.MyAnimator;
         Debug.Log($"Your fire rate is {_playerStatsConfig.FireCooldown} By global {_playerStatsConfig.G_FireCooldown}");
     }
 

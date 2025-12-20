@@ -13,7 +13,7 @@ public class WallGarbage : MonoBehaviour
         }
         else if (other.CompareTag("Web"))
         {
-            GameManager.Instance.SpidyMorals.CobwebPoolScript.ReleaseObject(other.gameObject);
+            GameManager.Instance.PlayerManager.SpidyMorals.CobwebPoolScript.ReleaseObject(other.gameObject);
         }
     }
 }

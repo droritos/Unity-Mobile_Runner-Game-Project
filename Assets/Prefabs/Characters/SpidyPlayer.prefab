@@ -675,7 +675,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
 --- !u!95 &5498203338206596113
 Animator:
-  serializedVersion: 5
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -689,6 +689,7 @@ Animator:
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
+  m_AnimatePhysics: 1
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
@@ -706,19 +707,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 211267b589a98e749bd30091d7b5f69c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerArtitube: {fileID: 5987557964724888047}
-  IsAlive: 1
-  CobwebDamage: 5
-  coins: 0
-  AttackSpeedMultiplier: 1
-  MultiShotLevel: 0
-  CriticalHitChance: 0.05
-  CobwebScaler: 0
-  CobwebPiercingLevel: 0
-  PiercingLevel: 1
-  CobwebDamageLevel: 1
-  CobwebScaleLevel: 1
-  AttackSpeedLevel: 1
+  PlayerArtitube: {fileID: 5987557964724888047}
+  PlayerStatsConfig: {fileID: 11400000, guid: 1904f4b2a317cb24aad0ce5ae06b6e50, type: 2}
+  CoinsGathered: 0
   coinPool: {fileID: 0}
   lvlUpPool: {fileID: 0}
 --- !u!114 &5724642034250212118
@@ -754,7 +745,6 @@ MonoBehaviour:
   CobwebSpawnPoint:
   - {fileID: 6957835799963775398}
   CobwebPoolScript: {fileID: 0}
-  FireCooldown: 2
 --- !u!65 &6410431374692790571
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -783,10 +773,10 @@ Rigidbody:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 652299339805946986}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -815,8 +805,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffa70e5c4c73a5e419cfc5e97d7adee0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayerCurrentLevel: 1
+  CurrentHealhPoint: 0
+  ExperiencePoints: 0
   healthSlider: {fileID: 0}
-  maxHealthPoint: 5
   healthSliderText: {fileID: 0}
   experienceSlider: {fileID: 0}
   experienceSliderText: {fileID: 0}

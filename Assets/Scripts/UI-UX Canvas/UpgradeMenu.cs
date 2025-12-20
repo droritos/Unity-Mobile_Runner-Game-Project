@@ -14,7 +14,7 @@ public class UpgradeMenu : MonoBehaviour
 
     private void Start()
     {
-        _playerBehavior = GameManager.Instance.Player;
+        _playerBehavior = GameManager.Instance.PlayerManager.PlayerBehavior;
         upgradesParent.gameObject.SetActive(false);
         GainExperience(0); // Easy way to update the UI when you Resume - (_playerBehavior.Load())
     }

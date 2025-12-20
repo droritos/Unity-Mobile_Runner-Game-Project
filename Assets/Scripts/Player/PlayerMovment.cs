@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -5,7 +6,8 @@ using UnityEngine;
 public class PlayerMovement : MonoSingleton<PlayerMovement>
 {
     [Header("Public Data")]
-    [HideInInspector] public Animator Animator;
+    [SerializeField] Animator animator;
+    [SerializeField] BoxCollider boxCollider;
 
     [Header("Serialize Data")]
     [SerializeField] float duration = 0.5f;
@@ -20,13 +22,10 @@ public class PlayerMovement : MonoSingleton<PlayerMovement>
     private Vector3 _startBoxPosition;
     private float _elapsedTime;
     private bool _isMoving;
-    private BoxCollider _boxCollider;
     private void Start()
     {
-        _boxCollider = GetComponent<BoxCollider>();
-        Animator = GetComponent<Animator>();
         _startPosition = this.transform.position;
-        _startBoxPosition = _boxCollider.center;
+        _startBoxPosition = boxCollider.center;
     }
 
     private void Update()
@@ -69,13 +68,21 @@ public class PlayerMovement : MonoSingleton<PlayerMovement>
     private IEnumerator WaitForAnimationToFinish()
     {
         // Wait until animation is done
-        yield return new WaitForSeconds(Animator.GetCurrentAnimatorStateInfo(0).length);
+        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
 
         // Move the player collison box to deafult
-        while (_boxCollider.center != _startBoxPosition)
+        while (boxCollider.center != _startBoxPosition)
         {
-            _boxCollider.center = _startBoxPosition;
+            boxCollider.center = _startBoxPosition;
             yield return null;
         }
+    }
+
+    private void OnValidate()
+    {
+        if(!boxCollider)
+            boxCollider = GetComponent<BoxCollider>();
+        if(!animator)
+            animator = GetComponent<Animator>();
     }
 }

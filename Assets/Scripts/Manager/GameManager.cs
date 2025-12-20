@@ -8,8 +8,8 @@ public class GameManager : MonoSingleton<GameManager>
     [SerializeField] WebcamCapture webcamCapture;
 
     [Header("Spidy")]
-    public PlayerBehavior Player;
-    public SpidyMorals SpidyMorals;
+    [field: SerializeField] public PlayerManager PlayerManager { get; private set; }
+    public PlayerBehavior Player => PlayerManager.PlayerBehavior; // Instead of changing the entire names in all files
     public UpgradeMenu UpgradeMenuScript;
 
     [Header("Enemy")]
@@ -23,7 +23,7 @@ public class GameManager : MonoSingleton<GameManager>
 
     private void Start()
     {
-        Player.PlayerStatsConfig.SetStats();
+        PlayerManager.PlayerBehavior.PlayerStatsConfig.SetStats();
     }
 
     private void Update()

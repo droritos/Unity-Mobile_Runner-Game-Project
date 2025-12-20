@@ -12,9 +12,9 @@ public class CobwebBullet : MonoBehaviour
     private void Start()
     {
         _originalScale = this.transform.localScale;
-        ProjectileScaler = GameManager.Instance.Player.PlayerStatsConfig.CobwebScaler;
+        ProjectileScaler = GameManager.Instance.PlayerManager.PlayerBehavior.PlayerStatsConfig.CobwebScaler;
         SetProjectileSize(ProjectileScaler);
-        RemainingPierces = GameManager.Instance.Player.PlayerStatsConfig.CobwebPiercingLevel;
+        RemainingPierces = GameManager.Instance.PlayerManager.PlayerBehavior.PlayerStatsConfig.CobwebPiercingLevel;
     }
     void Update()
     {
@@ -33,12 +33,12 @@ public class CobwebBullet : MonoBehaviour
                 return; // Continue moving forward without releasing the bullet
             }
             // If no more pierces or ricochets are left, release the bullet back to the pool
-            GameManager.Instance.SpidyMorals.CobwebPoolScript.ReleaseObject(this.gameObject);
+            GameManager.Instance.PlayerManager.SpidyMorals.CobwebPoolScript.ReleaseObject(this.gameObject);
             ResetWeb();
         }
         else if (other.CompareTag("Wall"))
         {
-            GameManager.Instance.SpidyMorals.CobwebPoolScript.ReleaseObject(this.gameObject);
+            GameManager.Instance.PlayerManager.SpidyMorals.CobwebPoolScript.ReleaseObject(this.gameObject);
             ResetWeb();
         }
     }

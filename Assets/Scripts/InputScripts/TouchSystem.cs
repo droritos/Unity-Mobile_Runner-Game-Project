@@ -11,7 +11,7 @@ public class TouchSystem : MonoBehaviour
 
     private void Awake()
     {
-        _player = FindObjectOfType<PlayerMovement>();
+        _player = GameManager.Instance.PlayerManager.PlayerMovement;
     }
     void Update()
     {

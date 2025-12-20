@@ -43,7 +43,7 @@ public class RobotEnemyScript : MonoBehaviour
     {
         if (other.CompareTag("Web"))
         {
-            TakeDamage(GameManager.Instance.Player.ApplyDamage());
+            TakeDamage(GameManager.Instance.PlayerManager.PlayerBehavior.ApplyDamage());
         }
     }
 

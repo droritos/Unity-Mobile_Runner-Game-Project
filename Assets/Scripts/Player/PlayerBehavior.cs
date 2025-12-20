@@ -103,7 +103,7 @@ public class PlayerBehavior : MonoBehaviour, ISavabale
         levelText.text = $"LVL : {_piercingLevel.ToString()}";
     }
 
-    public void IncreseCriticalChance(TextMeshProUGUI levelText)
+    public void IncreaseCriticalChance(TextMeshProUGUI levelText)
     {
         PlayerStatsConfig.CriticalChance += 10;
         Debug.Log($"Critical Chance : {PlayerStatsConfig.CriticalChance}");
@@ -131,7 +131,7 @@ public class PlayerBehavior : MonoBehaviour, ISavabale
     }
     public void Load(GameData data)
     {
-        // Loading Player Posotion , only X is matter
+        // Loading Player Position , only X is matter
         Vector3 newPosition = this.transform.position;
         newPosition.x = data.PlayerPositionX;
         this.transform.position = newPosition;

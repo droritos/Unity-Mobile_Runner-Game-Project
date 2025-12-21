@@ -5,9 +5,9 @@ using UnityEngine;
 
 public static class EventManager
 {
-    public static Action<PlayerArtitube> OnGameOver;
+    public static Action<PlayerVitals> OnGameOver;
 
-    public static void InvokeGameOver(PlayerArtitube player)
+    public static void InvokeGameOver(PlayerVitals player)
     {
         if (player != null)
         {

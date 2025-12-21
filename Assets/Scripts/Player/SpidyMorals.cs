@@ -4,21 +4,19 @@ using UnityEngine;
 
 public class SpidyMorals : MonoBehaviour
 {
-    
-    
     [Header("Public Data")]
     [SerializeField] Transform[] CobwebSpawnPoint;
     public ObjectPoolManager CobwebPoolScript;
 
     [Header("Private Data")]
-    private Animator _animator;
+    [SerializeField] PlayerVisuals visualsController;
     private float _fire = 0;
     private PlayerStatsConfig _playerStatsConfig;
     
     void Start()
     {
         this._playerStatsConfig = GameManager.Instance.Player.PlayerStatsConfig;
-        _animator = GameManager.Instance.PlayerManager.MyAnimator;
+        //_animator = GameManager.Instance.PlayerManager.MyAnimator;
         Debug.Log($"Your fire rate is {_playerStatsConfig.FireCooldown} By global {_playerStatsConfig.G_FireCooldown}");
     }
 
@@ -31,7 +29,7 @@ public class SpidyMorals : MonoBehaviour
     {
         if (_fire >= _playerStatsConfig.FireCooldown)
         {
-            _animator.SetTrigger("Attacking");
+            visualsController.Shoot();
             StartCoroutine(WaitForShoot());
             _fire = 0;
         }
@@ -39,7 +37,7 @@ public class SpidyMorals : MonoBehaviour
     private IEnumerator WaitForShoot()
     {
         // Wait until animation is done
-        yield return new WaitForSeconds(_animator.GetCurrentAnimatorStateInfo(0).length);
+        yield return new WaitForSeconds(visualsController.GetCurrentAnimationLength());
 
         // Attempt to get an object from the pool
         GameObject web = CobwebPoolScript.GetObject();

@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class PlayerBehavior : MonoBehaviour, ISavabale
 {
     [Header("Public Fields")]
-    public PlayerArtitube PlayerArtitube;
+    public PlayerVitals playerVitals;
     public PlayerStatsConfig PlayerStatsConfig;
     [HideInInspector] public int CoinsGathered = 0;
 
@@ -34,16 +34,16 @@ public class PlayerBehavior : MonoBehaviour, ISavabale
         }
         else if (other.CompareTag("EnemyProjectile"))
         {
-            PlayerArtitube.TakeDamage(1);
+            playerVitals.TakeDamage(1);
             GameManager.Instance.BulletPool.ReleaseObject(other.gameObject);
         }
     }
     #region << Dying Methods >> 
     public int LevelReachWhenDied()
     {
-        if (!PlayerArtitube.IsAlive())
+        if (!playerVitals.IsAlive)
         {
-            return PlayerArtitube.GetLevel();
+            return playerVitals.Level;
         }
         else
         {
@@ -70,7 +70,7 @@ public class PlayerBehavior : MonoBehaviour, ISavabale
     #region << Upgrade Methods - Buttons >> 
     public void RestoreHealth()
     {
-        PlayerArtitube.RestoreHealth();
+        playerVitals.RestoreHealth();
     }
 
     public void IncreasedDamage(TextMeshProUGUI levelText)
@@ -117,10 +117,10 @@ public class PlayerBehavior : MonoBehaviour, ISavabale
         data.PlayerPositionX = this.transform.position.x;
         data.CoinsCollected = this.CoinsGathered;
 
-        data.CurrentHealhPoint = PlayerArtitube.CurrentHealhPoint;
-        data.PlayerCurrentLevel = PlayerArtitube.PlayerCurrentLevel;
+        data.CurrentHealhPoint = playerVitals.CurrentHP;
+        data.PlayerCurrentLevel = playerVitals.Level;
 
-        data.ExperiencePoints = PlayerArtitube.ExperiencePoints;
+        data.ExperiencePoints = playerVitals.ExperiencePoints;
 
         data.CobwebDamage = PlayerStatsConfig.CobwebDamage;
         data.FireCooldown = PlayerStatsConfig.FireCooldown;
@@ -139,17 +139,21 @@ public class PlayerBehavior : MonoBehaviour, ISavabale
         // Loading Player collected coins
         CoinsGathered = data.CoinsCollected;
 
+        playerVitals.SetVitals(data.PlayerCurrentLevel, data.CurrentHealhPoint, data.ExperiencePoints);
+        /*
         // Loading Player health point + update UI
-        PlayerArtitube.CurrentHealhPoint = data.CurrentHealhPoint;
-        PlayerArtitube.UpdateHealthText();
+        //playerVitals.CurrentHP = data.CurrentHealhPoint;
+        //playerVitals.UpdateHealthText();
 
         // Loading Player level + update UI
-        PlayerArtitube.PlayerCurrentLevel = data.PlayerCurrentLevel;
-        PlayerArtitube.UpdateLevelText();
+       // playerVitals.PlayerCurrentLevel = data.PlayerCurrentLevel;
+        //playerVitals.UpdateLevelText();
 
         // Loading Player current experience + update UI
-        PlayerArtitube.ExperiencePoints = data.ExperiencePoints;
-
+        //playerVitals.ExperiencePoints = data.ExperiencePoints;
+        //playerVitals.SetXPPercent(data.ExperiencePoints);
+        */
+        
         // Loading Player current stats
         PlayerStatsConfig.CobwebDamage = data.CobwebDamage;
         PlayerStatsConfig.FireCooldown = data.FireCooldown;

@@ -22,7 +22,7 @@ public class AnalyticsManager : MonoBehaviour
     }
 
 
-    private void TriggerGameOverEvent(PlayerArtitube player)
+    private void TriggerGameOverEvent(PlayerVitals player)
     {
         int level = player.GetLevel();
         CustomEvent gameOver = new CustomEvent("gameOver")
@@ -33,7 +33,7 @@ public class AnalyticsManager : MonoBehaviour
         Debug.Log($"Event: gameOver, {level} Recorded");
     }
 
-    private void OnGameOver(PlayerArtitube player)
+    private void OnGameOver(PlayerVitals player)
     {
         TriggerGameOverEvent(player);
     }

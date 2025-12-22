@@ -16,20 +16,21 @@ public class NotificationManager : MonoBehaviour
             SendIOSNotification("Title", "Message", 5); // Sends notification after 5 seconds
         #endif
     }
-
+    
     public bool SendNotification(string title, string text, int delaySeconds)
     {
 #if UNITY_ANDROID
         SendAndroidNotification(title, text, delaySeconds);
         return true;
-#elif UNITY_IOS
 
-        SendIOSNotification( title,  body,  delaySeconds);
-        return true;
+#elif UNITY_IOS
+    SendIOSNotification(title, text, delaySeconds);
+    return true;
+
+#else
+    // Not Android or iOS (Editor, PC, etc.)
+    return false;
 #endif
-        // as it not android or iOS - we cant send notification for mobile with the class
-        // so we return false to show that nothing was sent
-        return false;
     }
 
 #if UNITY_ANDROID

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ManagePlayerStatsConfig : MonoBehaviour,ISavabale
+public class ManagePlayerStatsConfig : MonoBehaviour,ISavable
 {
     [SerializeField] PlayerStatsConfig playerStatsConfig;
     public void Save(ref GameData data)

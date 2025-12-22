@@ -5,7 +5,7 @@ using UnityEngine;
 public class DailyRewards : MonoBehaviour
 {
     public int LastDate;
-    new PlayerBehavior playerBehavior;
+    PlayerBehavior playerBehavior;
     [SerializeField] CoinCollected coinHandler;
 
     public int Day_1;

@@ -9,8 +9,13 @@ public class TouchSystem : MonoBehaviour
     float touchDuration;
     private PlayerMovement _player;
 
-    private void Awake()
+    private void Start()
     {
+        Debug.Log("TouchSystem Awake started", this);
+
+        // if (GameManager.Instance.PlayerManager == null) Debug.LogError("PlayerManager is NULL", this);
+        // if (GameManager.Instance.PlayerManager.PlayerMovement == null) Debug.LogError("PlayerMovement is NULL", this);
+        
         _player = GameManager.Instance.PlayerManager.PlayerMovement;
     }
     void Update()

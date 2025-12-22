@@ -1,40 +1,50 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 using Unity.Services.Core;
 using Unity.Services.Analytics;
+using UnityEngine.UnityConsent;
 
 public class AnalyticsManager : MonoBehaviour
 {
+    private bool _initialized;
+    private bool _analyticsAllowed;
+
     private async void Start()
     {
-        await UnityServices.InitializeAsync();
-        AnalyticsService.Instance.StartDataCollection();
-    }
-
-    private void OnEnable()
-    {
-        EventManager.OnGameOver += OnGameOver;
-    }
-    private void OnDisable()
-    {
-        EventManager.OnGameOver -= OnGameOver;
-    }
-
-
-    private void TriggerGameOverEvent(PlayerVitals player)
-    {
-        int level = player.Level;
-        CustomEvent gameOver = new CustomEvent("gameOver")
+        try
         {
-            {"levelDiedOn" , level }
-        };
-        AnalyticsService.Instance.RecordEvent(gameOver);
-        Debug.Log($"Event: gameOver, {level} Recorded");
+            await UnityServices.InitializeAsync();
+
+            // TODO: replace with saved choice / popup result
+            _analyticsAllowed = true;
+
+            EndUserConsent.SetConsentState(new ConsentState
+            {
+                AnalyticsIntent = _analyticsAllowed ? ConsentStatus.Granted : ConsentStatus.Denied
+            });
+
+            _initialized = true;
+        }
+        catch (Exception e)
+        {
+            Debug.LogException(e);
+            _initialized = false;
+        }
     }
+
+    private void OnEnable() => EventManager.OnGameOver += OnGameOver;
+    private void OnDisable() => EventManager.OnGameOver -= OnGameOver;
 
     private void OnGameOver(PlayerVitals player)
     {
-        TriggerGameOverEvent(player);
+        if (!_initialized || !_analyticsAllowed) return;
+
+        var gameOver = new CustomEvent("gameOver")
+        {
+            { "levelDiedOn", player.Level }
+        };
+
+        AnalyticsService.Instance.RecordEvent(gameOver);
+        Debug.Log($"Event: gameOver, {player.Level} Recorded");
     }
 }

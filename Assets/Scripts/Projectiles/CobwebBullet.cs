@@ -33,12 +33,12 @@ public class CobwebBullet : MonoBehaviour
                 return; // Continue moving forward without releasing the bullet
             }
             // If no more pierces or ricochets are left, release the bullet back to the pool
-            GameManager.Instance.PlayerManager.SpidyMorals.CobwebPoolScript.ReleaseObject(this.gameObject);
+            GameManager.Instance.PlayerManager.PlayerCombatController.ProjectilePoolScript.ReleaseObject(this.gameObject);
             ResetWeb();
         }
         else if (other.CompareTag("Wall"))
         {
-            GameManager.Instance.PlayerManager.SpidyMorals.CobwebPoolScript.ReleaseObject(this.gameObject);
+            GameManager.Instance.PlayerManager.PlayerCombatController.ProjectilePoolScript.ReleaseObject(this.gameObject);
             ResetWeb();
         }
     }

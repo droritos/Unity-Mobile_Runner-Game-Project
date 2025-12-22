@@ -7,7 +7,10 @@ public class GameManager : MonoSingleton<GameManager>
     [SerializeField] ReadListFromFile readListFromFile;
     [SerializeField] WebcamCapture webcamCapture;
 
-    [Header("Spidy")]
+    [Header("GUI")]
+    [field: SerializeField] public PlayerUIManager PlayerUIManager {get ; private set;}
+    
+    [Header("Player")]
     [field: SerializeField] public PlayerManager PlayerManager { get; private set; }
     public PlayerBehavior Player => PlayerManager.PlayerBehavior; // Instead of changing the entire names in all files
     public UpgradeMenu UpgradeMenuScript;
@@ -20,6 +23,11 @@ public class GameManager : MonoSingleton<GameManager>
     [SerializeField] GameObject generalMenu;
     [SerializeField] GameObject upgradeMenu;
 
+    protected override void Awake()
+    {
+        base.Awake();
+        PlayerUIManager.Bind(Player.playerVitals); // Start GUI
+    }
 
     private void Start()
     {

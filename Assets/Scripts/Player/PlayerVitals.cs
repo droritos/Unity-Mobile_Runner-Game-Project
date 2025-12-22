@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerVitals : MonoBehaviour
 {
+    
     public int Level { get; private set; } = 1;
     public int CurrentHP { get; private set; }
     public int ExperiencePoints { get; private set; } = 0;
@@ -12,6 +13,7 @@ public class PlayerVitals : MonoBehaviour
     public event Action<float> XPPercentChanged;      // 0..1
     public event Action<int> LevelChanged;            // new level
     public event Action Died;
+    public event Action<int> OnCoinsGathered;
 
     private PlayerStatsConfig _stats;
     private bool _isAlive = true;
@@ -24,6 +26,7 @@ public class PlayerVitals : MonoBehaviour
 
         ResetHP();
         ResetXPUI();
+        RaiseCoinsGathered(0);
         RaiseAllUI();
     }
 
@@ -43,7 +46,10 @@ public class PlayerVitals : MonoBehaviour
         if (CurrentHP <= 0)
             Die();
     }
-
+    public void RaiseCoinsGathered(int amount)
+    {
+        OnCoinsGathered?.Invoke(amount);
+    }
     public void RestoreHealth()
     {
         if (!_isAlive) return;

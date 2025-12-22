@@ -42,7 +42,7 @@ PrefabInstance:
     - target: {fileID: -9218854157967969107, guid: 7ef51a24c76f81a4c93da6be03f47a6e,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7ef51a24c76f81a4c93da6be03f47a6e,
         type: 3}
@@ -292,7 +292,7 @@ PrefabInstance:
     - target: {fileID: -2585112961011517479, guid: 7ef51a24c76f81a4c93da6be03f47a6e,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -2072040086291044643, guid: 7ef51a24c76f81a4c93da6be03f47a6e,
         type: 3}
@@ -412,7 +412,7 @@ PrefabInstance:
     - target: {fileID: 1082271958561512970, guid: 7ef51a24c76f81a4c93da6be03f47a6e,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1330755669629619180, guid: 7ef51a24c76f81a4c93da6be03f47a6e,
         type: 3}
@@ -492,7 +492,7 @@ PrefabInstance:
     - target: {fileID: 4246046071846232392, guid: 7ef51a24c76f81a4c93da6be03f47a6e,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5048025441337412694, guid: 7ef51a24c76f81a4c93da6be03f47a6e,
         type: 3}
@@ -587,12 +587,12 @@ PrefabInstance:
     - target: {fileID: 6829825619187663742, guid: 7ef51a24c76f81a4c93da6be03f47a6e,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7007885379733368388, guid: 7ef51a24c76f81a4c93da6be03f47a6e,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7078722787440015773, guid: 7ef51a24c76f81a4c93da6be03f47a6e,
         type: 3}
@@ -627,7 +627,7 @@ PrefabInstance:
     - target: {fileID: 7905472932905239095, guid: 7ef51a24c76f81a4c93da6be03f47a6e,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8169382868667117632, guid: 7ef51a24c76f81a4c93da6be03f47a6e,
         type: 3}
@@ -720,7 +720,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 211267b589a98e749bd30091d7b5f69c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerArtitube: {fileID: 5987557964724888047}
+  playerVitals: {fileID: 0}
   PlayerStatsConfig: {fileID: 11400000, guid: 1904f4b2a317cb24aad0ce5ae06b6e50, type: 2}
   CoinsGathered: 0
   coinPool: {fileID: 0}
@@ -737,7 +737,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04e37364ef0ddfa4da25d5aee693b2c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
+  animator: {fileID: 6099724043816498346}
   boxCollider: {fileID: 6410431374692790571}
   duration: 0.5
   horizontalOffset: 1
@@ -759,6 +759,7 @@ MonoBehaviour:
   CobwebSpawnPoint:
   - {fileID: 6957835799963775398}
   CobwebPoolScript: {fileID: 0}
+  visualsController: {fileID: 0}
 --- !u!65 &6410431374692790571
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -819,14 +820,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffa70e5c4c73a5e419cfc5e97d7adee0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerCurrentLevel: 1
-  CurrentHealhPoint: 0
-  ExperiencePoints: 0
-  healthSlider: {fileID: 0}
-  healthSliderText: {fileID: 0}
-  experienceSlider: {fileID: 0}
-  experienceSliderText: {fileID: 0}
-  levelText: {fileID: 0}
+--- !u!95 &6099724043816498346 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 7ef51a24c76f81a4c93da6be03f47a6e,
+    type: 3}
+  m_PrefabInstance: {fileID: 417716676916136251}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3948201533380225410
 PrefabInstance:
   m_ObjectHideFlags: 0

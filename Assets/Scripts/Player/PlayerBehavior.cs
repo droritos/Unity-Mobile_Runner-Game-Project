@@ -1,10 +1,12 @@
+using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Random = UnityEngine.Random;
 
 
-public class PlayerBehavior : MonoBehaviour, ISavabale
+public class PlayerBehavior : MonoBehaviour, ISavable
 {
     [Header("Public Fields")]
     public PlayerVitals playerVitals;
@@ -26,6 +28,7 @@ public class PlayerBehavior : MonoBehaviour, ISavabale
         {
             coinPool.ReleaseObject(other.gameObject);
             CoinsGathered++;
+            playerVitals.RaiseCoinsGathered(CoinsGathered);
         }
         else if (other.CompareTag("LvLUp"))
         {
@@ -38,6 +41,9 @@ public class PlayerBehavior : MonoBehaviour, ISavabale
             GameManager.Instance.BulletPool.ReleaseObject(other.gameObject);
         }
     }
+
+   
+
     #region << Dying Methods >> 
     public int LevelReachWhenDied()
     {
@@ -65,7 +71,7 @@ public class PlayerBehavior : MonoBehaviour, ISavabale
             return PlayerStatsConfig.CobwebDamage;
         }
     }
-
+   
 
     #region << Upgrade Methods - Buttons >> 
     public void RestoreHealth()

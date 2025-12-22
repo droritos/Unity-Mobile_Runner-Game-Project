@@ -9,7 +9,7 @@ public class SaveManager : MonoSingleton<SaveManager>
     [SerializeField] string fileName;
 
     private GameData _gameData;
-    private List<ISavabale> _savingObjects;
+    private List<ISavable> _savingObjects;
     private FileDataHandler _fileDataHandler;
     void Start()
     {
@@ -33,7 +33,7 @@ public class SaveManager : MonoSingleton<SaveManager>
 
     private void SaveGame()
     {
-        foreach (ISavabale savingObject in _savingObjects)
+        foreach (ISavable savingObject in _savingObjects)
         {
             savingObject.Save(ref _gameData);
         }
@@ -54,25 +54,16 @@ public class SaveManager : MonoSingleton<SaveManager>
         }
         else // Found the file than intilize the saved data to the object
         {
-            foreach (ISavabale savingObject in _savingObjects)
+            foreach (ISavable savingObject in _savingObjects)
             {
                 savingObject.Load(_gameData);
             }
             Debug.Log("Loaded");
         }
     }
-    private List<ISavabale> FindAllSavingObjects()
+    private List<ISavable> FindAllSavingObjects()
     {
-        IEnumerable<ISavabale> savabales = FindObjectsOfType<MonoBehaviour>().OfType<ISavabale>();
-        return new List<ISavabale>(savabales);
+        var mb = Object.FindObjectsByType<MonoBehaviour>(FindObjectsSortMode.None);
+        return mb.Where(x => x is ISavable).Cast<ISavable>().ToList();
     }
-
-    //    /*
-    //private void OnApplicationQuit()
-    //{
-
-    //    SaveGame();
-    //}
-    //*/ // OnApplicationQuit
-
 }

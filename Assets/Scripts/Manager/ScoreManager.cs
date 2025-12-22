@@ -10,15 +10,17 @@ public class ScoreManager : MonoSingleton<ScoreManager>
     [SerializeField] TextMeshProUGUI coins;
     [SerializeField] TextMeshProUGUI difficultyScaler;
 
-    [Header("Serialize Data")]
-    [SerializeField] PlayerBehavior playerBehavior;
-
     [Header("Private Data")]
+    private PlayerBehavior _playerBehavior;
     private float _totalScore = 0;
     private float _survivedScore;
     private int _coinCollected;
     private float _levelUpBonus = 0;
 
+    private void Start()
+    {
+        _playerBehavior = GameManager.Instance.PlayerManager.PlayerBehavior;
+    }
 
     void Update()
     {
@@ -46,7 +48,7 @@ public class ScoreManager : MonoSingleton<ScoreManager>
 
     private void SetTimeScore()
     {
-        if (playerBehavior.playerVitals.IsAlive) // When false , stops adding points to the score
+        if (_playerBehavior.playerVitals.IsAlive) // When false , stops adding points to the score
         {
             _survivedScore += Time.deltaTime * 5;
         }
@@ -54,7 +56,7 @@ public class ScoreManager : MonoSingleton<ScoreManager>
 
     private void SetCoins()
     {
-        _coinCollected = playerBehavior.CoinsGathered * 10;
+        _coinCollected = _playerBehavior.CoinsGathered * 10;
     }
 
     public float GetScore()

@@ -12,10 +12,13 @@ public class ScoreManager : MonoSingleton<ScoreManager>
 
     [Header("Private Data")]
     private PlayerBehavior _playerBehavior;
-    private float _totalScore = 0;
+    public float TotalScore {get; private set;}
     private float _survivedScore;
     private int _coinCollected;
     private float _levelUpBonus = 0;
+    
+    private const string ScoreConstText = "Score: ";
+    
 
     private void Start()
     {
@@ -25,7 +28,7 @@ public class ScoreManager : MonoSingleton<ScoreManager>
     void Update()
     {
         UpdateScore();
-        UpdateCoins();
+        //UpdateCoins();
     }
 
     private void UpdateScore()
@@ -37,8 +40,8 @@ public class ScoreManager : MonoSingleton<ScoreManager>
 
     private void ScoreText() // Do Not Delete Me!!! , I am connection to the enemy spawner
     {
-        _totalScore = _coinCollected + _survivedScore + _levelUpBonus;
-        difficultyScaler.text = Mathf.FloorToInt(_totalScore).ToString();
+        TotalScore = _coinCollected + _survivedScore + _levelUpBonus; // Getting Updated
+        difficultyScaler.SetText(ScoreConstText + Mathf.FloorToInt(TotalScore));
     }
 
     private void UpdateCoins()
@@ -59,10 +62,10 @@ public class ScoreManager : MonoSingleton<ScoreManager>
         _coinCollected = _playerBehavior.CoinsGathered * 10;
     }
 
-    public float GetScore()
-    {
-        return Int32.Parse(difficultyScaler.text);
-    }
+    // public float GetScore()
+    // {
+    //     return Int32.Parse(difficultyScaler.text);
+    // }
     public void AddToScore(float gainedScore)
     {
         _levelUpBonus += gainedScore;

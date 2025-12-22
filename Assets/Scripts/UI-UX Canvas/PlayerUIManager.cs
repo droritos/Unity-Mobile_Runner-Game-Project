@@ -5,19 +5,21 @@ using UnityEngine.UI;
 public class PlayerUIManager : MonoBehaviour
 {
     [Header("Health")]
-    [SerializeField] private Slider healthSlider;
+    [SerializeField] private Image healthSlider;
     [SerializeField] private TextMeshProUGUI healthText;
 
     [Header("Experience")]
-    [SerializeField] private Slider xpSlider;
+    [SerializeField] private Image xpSlider;
     [SerializeField] private TextMeshProUGUI xpText;
     [SerializeField] private TextMeshProUGUI levelText;
     
     [Header("Coins")]
     [SerializeField] private TextMeshProUGUI coinsText;
 
+    private const string LevelText = "Level: ";
+    
     private PlayerVitals _playerVitals;
-
+/*
     private void Awake()
     {
         // sliders use 0..1
@@ -33,8 +35,9 @@ public class PlayerUIManager : MonoBehaviour
             xpSlider.maxValue = 1f;
         }
     }
-
+*/
     // Call this from GameManager when player spawns / is ready
+    private void OnDestroy() => Unbind();
     public void Bind(PlayerVitals player)
     {
         Unbind();
@@ -49,8 +52,7 @@ public class PlayerUIManager : MonoBehaviour
         _playerVitals.OnCoinsGathered += OnCoinsGathered;
     }
 
-  
-    public void Unbind()
+    private void Unbind()
     {
         if (_playerVitals == null) return;
 
@@ -63,25 +65,29 @@ public class PlayerUIManager : MonoBehaviour
         _playerVitals = null;
     }
 
-    private void OnDestroy() => Unbind();
-    private void OnCoinsGathered(int anount) => coinsText.SetText(anount.ToString());   
+    private void OnCoinsGathered(int amount)
+    {
+        if (!coinsText) return;
+        
+        coinsText.SetText(amount.ToString());   
+    }
     private void OnHPChanged(int current, int max)
     {
         float percent = (max <= 0) ? 0f : (float)current / max;
 
-        if (healthSlider != null) healthSlider.value = percent;
+        if (healthSlider != null) healthSlider.fillAmount = percent;
         if (healthText != null) healthText.text = current.ToString();
     }
 
     private void OnXPChanged(float percent01)
     {
-        if (xpSlider != null) xpSlider.value = percent01;
+        if (xpSlider != null) xpSlider.fillAmount = percent01;
         if (xpText != null) xpText.text = $"{Mathf.RoundToInt(percent01 * 100f)}%";
     }
 
     private void OnLevelChanged(int level)
     {
-        if (levelText != null) levelText.text = level.ToString();
+        if (levelText != null) levelText.SetText(LevelText + level);
     }
 
     private void OnDied()

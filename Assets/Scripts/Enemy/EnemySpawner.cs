@@ -22,14 +22,14 @@ public class EnemySpawner : MonoBehaviour
 
 
     private bool _wasPooled = false;
-    private float _score;
+    private int _score;
     void Update()
     {
         TryPoolEnemies();
     }
     private void TryPoolEnemies()
     {
-        _score = ScoreManager.Instance.GetScore();
+        _score = Mathf.FloorToInt(ScoreManager.Instance.TotalScore);
         if (_score % scoreToSpawn == 0 && _score != 0 && !_wasPooled)
         {
             GameObject enemy = robotEnemyPool.GetObject();

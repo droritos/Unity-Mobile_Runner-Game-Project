@@ -22,7 +22,7 @@ public class CheckpointPassedTracker : MonoBehaviour
             Debug.Log("Unity Services Initialized successfully.");
 
             // Retrieve the passing of a new checkpoint which is triggered by a level up
-            _newCheckpoint = playerVitals.PlayerCurrentLevel++;
+            _newCheckpoint = playerVitals.Level + 1;
 
             TrackCheckPointPassed();
         }

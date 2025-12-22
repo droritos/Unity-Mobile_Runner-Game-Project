@@ -24,7 +24,7 @@ public class AnalyticsManager : MonoBehaviour
 
     private void TriggerGameOverEvent(PlayerVitals player)
     {
-        int level = player.GetLevel();
+        int level = player.Level;
         CustomEvent gameOver = new CustomEvent("gameOver")
         {
             {"levelDiedOn" , level }

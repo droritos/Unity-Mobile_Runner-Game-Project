@@ -30,7 +30,7 @@ public class PlayerBehavior : MonoBehaviour, ISavabale
         else if (other.CompareTag("LvLUp"))
         {
             lvlUpPool.ReleaseObject(other.gameObject);
-            GameManager.Instance.UpgradeMenuScript.HandleLevelUp();
+            GameManager.Instance.UpgradeMenuScript.GainExperience(-1);
         }
         else if (other.CompareTag("EnemyProjectile"))
         {

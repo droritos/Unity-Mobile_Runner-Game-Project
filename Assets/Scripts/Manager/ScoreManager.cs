@@ -46,7 +46,7 @@ public class ScoreManager : MonoSingleton<ScoreManager>
 
     private void SetTimeScore()
     {
-        if (playerBehavior.playerVitals.IsAlive()) // When false , stops adding points to the score
+        if (playerBehavior.playerVitals.IsAlive) // When false , stops adding points to the score
         {
             _survivedScore += Time.deltaTime * 5;
         }

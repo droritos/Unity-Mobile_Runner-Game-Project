@@ -21,11 +21,19 @@ public class UpgradeMenu : MonoBehaviour
         RaiseXPUI();
     }
 
-    public void GainExperience(int amount)
+    /// <summary>
+    /// Adding the amount of Exprerince
+    /// </summary>
+    /// <param name="amount">If using -1 applying Level up</param>
+    public void GainExperience(int amount = -1)
     {
         if (_vitals == null) return;
 
         int required = GetRequiredXPForLevel(_vitals.Level);
+        
+        if(amount <= -1) // Insta Level Up
+            amount = required;
+        
         _vitals.AddXP(amount,required);
 
         // 🔥 UI update now happens by event (not direct UI calls)

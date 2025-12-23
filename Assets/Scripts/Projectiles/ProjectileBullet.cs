@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CobwebBullet : MonoBehaviour
+public class ProjectileBullet : MonoBehaviour
 {
     [SerializeField] MovingObjectsConfig speed;
 

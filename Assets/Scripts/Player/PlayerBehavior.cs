@@ -58,16 +58,18 @@ public class PlayerBehavior : MonoBehaviour, ISavable
     }
     #endregion
 
-    public int ApplyDamage()
+    public int ApplyDamage(out ValueTypes textValueType)
     {
         int chance = Random.Range(0, 100);
         if (chance <= PlayerStatsConfig.CriticalChance)
         {
             Debug.Log($"U did Crit nice one!");
+            textValueType = ValueTypes.Critical;
             return PlayerStatsConfig.CobwebDamage * 2;
         }
         else
         {
+            textValueType = ValueTypes.Damage;
             return PlayerStatsConfig.CobwebDamage;
         }
     }

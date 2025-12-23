@@ -43,7 +43,9 @@ public class RobotEnemyScript : MonoBehaviour
     {
         if (other.CompareTag("Web"))
         {
-            TakeDamage(GameManager.Instance.PlayerManager.PlayerBehavior.ApplyDamage());
+            int damage = GameManager.Instance.PlayerManager.PlayerBehavior.ApplyDamage(out ValueTypes type);
+            ValueIndicators.Instance.SpawnIndicator(this.transform.position,damage,type); // Apply floating text before he dies
+            TakeDamage(damage);
         }
     }
 

@@ -58,8 +58,7 @@ public class GroundController : MonoBehaviour
     }
     private void MoveChildObjects(Transform parentPiece, float speed)
     {
-        //Transform child = parentPiece.GetComponentInChildren<Transform>();
-        foreach (Transform child in parentPiece.GetComponentInChildren<Transform>())
+        foreach (Transform child in parentPiece.GetComponentInChildren<Transform>()) // WTF!!!!
         {
             // Move the object backwards along the Z axis
             child.Translate(speed * Time.deltaTime * Vector3.back);

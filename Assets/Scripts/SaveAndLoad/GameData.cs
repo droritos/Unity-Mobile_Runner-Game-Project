@@ -53,8 +53,8 @@ public class GameData
         G_CoinsMultiplier = 1;
         G_HealthToRestore = 2;
         G_MaxHealthPoint = 2;
-        G_CobwebDamage = 5;
-        G_FireCooldown = 2.0f;
+        G_CobwebDamage = 50;
+        G_FireCooldown = 1.5f;
         G_CobwebScaler = 0;
         G_CobwebPiercingLevel = 0;
         G_CriticalChance = 10;

@@ -51,8 +51,8 @@ public class PlayerCombatController : MonoBehaviour
             yield break;
         }
 
-        GameObject web = ProjectilePoolScript.GetObject();
-        if (web == null)
+        GameObject projectile = ProjectilePoolScript.GetObject();
+        if (projectile == null)
         {
             Debug.LogError("WaitForShoot: Pool returned NULL object", this);
             yield break;
@@ -64,7 +64,7 @@ public class PlayerCombatController : MonoBehaviour
             yield break;
         }
 
-        web.transform.position = projectileSpawnPoint[0].position;
+        projectile.transform.position = projectileSpawnPoint[0].position;
         // optionally:
         // web.transform.rotation = projectileSpawnPoint[0].rotation;
         // web.SetActive(true);

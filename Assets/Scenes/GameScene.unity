@@ -11318,6 +11318,12 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1455357189369777254, guid: 035b4d99d2838ea40b15a68042fdca20,
         type: 3}
+      propertyPath: Prefab
+      value: 
+      objectReference: {fileID: 798619130608003095, guid: 9cfbb1fc96edb0f4dba17a04407067f3,
+        type: 3}
+    - target: {fileID: 1455357189369777254, guid: 035b4d99d2838ea40b15a68042fdca20,
+        type: 3}
       propertyPath: parent
       value: 
       objectReference: {fileID: 1155634227}
@@ -11325,6 +11331,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PoolsParent
+      objectReference: {fileID: 0}
+    - target: {fileID: 4911162038769962775, guid: 035b4d99d2838ea40b15a68042fdca20,
+        type: 3}
+      propertyPath: m_Name
+      value: PlayerProjectilePool
       objectReference: {fileID: 0}
     - target: {fileID: 7661057225334952364, guid: 035b4d99d2838ea40b15a68042fdca20,
         type: 3}
@@ -11376,6 +11387,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8106176391297575317, guid: 035b4d99d2838ea40b15a68042fdca20,
+        type: 3}
+      propertyPath: Prefab
+      value: 
+      objectReference: {fileID: 1226670256292926325, guid: c837ff2def6e20946871e478b7c648e7,
+        type: 3}
     - target: {fileID: 8328821582034523251, guid: 035b4d99d2838ea40b15a68042fdca20,
         type: 3}
       propertyPath: Prefab

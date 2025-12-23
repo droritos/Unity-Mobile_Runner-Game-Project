@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectDistance: -40
   despawnDistance: -110
-  CarRoadSpeed: 8.5
-  SideWalkSpeed: 7.5
+  CollectableSpeed: 13
   CobwebSpeed: 8
   EnemyProjectileSpeed: 8
+  SideWalkSpeed: 7.5

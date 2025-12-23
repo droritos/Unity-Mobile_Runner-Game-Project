@@ -17,12 +17,8 @@ public class CollactablesManager : MonoBehaviour
     [SerializeField] Transform middleSpawnPoint;
     [SerializeField] Transform rightpawnPoint;
 
-    private int _speed;
-
-
     private void Update()
     {
-        _speed = (int)MovingObjectsSO.CollectableSpeed + addSpeedPower;
         MoveObject();
     }
 
@@ -30,10 +26,6 @@ public class CollactablesManager : MonoBehaviour
     {
         GameObject pooledObject = CollectableObjectPool.GetObject();
         pooledObject.transform.position = RandomSpawnPoint() + CollectableOffset;
-    }
-    public void ReleaseMe(GameObject collatableObject)
-    {
-        CollectableObjectPool.ReleaseObject(collatableObject);
     }
 
     private Vector3 RandomSpawnPoint()
@@ -58,7 +50,7 @@ public class CollactablesManager : MonoBehaviour
         {
             if (obj.gameObject.activeSelf)
             {
-                obj.Translate(_speed * Time.deltaTime * Vector3.back);
+                obj.Translate(MovingObjectsSO.CollectableSpeed * Time.deltaTime * Vector3.forward);
             }
         }
     }

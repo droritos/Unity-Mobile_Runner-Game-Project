@@ -632,9 +632,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 150
-  fireColdown: 3
+  fireColdown: 2
   hitDuration: 0.1
   projectileSpawnPoint: {fileID: 5644759498732468612}
+  _animator: {fileID: 8787542748231665819}
+  objectRenderer: {fileID: 5007484620464908130}
   robotGFX: {fileID: 1696972376549358728}
 --- !u!65 &1577562612168154785
 BoxCollider:

@@ -8,31 +8,22 @@ public class RobotEnemyScript : MonoBehaviour
     [SerializeField] float fireColdown = 1f;
     [SerializeField] float hitDuration = 0.1f; // Duration to keep the object red
     [SerializeField] Transform projectileSpawnPoint;
+    [SerializeField] Animator _animator;
+    [SerializeField] Renderer objectRenderer;
 
-    [Header("Enemy Pools")]
 
     [Header("Enemy Visual")]
     [SerializeField] Transform robotGFX;
 
     private float _fire = 0;
-    private Animator _animator;
-    private Renderer objectRenderer;
     private GameObject _bulletProjectile;
     private int currentHealth;
-
+    private int _attack = Animator.StringToHash("Attack");
+    
+    [Header("Enemy Pools")]
     private ObjectPoolManager bulletPool;
     private ObjectPoolManager enemyPool;
-
-
-    void Start()
-    {
-        _animator = GetComponent<Animator>();
-
-        // Find the Renderer in the child object "Robot1"
-        objectRenderer = robotGFX.GetComponent<Renderer>();
-
-    }
-
+    
     void Update()
     {
         ShootProjectile();
@@ -87,7 +78,7 @@ public class RobotEnemyScript : MonoBehaviour
         _fire += Time.deltaTime;
         if (_fire >= fireColdown)
         {
-            _animator.SetTrigger("Attack");
+            _animator.SetTrigger(_attack);
             StartCoroutine(WaitForShoot());
             _fire = 0;
         }

@@ -11,7 +11,12 @@ PrefabInstance:
     - target: {fileID: 259234321489315254, guid: 67989733c38653244b7995243eb0017e,
         type: 3}
       propertyPath: m_Name
-      value: Laser Projectile
+      value: Player Projectile
+      objectReference: {fileID: 0}
+    - target: {fileID: 259234321489315254, guid: 67989733c38653244b7995243eb0017e,
+        type: 3}
+      propertyPath: m_TagString
+      value: Web
       objectReference: {fileID: 0}
     - target: {fileID: 5038589630695529392, guid: 67989733c38653244b7995243eb0017e,
         type: 3}
@@ -66,5 +71,30 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 259234321489315254, guid: 67989733c38653244b7995243eb0017e,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7103588113485877185}
   m_SourcePrefab: {fileID: 100100000, guid: 67989733c38653244b7995243eb0017e, type: 3}
+--- !u!1 &1226670256292926325 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 259234321489315254, guid: 67989733c38653244b7995243eb0017e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1341789172781110979}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7103588113485877185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1226670256292926325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ff585b4e3bfc1547a6d1ce53c5e0af3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ProjectileBullet
+  speed: {fileID: 11400000, guid: b6632e26ef7d8ef4d8b222d35c1db5ec, type: 2}
+  ProjectileScaler: 0
+  RemainingPierces: 0

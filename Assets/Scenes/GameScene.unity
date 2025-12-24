@@ -6699,6 +6699,7 @@ GameObject:
   - component: {fileID: 1222034018}
   - component: {fileID: 1222034022}
   - component: {fileID: 1222034023}
+  - component: {fileID: 1222034024}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -6804,6 +6805,19 @@ MonoBehaviour:
   maxPoolSize: 15
   IndicatorPrefab: {fileID: 8977504485047611275, guid: ef32ea3b557869140a6d27c891b83ec6,
     type: 3}
+--- !u!114 &1222034024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1222034017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8deaa1524a5df8f40b291baa8d2efe23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FPSCounter
+  updateInterval: 0.5
 --- !u!1 &1250640983
 GameObject:
   m_ObjectHideFlags: 0
@@ -11540,7 +11554,7 @@ PrefabInstance:
         type: 3}
       propertyPath: Prefab
       value: 
-      objectReference: {fileID: 798619130608003095, guid: 9cfbb1fc96edb0f4dba17a04407067f3,
+      objectReference: {fileID: 4850937502060106510, guid: bdb5430d9ccc8e646a709b7a237b54c8,
         type: 3}
     - target: {fileID: 1455357189369777254, guid: 035b4d99d2838ea40b15a68042fdca20,
         type: 3}
@@ -11633,7 +11647,7 @@ PrefabInstance:
         type: 3}
       propertyPath: Prefab
       value: 
-      objectReference: {fileID: 1226670256292926325, guid: 37111fa22f0db814f89da7c220d59de9,
+      objectReference: {fileID: 4709642697772357348, guid: aa9084ce13c4be946985945cf3a0eebb,
         type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

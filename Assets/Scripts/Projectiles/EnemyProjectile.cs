@@ -11,13 +11,4 @@ public class EnemyProjectile : MonoBehaviour
     {
         this.transform.Translate(speed.EnemyProjectileSpeed * Time.deltaTime * Vector3.back);
     }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            //Enemy TakeDamage();
-        }
-    }
-
 }

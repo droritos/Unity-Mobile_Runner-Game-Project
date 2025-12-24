@@ -88,8 +88,32 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3680904153122269156, guid: 67989733c38653244b7995243eb0017e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 259234321489315254, guid: 67989733c38653244b7995243eb0017e,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3377499937867024560}
   m_SourcePrefab: {fileID: 100100000, guid: 67989733c38653244b7995243eb0017e, type: 3}
+--- !u!1 &4709642697772357348 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 259234321489315254, guid: 67989733c38653244b7995243eb0017e,
+    type: 3}
+  m_PrefabInstance: {fileID: 4811250855079449426}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3377499937867024560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4709642697772357348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 415feb2f72080364d8e09a93dced05d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyProjectile
+  speed: {fileID: 11400000, guid: b6632e26ef7d8ef4d8b222d35c1db5ec, type: 2}

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyProjectile : MonoBehaviour
 {
-    //[SerializeField] int damage = 5;
+    //[SerializeField] int damage = 4;
     [SerializeField] MovingObjectsConfig speed;
 
     void Update()

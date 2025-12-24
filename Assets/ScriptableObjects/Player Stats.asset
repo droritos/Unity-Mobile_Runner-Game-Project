@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c4a54fa852e78c45ae9ea9150ab97e2, type: 3}
   m_Name: Player Stats
   m_EditorClassIdentifier: 
-  G_MaxHealthPoint: 2
-  G_CobwebDamage: 5
-  G_FireCooldown: 2
+  G_MaxHealthPoint: 20
+  G_CobwebDamage: 50
+  G_FireCooldown: 1.5
   G_CobwebScaler: 0
   G_CobwebPiercingLevel: 0
   G_CriticalChance: 10

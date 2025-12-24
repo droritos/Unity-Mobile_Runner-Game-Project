@@ -37,7 +37,7 @@ public class PlayerBehavior : MonoBehaviour, ISavable
         }
         else if (other.CompareTag("EnemyProjectile"))
         {
-            playerVitals.TakeDamage(1);
+            playerVitals.TakeDamage(4);
             GameManager.Instance.BulletPool.ReleaseObject(other.gameObject);
         }
     }

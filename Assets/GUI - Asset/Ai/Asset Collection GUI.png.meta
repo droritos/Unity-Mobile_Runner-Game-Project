@@ -197,6 +197,28 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Upgrade Card
+      rect:
+        serializedVersion: 2
+        x: 929
+        y: 124
+        width: 374
+        height: 504
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 597539bd4cc70404fb62e11788d75f3a
+      internalID: -2075344226
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -216,6 +238,7 @@ TextureImporter:
       Exp_Sprite: -1993988900
       HealthBar_Sprit: -1993988900
       HealthBar_Sprite: -8684287
+      Upgrade Card: -2075344226
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

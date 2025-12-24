@@ -5,9 +5,9 @@ using UnityEngine;
 public class PlayerStatsConfig : ScriptableObject
 {
     [Header("Global Stats")]
-    public int G_MaxHealthPoint = 2;
-    public int G_CobwebDamage = 5;
-    public float G_FireCooldown = 2.0f;
+    public int G_MaxHealthPoint = 20;
+    public int G_CobwebDamage = 50;
+    public float G_FireCooldown = 1.5f;
     public float G_CobwebScaler = 0;
     public int G_CobwebPiercingLevel = 0;
     public int G_CriticalChance = 10;
@@ -49,9 +49,9 @@ public class PlayerStatsConfig : ScriptableObject
     }
     public void ResetStats()
     {
-        G_MaxHealthPoint = 2;
-        G_CobwebDamage = 5;
-        G_FireCooldown = 2.0f;
+        G_MaxHealthPoint = 20;
+        G_CobwebDamage = 50;
+        G_FireCooldown = 1.5f;
         G_CobwebScaler = 0;
         G_CobwebPiercingLevel = 0;
         G_CriticalChance = 10;

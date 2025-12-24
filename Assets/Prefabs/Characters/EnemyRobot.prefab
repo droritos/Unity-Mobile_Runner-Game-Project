@@ -632,7 +632,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 150
-  fireColdown: 2
+  fireColdown: 3
   hitDuration: 0.1
   projectileSpawnPoint: {fileID: 5644759498732468612}
   _animator: {fileID: 8787542748231665819}

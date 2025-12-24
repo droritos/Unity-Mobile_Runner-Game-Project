@@ -1,9 +1,12 @@
+#if UNITY_EDITOR
+
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using System;
 
+//Not Used Code
 public class PlayerData : MonoSingleton<PlayerData>
 {
     public TMP_InputField playerNameInput;
@@ -39,3 +42,4 @@ public class PlayerData : MonoSingleton<PlayerData>
     }
 
 }
+#endif

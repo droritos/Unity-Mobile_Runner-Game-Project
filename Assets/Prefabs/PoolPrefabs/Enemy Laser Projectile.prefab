@@ -219,6 +219,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy Laser Projectile
       objectReference: {fileID: 0}
+    - target: {fileID: 7453804368033802323, guid: be0f4fd961a1ef14896a5e8444c60473,
+        type: 3}
+      propertyPath: m_TagString
+      value: EnemyProjectile
+      objectReference: {fileID: 0}
     - target: {fileID: 7781205161333704607, guid: be0f4fd961a1ef14896a5e8444c60473,
         type: 3}
       propertyPath: m_Size.x

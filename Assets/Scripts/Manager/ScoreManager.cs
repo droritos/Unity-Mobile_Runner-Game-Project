@@ -1,10 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Interfaces;
 using TMPro;
 using UnityEngine;
 
-public class ScoreManager : MonoSingleton<ScoreManager>
+public class ScoreManager : MonoSingleton<ScoreManager> , IPausable
 {
     [Header("Text Mesh Pro")]
     [SerializeField] TextMeshProUGUI coins;
@@ -16,19 +17,23 @@ public class ScoreManager : MonoSingleton<ScoreManager>
     private float _survivedScore;
     private int _coinCollected;
     private float _levelUpBonus = 0;
-    
+    private bool _isPaused;
+
     private const string ScoreConstText = "Score: ";
     
 
     private void Start()
     {
         _playerBehavior = GameManager.Instance.PlayerManager.PlayerBehavior;
+        PauseManager.Instance.Register(this);
     }
+
+    void OnDestroy() => PauseManager.Instance.Unregister(this);
 
     void Update()
     {
+        if(_isPaused) return;
         UpdateScore();
-        //UpdateCoins();
     }
 
     private void UpdateScore()
@@ -74,5 +79,10 @@ public class ScoreManager : MonoSingleton<ScoreManager>
     public int GetCoinsCollected()
     {
         return _coinCollected;
+    }
+
+    public void SetPaused(bool paused)
+    {
+        _isPaused =  paused;
     }
 }

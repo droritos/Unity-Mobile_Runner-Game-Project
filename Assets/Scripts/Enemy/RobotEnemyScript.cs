@@ -1,7 +1,8 @@
 using UnityEngine;
 using System.Collections;
+using Interfaces;
 
-public class RobotEnemyScript : MonoBehaviour
+public class RobotEnemyScript : MonoBehaviour , IPausable
 {
     [Header("Enemy Fields")]
     [SerializeField] int maxHealth = 5;
@@ -23,9 +24,11 @@ public class RobotEnemyScript : MonoBehaviour
     [Header("Enemy Pools")]
     private ObjectPoolManager bulletPool;
     private ObjectPoolManager enemyPool;
-    
+    private bool _isPause;
+
     void Update()
     {
+        if (_isPause) return;
         ShootProjectile();
     }
 
@@ -111,5 +114,10 @@ public class RobotEnemyScript : MonoBehaviour
         // Attempt to get an object from the pool
         _bulletProjectile = GameManager.Instance.BulletPool.GetObject();
         _bulletProjectile.transform.position = projectileSpawnPoint.position;
+    }
+
+    public void SetPaused(bool paused)
+    {
+        _isPause = paused;
     }
 }

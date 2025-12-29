@@ -1,8 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Interfaces;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
-public class EnemySpawner : MonoBehaviour
+public class EnemySpawner : MonoBehaviour , IPausable
 {
     [Header("Enemy Data")]
     [SerializeField] int fallingSpeed = 5;
@@ -23,8 +26,15 @@ public class EnemySpawner : MonoBehaviour
 
     private bool _wasPooled = false;
     private int _score;
+    private bool _isPause;
+
+    void Start() => PauseManager.Instance.Register(this);
+
+    private void OnDestroy() => PauseManager.Instance.Unregister(this);
+
     void Update()
     {
+        if(_isPause) return;
         TryPoolEnemies();
     }
     private void TryPoolEnemies()
@@ -165,5 +175,10 @@ public class EnemySpawner : MonoBehaviour
 
         // Ensure the final position is exactly at the target position
         enemy.transform.position = targetPosition;
+    }
+
+    public void SetPaused(bool paused)
+    {
+        _isPause =  paused;
     }
 }

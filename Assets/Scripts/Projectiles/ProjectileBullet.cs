@@ -1,6 +1,7 @@
+using Interfaces;
 using UnityEngine;
 
-public class ProjectileBullet : MonoBehaviour
+public class ProjectileBullet : MonoBehaviour , IPausable
 {
     [SerializeField] MovingObjectsConfig speed;
 
@@ -8,16 +9,26 @@ public class ProjectileBullet : MonoBehaviour
     public int RemainingPierces;
 
     private Vector3 _originalScale;
+    
+    private bool _isPaused;
 
     private void Start()
     {
+        PauseManager.Instance?.Register(this);
+        
         _originalScale = this.transform.localScale;
         ProjectileScaler = GameManager.Instance.PlayerManager.PlayerBehavior.PlayerStatsConfig.CobwebScaler;
         SetProjectileSize(ProjectileScaler);
         RemainingPierces = GameManager.Instance.PlayerManager.PlayerBehavior.PlayerStatsConfig.CobwebPiercingLevel;
     }
+
+    private void OnDestroy()
+    {
+        PauseManager.Instance?.Unregister(this);
+    }
     void Update()
     {
+        if(_isPaused) return;
         this.transform.Translate(speed.CobwebSpeed * Time.deltaTime * Vector3.forward);
     }
 
@@ -56,5 +67,10 @@ public class ProjectileBullet : MonoBehaviour
         //Debug.Log($"Web ProjectileScaler = {ProjectileScaler}");
         SetProjectileSize(ProjectileScaler);
         RemainingPierces = GameManager.Instance.Player.PlayerStatsConfig.CobwebPiercingLevel;
+    }
+
+    public void SetPaused(bool paused)
+    {
+        _isPaused =  paused;
     }
 }

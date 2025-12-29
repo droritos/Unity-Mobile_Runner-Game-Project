@@ -53,13 +53,6 @@ public class GameManager : MonoSingleton<GameManager>
 
     public void PauseGameWhenMenuVisible(GameObject menu)
     {
-        if (menu.activeSelf)
-        {
-            Time.timeScale = 0f;
-        }
-        else
-        {
-            Time.timeScale = 1f;
-        }
+        PauseManager.Instance.SetPaused(menu.activeSelf);
     }
 }

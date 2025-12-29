@@ -1,9 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Interfaces;
 using UnityEngine;
 
-public class PlayerCombatController : MonoBehaviour
+public class PlayerCombatController : MonoBehaviour , IPausable
 {
     [Header("Public Data")]
     public ObjectPoolManager ProjectilePoolScript;
@@ -14,14 +15,24 @@ public class PlayerCombatController : MonoBehaviour
     private float _fire = 0;
     private PlayerStatsConfig _playerStatsConfig;
     
+    private bool _isPaused;
+    
     void Start()
     {
+        PauseManager.Instance?.Register(this);
+
         this._playerStatsConfig = GameManager.Instance.Player.PlayerStatsConfig;
         Debug.Log($"Your fire rate is {_playerStatsConfig.FireCooldown} By global {_playerStatsConfig.G_FireCooldown}");
     }
 
+    void OnDestroy()
+    {
+        PauseManager.Instance?.Unregister(this);
+    }
+
     void Update()
     {
+        if(_isPaused) return;
         _fire += Time.deltaTime;
         AutoShoot();
     }
@@ -70,4 +81,8 @@ public class PlayerCombatController : MonoBehaviour
         // web.SetActive(true);
     }
 
+    public void SetPaused(bool paused)
+    {
+        _isPaused = paused;
+    }
 }

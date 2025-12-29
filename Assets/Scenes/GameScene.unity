@@ -5761,6 +5761,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d88da6f2802424d419b9d5acce1b5062, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerManager
+--- !u!114 &1527687359 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5951106901304328980, guid: d9e2f86008c6ffc4da828f30030f1d67,
+    type: 3}
+  m_PrefabInstance: {fileID: 2024165871}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 211267b589a98e749bd30091d7b5f69c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1536158180
 GameObject:
   m_ObjectHideFlags: 0
@@ -9110,6 +9122,16 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -400
       objectReference: {fileID: 0}
+    - target: {fileID: 3254219498611216308, guid: 96eb8774245107f43ac60fa06689cf08,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1527687359}
+    - target: {fileID: 3254219498611216308, guid: 96eb8774245107f43ac60fa06689cf08,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: IncreasedDamage
+      objectReference: {fileID: 0}
     - target: {fileID: 3478326448654254755, guid: 96eb8774245107f43ac60fa06689cf08,
         type: 3}
       propertyPath: m_Name
@@ -9160,6 +9182,16 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -400
       objectReference: {fileID: 0}
+    - target: {fileID: 4458807660384547158, guid: 96eb8774245107f43ac60fa06689cf08,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1527687359}
+    - target: {fileID: 4458807660384547158, guid: 96eb8774245107f43ac60fa06689cf08,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: IncreaseCriticalChance
+      objectReference: {fileID: 0}
     - target: {fileID: 5374945018234250431, guid: 96eb8774245107f43ac60fa06689cf08,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -9180,6 +9212,36 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -400
       objectReference: {fileID: 0}
+    - target: {fileID: 5443227372870998403, guid: 96eb8774245107f43ac60fa06689cf08,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1527687359}
+    - target: {fileID: 5443227372870998403, guid: 96eb8774245107f43ac60fa06689cf08,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Piercing
+      objectReference: {fileID: 0}
+    - target: {fileID: 6112870053093849946, guid: 96eb8774245107f43ac60fa06689cf08,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1527687359}
+    - target: {fileID: 6112870053093849946, guid: 96eb8774245107f43ac60fa06689cf08,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: RestoreHealth
+      objectReference: {fileID: 0}
+    - target: {fileID: 6482998230264605401, guid: 96eb8774245107f43ac60fa06689cf08,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1527687359}
+    - target: {fileID: 6482998230264605401, guid: 96eb8774245107f43ac60fa06689cf08,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: IncreaseWebSize
+      objectReference: {fileID: 0}
     - target: {fileID: 7601826576922409889, guid: 96eb8774245107f43ac60fa06689cf08,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -9199,6 +9261,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -400
+      objectReference: {fileID: 0}
+    - target: {fileID: 8067839911604233429, guid: 96eb8774245107f43ac60fa06689cf08,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1527687359}
+    - target: {fileID: 8067839911604233429, guid: 96eb8774245107f43ac60fa06689cf08,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: IncreasedAttackSpeed
       objectReference: {fileID: 0}
     - target: {fileID: 8184970202575094343, guid: 96eb8774245107f43ac60fa06689cf08,
         type: 3}

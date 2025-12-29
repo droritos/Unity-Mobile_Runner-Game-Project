@@ -83,7 +83,8 @@ public class PlayerBehavior : MonoBehaviour, ISavable
 
     public void IncreasedDamage(TextMeshProUGUI levelText)
     {
-        PlayerStatsConfig.CobwebDamage += 2;
+        int damageToIncrease = Mathf.RoundToInt(PlayerStatsConfig.CobwebDamage * 0.2f);
+        PlayerStatsConfig.CobwebDamage += damageToIncrease;
         _cobwebDamageLevel++;
         levelText.text = $"LVL : {_cobwebDamageLevel}";
     }

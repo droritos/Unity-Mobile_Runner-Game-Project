@@ -22,7 +22,7 @@ public class EnemyProjectile : MonoBehaviour , IPausable
     void Update()
     {
         if(_isPaused) return;
-        this.transform.Translate(speed.EnemyProjectileSpeed * Time.deltaTime * Vector3.back);
+        this.transform.Translate(Vector3.back * (speed.EnemyProjectileSpeed * Time.deltaTime * WorldSpeed.SpeedMultiplier));
     }
 
     public void SetPaused(bool paused)

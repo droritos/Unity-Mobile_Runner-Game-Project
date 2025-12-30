@@ -13,6 +13,7 @@ public class MovingObjectsConfig : ScriptableObject // Note : Inhireted from Scr
     public float CobwebSpeed = 8;
     public float EnemyProjectileSpeed = 8;
     public float SideWalkSpeed = 8;
+    public float RoadSpeed = 0.75f;
 
     private void OnValidate()
     {

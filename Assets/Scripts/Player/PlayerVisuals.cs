@@ -4,6 +4,8 @@ using UnityEngine;
 public class PlayerVisuals : MonoBehaviour
 {
     [field:SerializeField] public Animator Animator {get;private set;}
+    [SerializeField] private ParticleSystem currencyCollectedVFX;
+    [SerializeField] private Transform vfxSpawnPoint;
     
     public void Shoot()
     {
@@ -12,5 +14,12 @@ public class PlayerVisuals : MonoBehaviour
     }
 
     public float GetCurrentAnimationLength() => Animator.GetCurrentAnimatorStateInfo(0).length;
+
+    public void ApplyCurrencyCollectedVFX(Vector3 position = default)
+    {
+        if(position == default) position = vfxSpawnPoint.position;
+        
+        Instantiate(currencyCollectedVFX,position,Quaternion.identity);
+    }
 
 }

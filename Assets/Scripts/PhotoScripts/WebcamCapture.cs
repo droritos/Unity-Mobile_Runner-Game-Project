@@ -20,7 +20,7 @@ public class WebcamCapture : MonoBehaviour
     public IEnumerator RequestCameraPermissionCoroutine()
     {
         // Check if the camera permission is already granted
-        Debug.Log("Checking Camera Permisson ? ");
+        //Debug.Log("Checking Camera Permisson ? ");
         if (!HasCameraPermission())
         {
             // Request the camera permission

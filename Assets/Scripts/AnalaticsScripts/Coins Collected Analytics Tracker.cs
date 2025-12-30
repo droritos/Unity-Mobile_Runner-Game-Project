@@ -19,7 +19,7 @@ public class CoinsCollectedAnalyticsTracker : MonoBehaviour
         {
             var options = new InitializationOptions();
             await UnityServices.InitializeAsync(options);
-            Debug.Log("Unity Services Initialized successfully.");
+            //Debug.Log("Unity Services Initialized successfully.");
 
             _coinsCollected = coinCollected.CoinsGathered;
 

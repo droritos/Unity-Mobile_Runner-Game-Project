@@ -20,7 +20,7 @@ public class ManagePlayerStatsConfig : MonoBehaviour,ISavable
         data.HpRestoreLevelShop = playerStatsConfig.ShopHpRestoreLevel;
         data.DamageLevelShop = playerStatsConfig.ShopDamageLevel;
         data.TotalCoinGainedLevelShop = playerStatsConfig.ShopTotalCoinGainedLevel;
-        Debug.Log($"Max HP Global: {playerStatsConfig.G_MaxHealthPoint} |  From GameData {data.MaxHealthPoint} | In Shop Level {playerStatsConfig.ShopMaxHealthLevel} From GD: {data.MaxHealthLevelShop}");
+        //Debug.Log($"Max HP Global: {playerStatsConfig.G_MaxHealthPoint} |  From GameData {data.MaxHealthPoint} | In Shop Level {playerStatsConfig.ShopMaxHealthLevel} From GD: {data.MaxHealthLevelShop}");
     }
 
     public void Load(GameData data)
@@ -38,6 +38,6 @@ public class ManagePlayerStatsConfig : MonoBehaviour,ISavable
         playerStatsConfig.ShopHpRestoreLevel = data.HpRestoreLevelShop;
         playerStatsConfig.ShopDamageLevel = data.DamageLevelShop;
         playerStatsConfig.ShopTotalCoinGainedLevel = data.TotalCoinGainedLevelShop;
-        Debug.Log($"Max HP Global: {playerStatsConfig.G_MaxHealthPoint} |  From GameData {data.MaxHealthPoint} | In Shop Level {playerStatsConfig.ShopMaxHealthLevel} From GD: {data.MaxHealthLevelShop}");
+        //Debug.Log($"Max HP Global: {playerStatsConfig.G_MaxHealthPoint} |  From GameData {data.MaxHealthPoint} | In Shop Level {playerStatsConfig.ShopMaxHealthLevel} From GD: {data.MaxHealthLevelShop}");
     }
 }

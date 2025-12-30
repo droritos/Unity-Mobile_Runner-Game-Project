@@ -13,7 +13,6 @@ public class GroundController : MonoBehaviour
     [SerializeField] List<Transform> sidewalkLeftPieces; // List of left sidewalk pieces
     [SerializeField] List<Transform> StreetFloorPieces; // List of left sidewalk pieces
 
-
     [Header("Ground Type Parents")]
     [SerializeField] Transform floorParent;
     [SerializeField] Transform sidewalkRightParent;
@@ -24,12 +23,8 @@ public class GroundController : MonoBehaviour
     [SerializeField] WallManager wallManager;
 
 
-
     private void Awake()
     {
-        //SetAllObjects(floorParent, groundPieces, "Floor");
-        //SetAllObjects(sidewalkRightParent, sidewalkRightPieces, "SidewalkRight");
-        //SetAllObjects(sidewalkLeftParent, sidewalkLeftPieces, "SidewalkLeft");
         SetSideWalkPieces(sidewalkRightParent, sidewalkRightPieces);
         SetSideWalkPieces(sidewalkLeftParent, sidewalkLeftPieces);
         SetGroundPieces();
@@ -50,22 +45,25 @@ public class GroundController : MonoBehaviour
 
     private void MoveObjects(List<Transform> objects, float speed)
     {
+        // Apply the multiplier ONCE here
+        float currentSpeed = speed * WorldSpeed.SpeedMultiplier; 
+
         foreach (Transform obj in objects)
         {
-            // Move the object backwards along the Z axis
-            obj.Translate(speed * Time.deltaTime * Vector3.back);
+            obj.Translate(currentSpeed * Time.deltaTime * Vector3.back);
         }
     }
     private void MoveChildObjects(Transform parentPiece, float speed)
     {
-        foreach (Transform child in parentPiece.GetComponentInChildren<Transform>()) // WTF!!!!
+        float currentSpeed = speed * WorldSpeed.SpeedMultiplier;
+    
+        // This iterates over IMMEDIATE children only.
+        // Efficient and clean.
+        foreach (Transform child in parentPiece) 
         {
-            // Move the object backwards along the Z axis
-            child.Translate(speed * Time.deltaTime * Vector3.back);
+            child.Translate(currentSpeed * Time.deltaTime * Vector3.back);
         }
     }
-
-
     private void SetAllObjects(Transform parent, List<Transform> objectList, string objectType)
     {
         Transform lastObject = PopulateTransformList(parent, objectList);

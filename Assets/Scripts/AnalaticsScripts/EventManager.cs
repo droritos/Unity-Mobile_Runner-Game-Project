@@ -12,7 +12,7 @@ public static class EventManager
         if (player != null)
         {
             OnGameOver?.Invoke(player);
-            Debug.Log("Event : Game Over");
+            //Debug.Log("Event : Game Over");
         }
     }
 }

@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 800968743956638099}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1.88, z: 1.58}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -61,6 +61,37 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1374723034794080323}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6946247262752096126
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7853312925204492131}
+  m_Layer: 0
+  m_Name: Collect
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7853312925204492131
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6946247262752096126}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 2.517, z: 0.118}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8203997201837205301}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1248976174929417875
 PrefabInstance:
@@ -720,6 +751,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0.24281551
       objectReference: {fileID: 0}
+    - target: {fileID: 6957835799963775398, guid: 1d2edae00096627499be46148c1d5f73,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6957835799963775398, guid: 1d2edae00096627499be46148c1d5f73,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6992396307916671238, guid: 1d2edae00096627499be46148c1d5f73,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1009,6 +1050,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 2608642574533520486}
+    - targetCorrespondingSourceObject: {fileID: 6957835799963775398, guid: 1d2edae00096627499be46148c1d5f73,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7853312925204492131}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 652299339805946986, guid: 1d2edae00096627499be46148c1d5f73,
         type: 3}
@@ -1104,6 +1149,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerVisuals
   <Animator>k__BackingField: {fileID: 6068433807112291569}
+  currencyCollectedVFX: {fileID: 759682991300204723, guid: 26b595228606a4447b950122c15de650,
+    type: 3}
+  vfxSpawnPoint: {fileID: 7853312925204492131}
 --- !u!114 &4777568274183681916 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5987557964724888047, guid: 1d2edae00096627499be46148c1d5f73,

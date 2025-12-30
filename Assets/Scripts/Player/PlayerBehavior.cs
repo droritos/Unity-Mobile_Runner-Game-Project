@@ -26,6 +26,7 @@ public class PlayerBehavior : MonoBehaviour, ISavable
     {
         if (other.CompareTag("Coin"))
         {
+            GameManager.Instance?.PlayerManager.PlayerVisuals.ApplyCurrencyCollectedVFX(other.transform.position + Vector3.up * 1.5f);
             coinPool.ReleaseObject(other.gameObject);
             CoinsGathered++;
             playerVitals.RaiseCoinsGathered(CoinsGathered);
@@ -64,7 +65,7 @@ public class PlayerBehavior : MonoBehaviour, ISavable
         int chance = Random.Range(0, 100);
         if (chance <= PlayerStatsConfig.CriticalChance)
         {
-            Debug.Log($"U did Crit nice one!");
+            //Debug.Log($"U did Crit nice one!");
             textValueType = ValueTypes.Critical;
             return PlayerStatsConfig.CobwebDamage * 2;
         }

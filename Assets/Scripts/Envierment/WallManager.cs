@@ -27,13 +27,13 @@ public class WallManager : MonoBehaviour
             {
                 // Take LevelUp Object 
                 other.transform.position = FloorStartPos.position; // Other is the Floor
-                lvlUpContainer.CollectablePooled();
+                //lvlUpContainer.CollectablePooled();
             }
             else
             {
                 // Take Coin Object
                 other.transform.position = FloorStartPos.position; // Other is the Floor
-                coinContainer.CollectablePooled();
+                //coinContainer.CollectablePooled();
             }
         }
         else if (other.CompareTag("Coin"))

@@ -40,7 +40,7 @@ public class PlayerStatsConfig : ScriptableObject
         if (SaveManager.Instance != null)
         {
             SaveManager.Instance.CallSaveGameMethod();
-            Debug.Log("SO Called - CallSaveGameMethod");
+            //Debug.Log("SO Called - CallSaveGameMethod");
         }
     }
     public void SetStats()
@@ -64,7 +64,7 @@ public class PlayerStatsConfig : ScriptableObject
         ShopTotalCoinGainedLevel = 1;
         ShopCritChanceLevel = 1;
         ShopHpRestoreLevel = 1;
-        Debug.Log("Stats Has Been Reset");
+        //Debug.Log("Stats Has Been Reset");
     }
 
 

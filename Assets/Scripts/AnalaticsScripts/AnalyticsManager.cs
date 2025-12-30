@@ -45,6 +45,6 @@ public class AnalyticsManager : MonoBehaviour
         };
 
         AnalyticsService.Instance.RecordEvent(gameOver);
-        Debug.Log($"Event: gameOver, {player.Level} Recorded");
+        //Debug.Log($"Event: gameOver, {player.Level} Recorded");
     }
 }

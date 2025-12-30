@@ -29,7 +29,7 @@ public class ProjectileBullet : MonoBehaviour , IPausable
     void Update()
     {
         if(_isPaused) return;
-        this.transform.Translate(speed.CobwebSpeed * Time.deltaTime * Vector3.forward);
+        this.transform.Translate(Vector3.forward * (speed.CobwebSpeed * Time.deltaTime * WorldSpeed.SpeedMultiplier));
     }
 
     private void OnTriggerEnter(Collider other)

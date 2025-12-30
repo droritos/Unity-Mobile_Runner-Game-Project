@@ -39,6 +39,7 @@ public class PlayerBehavior : MonoBehaviour, ISavable
         {
             playerVitals.TakeDamage(4);
             GameManager.Instance.BulletPool.ReleaseObject(other.gameObject);
+            Handheld.Vibrate();
         }
     }
 

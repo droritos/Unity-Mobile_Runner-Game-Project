@@ -9228,7 +9228,7 @@ PrefabInstance:
     - target: {fileID: 4458807660384547158, guid: 96eb8774245107f43ac60fa06689cf08,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: IncreasedDamage
+      value: IncreaseCriticalChance
       objectReference: {fileID: 0}
     - target: {fileID: 4458807660384547158, guid: 96eb8774245107f43ac60fa06689cf08,
         type: 3}
@@ -9338,7 +9338,7 @@ PrefabInstance:
     - target: {fileID: 5443227372870998403, guid: 96eb8774245107f43ac60fa06689cf08,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: IncreasedDamage
+      value: Piercing
       objectReference: {fileID: 0}
     - target: {fileID: 5443227372870998403, guid: 96eb8774245107f43ac60fa06689cf08,
         type: 3}
@@ -9388,7 +9388,7 @@ PrefabInstance:
     - target: {fileID: 6112870053093849946, guid: 96eb8774245107f43ac60fa06689cf08,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6112870053093849946, guid: 96eb8774245107f43ac60fa06689cf08,
         type: 3}
@@ -9423,7 +9423,7 @@ PrefabInstance:
     - target: {fileID: 6112870053093849946, guid: 96eb8774245107f43ac60fa06689cf08,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: IncreasedDamage
+      value: RestoreHealth
       objectReference: {fileID: 0}
     - target: {fileID: 6112870053093849946, guid: 96eb8774245107f43ac60fa06689cf08,
         type: 3}
@@ -9454,11 +9454,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 
-      objectReference: {fileID: 1546195712}
+      objectReference: {fileID: 0}
     - target: {fileID: 6112870053093849946, guid: 96eb8774245107f43ac60fa06689cf08,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: TMPro.TextMeshProUGUI, Unity.TextMeshPro
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 6112870053093849946, guid: 96eb8774245107f43ac60fa06689cf08,
         type: 3}
@@ -9508,7 +9508,7 @@ PrefabInstance:
     - target: {fileID: 6482998230264605401, guid: 96eb8774245107f43ac60fa06689cf08,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: IncreasedDamage
+      value: IncreaseWebSize
       objectReference: {fileID: 0}
     - target: {fileID: 6482998230264605401, guid: 96eb8774245107f43ac60fa06689cf08,
         type: 3}
@@ -9618,7 +9618,7 @@ PrefabInstance:
     - target: {fileID: 8067839911604233429, guid: 96eb8774245107f43ac60fa06689cf08,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: IncreasedDamage
+      value: IncreasedAttackSpeed
       objectReference: {fileID: 0}
     - target: {fileID: 8067839911604233429, guid: 96eb8774245107f43ac60fa06689cf08,
         type: 3}

@@ -8,13 +8,16 @@ public class RobotEnemyScript : MonoBehaviour , IPausable
     [SerializeField] int maxHealth = 5;
     [SerializeField] float fireColdown = 1f;
     [SerializeField] float hitDuration = 0.1f; // Duration to keep the object red
+    
+    [Header("References")]
     [SerializeField] Transform projectileSpawnPoint;
     [SerializeField] Animator _animator;
     [SerializeField] Renderer objectRenderer;
 
-
     [Header("Enemy Visual")]
-    [SerializeField] Transform robotGFX;
+    [SerializeField] ParticleSystem dieEffect;
+    [SerializeField] private Transform dieEffectTransform;
+    
 
     private float _fire = 0;
     private GameObject _bulletProjectile;
@@ -91,6 +94,7 @@ public class RobotEnemyScript : MonoBehaviour , IPausable
     {
         if (GameManager.Instance.EnemyPool != null)
         {
+            Instantiate(dieEffect,dieEffectTransform.position,Quaternion.identity);
             GameManager.Instance.EnemyPool.ReleaseObject(this.gameObject);
             this.transform.position = GameManager.Instance.EnemyPool.transform.position;
             ResetEnemy();

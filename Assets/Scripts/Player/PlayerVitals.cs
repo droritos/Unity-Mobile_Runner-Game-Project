@@ -30,13 +30,6 @@ public class PlayerVitals : MonoBehaviour
         RaiseAllUI();
     }
     
-#if Unity_EDITOR
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.T)
-            LevelUp();
-    }
-#endif
     public void ResetHP()
     {
         CurrentHP = _stats.MaxHealthPoint;
@@ -77,7 +70,7 @@ public class PlayerVitals : MonoBehaviour
         percent01 = Mathf.Clamp01(percent01);
         XPPercentChanged?.Invoke(percent01);
     }
-
+    
     public void LevelUp()
     {
         Level++;
@@ -93,6 +86,7 @@ public class PlayerVitals : MonoBehaviour
 
     private void RaiseAllUI()
     {
+        if(!_stats) return;
         HPChanged?.Invoke(CurrentHP, _stats.MaxHealthPoint);
         LevelChanged?.Invoke(Level);
     }

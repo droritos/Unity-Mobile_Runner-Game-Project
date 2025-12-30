@@ -1,9 +1,12 @@
 ﻿using System.Collections.Generic;
+using GlobalClasses;
 using UnityEngine;
 using UnityEngine.Pool;
 
 public class ObjectPoolManager : MonoBehaviour
 {
+    [field: SerializeField]public ObjectPoolType ObjectPoolType {get; private set;}
+    
     public GameObject Prefab;
     public int InitialPoolSize = 50;
     public int MaxPoolSize = 100;

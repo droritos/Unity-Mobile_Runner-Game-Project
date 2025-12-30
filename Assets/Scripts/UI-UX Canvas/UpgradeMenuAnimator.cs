@@ -55,12 +55,14 @@ public class UpgradeMenuAnimator : MonoBehaviour
     public void CloseMenu()
     {
         // Simple scale down when closing
-        transform.DOScale(0f, 0.2f)
+        containerTransform.transform.DOScale(0f, 0.2f)
             .SetUpdate(true)
             .SetEase(Ease.InBack)
             .OnComplete(() => {
-                gameObject.SetActive(false);
+                containerTransform.gameObject.SetActive(false);
                 // Resume game logic here if needed
             });
+
+        menuCanvasGroup.DOFade(0f, popDuration * 0.5f);
     }
 }

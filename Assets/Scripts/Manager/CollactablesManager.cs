@@ -1,5 +1,8 @@
+using System;
 using System.Collections.Generic;
+using GlobalClasses;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class CollactablesManager : MonoBehaviour
 {
@@ -8,7 +11,7 @@ public class CollactablesManager : MonoBehaviour
     [Header("Collactable Pool Fields")]
     [SerializeField] Transform CollactableParent;
     [SerializeField] Vector3 CollectableOffset;
-    [SerializeField] int addSpeedPower = 0;
+    [SerializeField] int addSpeedPower = 1;
     public ObjectPoolManager CollectableObjectPool;
     public float PoolChance;
 
@@ -22,10 +25,15 @@ public class CollactablesManager : MonoBehaviour
         MoveObject();
     }
 
+    private void OnValidate()
+    {
+        if (addSpeedPower < 1)
+            addSpeedPower = 1;
+    }
     public void CollectablePooled()
     {
         GameObject pooledObject = CollectableObjectPool.GetObject();
-        pooledObject.transform.position = RandomSpawnPoint() + CollectableOffset;
+        pooledObject.transform.position = RandomSpawnPoint();
     }
 
     private Vector3 RandomSpawnPoint()
@@ -34,13 +42,13 @@ public class CollactablesManager : MonoBehaviour
         switch (random) 
         {
             case 0:
-                return leftSpawnPoint.position;
+                return leftSpawnPoint.position + CollectableOffset;
             case 1:
-                return middleSpawnPoint.position;
+                return middleSpawnPoint.position  + CollectableOffset;
             case 2:
-                return rightpawnPoint.position;
+                return rightpawnPoint.position  + CollectableOffset;
             default:
-                return middleSpawnPoint.position;
+                return middleSpawnPoint.position  + CollectableOffset;;
         }
     }
 
@@ -50,8 +58,22 @@ public class CollactablesManager : MonoBehaviour
         {
             if (obj.gameObject.activeSelf)
             {
-                obj.Translate(MovingObjectsSO.CollectableSpeed * Time.deltaTime * Vector3.forward);
+                obj.Translate(GetSpeed() * addSpeedPower * Time.deltaTime * Vector3.forward);
             }
+        }
+    }
+
+    private float GetSpeed()
+    {
+        switch (CollectableObjectPool.ObjectPoolType)
+        {
+            case ObjectPoolType.Coin:
+                return MovingObjectsSO.CollectableSpeed;
+
+            case ObjectPoolType.LevelUp:
+                return -MovingObjectsSO.CollectableSpeed;
+            default:
+                return MovingObjectsSO.CollectableSpeed;
         }
     }
 

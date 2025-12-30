@@ -67,7 +67,7 @@ public class UpgradeMenu : MonoBehaviour
         int required = GetRequiredXPForLevel(_vitals.Level);
         _vitals.SetXPPercent(required <= 0 ? 0f : (float)_vitals.ExperiencePoints / required);
     }
-
+    [ContextMenu("Choose Upgrades")]
     private void ShowUpgradeOptions()
     {
         // 2. Reset: Hide all children first
@@ -104,6 +104,11 @@ public class UpgradeMenu : MonoBehaviour
             upgradeMenuAnimator.PlayOpenAnimation(activeCards);
         }
     }
-    
-    
+
+    public void CloseMenu()
+    {
+        upgradeMenuAnimator.CloseMenu();
+    }
+
+
 }

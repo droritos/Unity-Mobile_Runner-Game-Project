@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class UpgradeMenu : MonoBehaviour
@@ -5,6 +6,7 @@ public class UpgradeMenu : MonoBehaviour
     [Header("Leveling System")]
     [SerializeField] private int baseExperienceToLevel = 100;
     [SerializeField] private float experienceGrowthFactor = 1.5f;
+    [SerializeField] UpgradeMenuAnimator  upgradeMenuAnimator;
 
     [Header("Upgrades")]
     [SerializeField] private Transform upgradesParent;
@@ -68,21 +70,39 @@ public class UpgradeMenu : MonoBehaviour
 
     private void ShowUpgradeOptions()
     {
+        // 2. Reset: Hide all children first
         foreach (Transform child in upgradesParent)
             child.gameObject.SetActive(false);
 
+        // 3. Pick 3 Random Cards
+        List<Transform> activeCards = new List<Transform>();
         int activatedCount = 0;
-        while (activatedCount < 3 && upgradesParent.childCount > 0)
+
+        // Safety check to prevent infinite loop if you have < 3 upgrades total
+        int maxAttempts = 100; 
+        int attempts = 0;
+
+        while (activatedCount < 3 && upgradesParent.childCount > 0 && attempts < maxAttempts)
         {
+            attempts++;
             Transform randomChild = upgradesParent.GetChild(Random.Range(0, upgradesParent.childCount));
+            
             if (!randomChild.gameObject.activeSelf)
             {
                 randomChild.gameObject.SetActive(true);
+                activeCards.Add(randomChild); // Add to our list for the animator
                 activatedCount++;
             }
         }
 
+        // 4. Show the Menu Parent
         upgradesParent.gameObject.SetActive(true);
+
+        // 5. Trigger the Animation on ONLY the chosen cards
+        if (upgradeMenuAnimator != null)
+        {
+            upgradeMenuAnimator.PlayOpenAnimation(activeCards);
+        }
     }
     
     

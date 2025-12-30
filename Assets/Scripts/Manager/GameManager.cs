@@ -37,6 +37,7 @@ public class GameManager : MonoSingleton<GameManager>
     private void Update()
     {
         PauseGameWhenMenuVisible(upgradeMenu);
+        PauseGameWhenMenuVisible(generalMenu);
     }
     public void ResetStage()
     {

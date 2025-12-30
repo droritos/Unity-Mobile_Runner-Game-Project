@@ -29,7 +29,14 @@ public class PlayerVitals : MonoBehaviour
         RaiseCoinsGathered(0);
         RaiseAllUI();
     }
-
+    
+#if Unity_EDITOR
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.T)
+            LevelUp();
+    }
+#endif
     public void ResetHP()
     {
         CurrentHP = _stats.MaxHealthPoint;

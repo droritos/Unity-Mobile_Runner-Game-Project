@@ -25,6 +25,9 @@ public class GameManager : MonoSingleton<GameManager>
 
     protected override void Awake()
     {
+        Application.targetFrameRate = 60;
+        QualitySettings.vSyncCount = 0;
+        
         base.Awake();
         PlayerUIManager.Bind(Player.playerVitals); // Start GUI
     }

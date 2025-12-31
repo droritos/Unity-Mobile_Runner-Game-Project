@@ -5131,8 +5131,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87b0f5be500b41b4a87ce9453d1a76c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  readListFromFile: {fileID: 0}
-  webcamCapture: {fileID: 0}
+  <LeftLane>k__BackingField: {fileID: 0}
+  <MidLane>k__BackingField: {fileID: 0}
+  <RightLane>k__BackingField: {fileID: 0}
   <PlayerUIManager>k__BackingField: {fileID: 337708389}
   <PlayerManager>k__BackingField: {fileID: 1527687353}
   UpgradeMenuScript: {fileID: 237402863}
@@ -7902,7 +7903,7 @@ PrefabInstance:
     - target: {fileID: 6784464683888342405, guid: d9e2f86008c6ffc4da828f30030f1d67,
         type: 3}
       propertyPath: horizontalMoveRange
-      value: 3.2
+      value: 3.3
       objectReference: {fileID: 0}
     - target: {fileID: 7506804794689227773, guid: d9e2f86008c6ffc4da828f30030f1d67,
         type: 3}

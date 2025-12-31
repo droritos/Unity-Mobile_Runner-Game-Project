@@ -32,7 +32,7 @@ public class PlayerCombatController : MonoBehaviour , IPausable
 
     void Update()
     {
-        if(_isPaused) return;
+        if(_isPaused || GameManager.Instance.PlayerManager.PlayerMovement.IsMoving) return;
         _fire += Time.deltaTime;
         AutoShoot();
     }

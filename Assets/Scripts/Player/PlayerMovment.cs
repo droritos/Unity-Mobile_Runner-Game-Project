@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class PlayerMovement : MonoSingleton<PlayerMovement>
 {
+    public bool IsMoving {get; private set;}
+    
     [Header("Public Data")]
     [SerializeField] Animator animator;
     [SerializeField] BoxCollider boxCollider;
@@ -21,7 +23,6 @@ public class PlayerMovement : MonoSingleton<PlayerMovement>
     private Vector3 _startPosition;
     private Vector3 _startBoxPosition;
     private float _elapsedTime;
-    private bool _isMoving;
     private int _lane;
 
     private void Start()
@@ -32,7 +33,7 @@ public class PlayerMovement : MonoSingleton<PlayerMovement>
 
     private void Update()
     {
-        if (_isMoving)
+        if (IsMoving)
         {
             _elapsedTime += Time.deltaTime;
             float t = _elapsedTime / duration;
@@ -40,7 +41,7 @@ public class PlayerMovement : MonoSingleton<PlayerMovement>
 
             if (t >= 1.0f)
             {
-                _isMoving = false;
+                IsMoving = false;
                 _elapsedTime = 0;
             }
         }
@@ -48,14 +49,14 @@ public class PlayerMovement : MonoSingleton<PlayerMovement>
 
     public void MoveLeft()
     {
-        if (_isMoving) return;
+        if (IsMoving) return;
         _lane = Mathf.Clamp(_lane + 1, -1, 1);
         StartLaneMove();
     }
 
     public void MoveRight()
     {
-        if (_isMoving) return;
+        if (IsMoving) return;
         _lane = Mathf.Clamp(_lane - 1, -1, 1);
         StartLaneMove();
     }
@@ -64,7 +65,7 @@ public class PlayerMovement : MonoSingleton<PlayerMovement>
     {
         _startPosition = transform.position;
         _targetPosition = new Vector3(_lane * horizontalMoveRange, transform.position.y, transform.position.z);
-        _isMoving = true;
+        IsMoving = true;
     }
     private IEnumerator WaitForAnimationToFinish()
     {

@@ -125,7 +125,7 @@ public class PlayerBehavior : MonoBehaviour, ISavable
     #region << In Game Save & Load Function - Resume >>
     public void Save(ref GameData data)
     {
-        data.PlayerPositionX = this.transform.position.x;
+        data.PlayerPositionX = 0f; // Always Middle Lane!
         data.CoinsCollected = this.CoinsGathered;
 
         data.CurrentHealhPoint = playerVitals.CurrentHP;

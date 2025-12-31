@@ -22,6 +22,8 @@ public class PlayerMovement : MonoSingleton<PlayerMovement>
     private Vector3 _startBoxPosition;
     private float _elapsedTime;
     private bool _isMoving;
+    private int _lane;
+
     private void Start()
     {
         _startPosition = this.transform.position;
@@ -44,26 +46,25 @@ public class PlayerMovement : MonoSingleton<PlayerMovement>
         }
     }
 
-    public void MoveRight()
-    {
-        if (this.transform.position.x >= -horizontalOffset && !_isMoving)
-        {
-            _startPosition = this.transform.position;
-            _targetPosition = new Vector3(this.transform.position.x - horizontalMoveRange, this.transform.position.y, this.transform.position.z);
-            _isMoving = true;
-        }
-        //Debug.Log("Player Moving Left");
-    }
-
     public void MoveLeft()
     {
-        if (this.transform.position.x <= horizontalOffset && !_isMoving)
-        {
-            _startPosition = this.transform.position;
-            _targetPosition = new Vector3(this.transform.position.x + horizontalMoveRange, this.transform.position.y, this.transform.position.z);
-            _isMoving = true;
-        }
-        //Debug.Log("Player Moving Right");
+        if (_isMoving) return;
+        _lane = Mathf.Clamp(_lane + 1, -1, 1);
+        StartLaneMove();
+    }
+
+    public void MoveRight()
+    {
+        if (_isMoving) return;
+        _lane = Mathf.Clamp(_lane - 1, -1, 1);
+        StartLaneMove();
+    }
+
+    private void StartLaneMove()
+    {
+        _startPosition = transform.position;
+        _targetPosition = new Vector3(_lane * horizontalMoveRange, transform.position.y, transform.position.z);
+        _isMoving = true;
     }
     private IEnumerator WaitForAnimationToFinish()
     {

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using System.Collections;
 using Interfaces;
@@ -23,11 +24,22 @@ public class RobotEnemyScript : MonoBehaviour , IPausable
     private GameObject _bulletProjectile;
     private int currentHealth;
     private int _attack = Animator.StringToHash("Attack");
+    private int _speedAnimation = Animator.StringToHash("Speed");
     
     [Header("Enemy Pools")]
     private ObjectPoolManager bulletPool;
     private ObjectPoolManager enemyPool;
     private bool _isPause;
+
+    private void Start()
+    {
+        PauseManager.Instance.Register(this);
+    }
+
+    private void OnDestroy()
+    {
+        PauseManager.Instance.Unregister(this);
+    }
 
     void Update()
     {
@@ -109,6 +121,8 @@ public class RobotEnemyScript : MonoBehaviour , IPausable
     {
         currentHealth = maxHealth;
         objectRenderer.material.color = Color.white;
+            
+        _animator.SetFloat(_speedAnimation, 1f);     
     }
 
     private IEnumerator WaitForShoot()
@@ -122,6 +136,11 @@ public class RobotEnemyScript : MonoBehaviour , IPausable
 
     public void SetPaused(bool paused)
     {
+        if(paused)
+            _animator.SetFloat(_speedAnimation, 0.49f); 
+        else
+            _animator.SetFloat(_speedAnimation, 1f);
+        
         _isPause = paused;
     }
 }

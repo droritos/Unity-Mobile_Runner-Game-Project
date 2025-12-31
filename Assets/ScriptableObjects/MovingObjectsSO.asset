@@ -15,6 +15,7 @@ MonoBehaviour:
   objectDistance: -40
   despawnDistance: -110
   CollectableSpeed: 13
-  CobwebSpeed: 8
-  EnemyProjectileSpeed: 8
+  CobwebSpeed: 13
+  EnemyProjectileSpeed: 13
   SideWalkSpeed: 7.5
+  RoadSpeed: 0.75

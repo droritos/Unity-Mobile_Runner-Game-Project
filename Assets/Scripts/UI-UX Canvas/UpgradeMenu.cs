@@ -70,6 +70,9 @@ public class UpgradeMenu : MonoBehaviour
     [ContextMenu("Choose Upgrades")]
     private void ShowUpgradeOptions()
     {
+        // 1. Pause World
+        PauseManager.Instance.SetPaused(true);
+        
         // 2. Reset: Hide all children first
         foreach (Transform child in upgradesParent)
             child.gameObject.SetActive(false);
@@ -107,6 +110,7 @@ public class UpgradeMenu : MonoBehaviour
 
     public void CloseMenu()
     {
+        PauseManager.Instance.SetPaused(false);
         upgradeMenuAnimator.CloseMenu();
     }
 

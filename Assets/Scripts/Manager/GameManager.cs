@@ -3,10 +3,11 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoSingleton<GameManager>
 {
-    [Header("Reading Saved Data")]
-    [SerializeField] ReadListFromFile readListFromFile;
-    [SerializeField] WebcamCapture webcamCapture;
-
+    [Header("Terrain")]
+    [field: SerializeField] public Transform LeftLane{get ; private set;}
+    [field: SerializeField] public Transform MidLane{get ; private set;}
+    [field: SerializeField] public Transform RightLane{get ; private set;}
+    
     [Header("GUI")]
     [field: SerializeField] public PlayerUIManager PlayerUIManager {get ; private set;}
     

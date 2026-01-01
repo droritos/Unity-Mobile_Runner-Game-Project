@@ -100,7 +100,7 @@ public class PlayerVitals : MonoBehaviour
         AddCollectedCoins(_stats.CoinsMultiplier);
 
         Died?.Invoke();                 // UI / audio can react
-        EventManager.InvokeGameOver(this);
+        //EventManager.InvokeGameOver(this);
 
         SaveManager.Instance.DeleteFileSavedFile();
         SceneManager.LoadScene(3);

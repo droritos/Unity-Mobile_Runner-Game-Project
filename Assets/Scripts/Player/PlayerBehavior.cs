@@ -8,6 +8,11 @@ using Random = UnityEngine.Random;
 
 public class PlayerBehavior : MonoBehaviour, ISavable
 {
+    #region Events
+    public event Action OnDeath { add => playerVitals.Died += value; remove => playerVitals.Died -= value; }
+
+    #endregion
+    
     [Header("Public Fields")]
     public PlayerVitals playerVitals;
     public PlayerStatsConfig PlayerStatsConfig;

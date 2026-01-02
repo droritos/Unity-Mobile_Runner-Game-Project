@@ -144,7 +144,7 @@ public class PlayerBehavior : MonoBehaviour, ISavable
         data.CobwebScaler = PlayerStatsConfig.CobwebScaler;
         data.CobwebPiercingLevel = PlayerStatsConfig.CobwebPiercingLevel;
         data.CriticalChance = PlayerStatsConfig.CriticalChance;
-        Debug.Log($"Saved CR {PlayerStatsConfig.CriticalChance} On Game Data - {data.CriticalChance}");
+        //Debug.Log($"Saved CR {PlayerStatsConfig.CriticalChance} On Game Data - {data.CriticalChance}");
     }
     public void Load(GameData data)
     {

@@ -11,7 +11,7 @@ public class TouchSystem : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log("TouchSystem Awake started", this);
+        //Debug.Log("TouchSystem Awake started", this);
 
         // if (GameManager.Instance.PlayerManager == null) Debug.LogError("PlayerManager is NULL", this);
         // if (GameManager.Instance.PlayerManager.PlayerMovement == null) Debug.LogError("PlayerMovement is NULL", this);

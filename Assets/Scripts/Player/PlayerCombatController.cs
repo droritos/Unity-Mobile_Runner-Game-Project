@@ -24,7 +24,7 @@ public class PlayerCombatController : MonoBehaviour , IPausable
         PauseManager.Instance?.Register(this);
 
         this._playerStatsConfig = GameManager.Instance.Player.PlayerStatsConfig;
-        Debug.Log($"Your fire rate is {_playerStatsConfig.FireCooldown} By global {_playerStatsConfig.G_FireCooldown}");
+        //Debug.Log($"Your fire rate is {_playerStatsConfig.FireCooldown} By global {_playerStatsConfig.G_FireCooldown}");
     }
 
     void OnDestroy()

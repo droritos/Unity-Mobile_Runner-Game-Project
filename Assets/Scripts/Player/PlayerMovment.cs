@@ -13,7 +13,6 @@ public class PlayerMovement : MonoSingleton<PlayerMovement>
 
     [Header("Serialize Data")]
     [SerializeField] float duration = 0.5f;
-    [SerializeField] float horizontalOffset = 1f;
     [SerializeField] float horizontalMoveRange = 1.6f;
     [SerializeField] float verticalOffset;
     [SerializeField] float verticalMoveRange;

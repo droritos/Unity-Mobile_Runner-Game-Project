@@ -26,11 +26,13 @@ public class GameManager : MonoSingleton<GameManager>
 
     protected override void Awake()
     {
-        Application.targetFrameRate = 60;
+        Application.targetFrameRate = 61;
         QualitySettings.vSyncCount = 0;
         
         base.Awake();
         PlayerUIManager.Bind(Player.playerVitals); // Start GUI
+        
+        //PauseManager.Instance.SetPaused(false); // Unpause when Start
     }
 
     private void Start()
@@ -38,11 +40,6 @@ public class GameManager : MonoSingleton<GameManager>
         PlayerManager.PlayerBehavior.PlayerStatsConfig.SetStats();
     }
 
-    private void Update()
-    {
-        PauseGameWhenMenuVisible(upgradeMenu);
-        PauseGameWhenMenuVisible(generalMenu);
-    }
     public void ResetStage()
     {
         if (SaveManager.Instance != null)

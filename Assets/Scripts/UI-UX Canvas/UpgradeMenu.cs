@@ -9,7 +9,7 @@ public class UpgradeMenu : MonoBehaviour
     [SerializeField] UpgradeMenuAnimator  upgradeMenuAnimator;
 
     [Header("Upgrades")]
-    [SerializeField] private Transform upgradesParent;
+    [field:SerializeField] public Transform UpgradesParent { get; private set; }
 
     private PlayerVitals _vitals;
 
@@ -17,7 +17,7 @@ public class UpgradeMenu : MonoBehaviour
     {
         _vitals = GameManager.Instance.PlayerManager.PlayerBehavior.playerVitals;
 
-        upgradesParent.gameObject.SetActive(false);
+        UpgradesParent.gameObject.SetActive(false);
 
         // Force UI refresh through events (without changing XP)
         RaiseXPUI();
@@ -74,7 +74,7 @@ public class UpgradeMenu : MonoBehaviour
         PauseManager.Instance.SetPaused(true);
         
         // 2. Reset: Hide all children first
-        foreach (Transform child in upgradesParent)
+        foreach (Transform child in UpgradesParent)
             child.gameObject.SetActive(false);
 
         // 3. Pick 3 Random Cards
@@ -85,10 +85,10 @@ public class UpgradeMenu : MonoBehaviour
         int maxAttempts = 100; 
         int attempts = 0;
 
-        while (activatedCount < 3 && upgradesParent.childCount > 0 && attempts < maxAttempts)
+        while (activatedCount < 3 && UpgradesParent.childCount > 0 && attempts < maxAttempts)
         {
             attempts++;
-            Transform randomChild = upgradesParent.GetChild(Random.Range(0, upgradesParent.childCount));
+            Transform randomChild = UpgradesParent.GetChild(Random.Range(0, UpgradesParent.childCount));
             
             if (!randomChild.gameObject.activeSelf)
             {
@@ -99,7 +99,7 @@ public class UpgradeMenu : MonoBehaviour
         }
 
         // 4. Show the Menu Parent
-        upgradesParent.gameObject.SetActive(true);
+        UpgradesParent.gameObject.SetActive(true);
 
         // 5. Trigger the Animation on ONLY the chosen cards
         if (upgradeMenuAnimator != null)

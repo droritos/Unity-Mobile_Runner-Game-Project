@@ -839,7 +839,7 @@ MonoBehaviour:
   baseExperienceToLevel: 100
   experienceGrowthFactor: 1.5
   upgradeMenuAnimator: {fileID: 237402864}
-  upgradesParent: {fileID: 1916601068}
+  <UpgradesParent>k__BackingField: {fileID: 1916601068}
 --- !u!114 &237402864
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2730,6 +2730,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 1222034027}
+        m_TargetAssemblyTypeName: UIManagerInGame, Assembly-CSharp
+        m_MethodName: PauseMenuState
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &612075229
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4066,6 +4078,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1222034027}
+        m_TargetAssemblyTypeName: UIManagerInGame, Assembly-CSharp
+        m_MethodName: PauseMenuState
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &922092789
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4732,6 +4756,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1222034027}
+        m_TargetAssemblyTypeName: UIManagerInGame, Assembly-CSharp
+        m_MethodName: PauseMenuState
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1250640983}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
@@ -5235,6 +5271,7 @@ GameObject:
   - component: {fileID: 1222034024}
   - component: {fileID: 1222034025}
   - component: {fileID: 1222034026}
+  - component: {fileID: 1222034027}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -5382,6 +5419,19 @@ MonoBehaviour:
   minSpeed: 1
   maxSpeed: 5
   speedIncreasePerPoint: 0.001
+--- !u!114 &1222034027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1222034017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d37684ccdbcc39449ab0346fb5ffc5c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIManagerInGame
+  upgradeMenu: {fileID: 237402863}
 --- !u!1 &1250640983
 GameObject:
   m_ObjectHideFlags: 0
@@ -5393,6 +5443,7 @@ GameObject:
   - component: {fileID: 1250640984}
   - component: {fileID: 1250640986}
   - component: {fileID: 1250640985}
+  - component: {fileID: 1250640987}
   m_Layer: 5
   m_Name: Menu
   m_TagString: Untagged
@@ -5459,6 +5510,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1250640983}
   m_CullTransparentMesh: 1
+--- !u!114 &1250640987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1250640983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fa3ef6f0182002449974facf3607390, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PauseByMenuState
 --- !u!1001 &1257498816
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9328,7 +9391,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 237402864}
+      objectReference: {fileID: 237402863}
     - target: {fileID: 3254219498611216308, guid: 96eb8774245107f43ac60fa06689cf08,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
@@ -9357,7 +9420,7 @@ PrefabInstance:
     - target: {fileID: 3254219498611216308, guid: 96eb8774245107f43ac60fa06689cf08,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: UpgradeMenuAnimator, Assembly-CSharp
+      value: UpgradeMenu, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 3254219498611216308, guid: 96eb8774245107f43ac60fa06689cf08,
         type: 3}
@@ -9468,7 +9531,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 237402864}
+      objectReference: {fileID: 237402863}
     - target: {fileID: 4458807660384547158, guid: 96eb8774245107f43ac60fa06689cf08,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
@@ -9497,7 +9560,7 @@ PrefabInstance:
     - target: {fileID: 4458807660384547158, guid: 96eb8774245107f43ac60fa06689cf08,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: UpgradeMenuAnimator, Assembly-CSharp
+      value: UpgradeMenu, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 4458807660384547158, guid: 96eb8774245107f43ac60fa06689cf08,
         type: 3}
@@ -9578,7 +9641,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 237402864}
+      objectReference: {fileID: 237402863}
     - target: {fileID: 5443227372870998403, guid: 96eb8774245107f43ac60fa06689cf08,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
@@ -9607,7 +9670,7 @@ PrefabInstance:
     - target: {fileID: 5443227372870998403, guid: 96eb8774245107f43ac60fa06689cf08,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: UpgradeMenuAnimator, Assembly-CSharp
+      value: UpgradeMenu, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5443227372870998403, guid: 96eb8774245107f43ac60fa06689cf08,
         type: 3}
@@ -9663,7 +9726,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 237402864}
+      objectReference: {fileID: 237402863}
     - target: {fileID: 6112870053093849946, guid: 96eb8774245107f43ac60fa06689cf08,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
@@ -9692,7 +9755,7 @@ PrefabInstance:
     - target: {fileID: 6112870053093849946, guid: 96eb8774245107f43ac60fa06689cf08,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: UpgradeMenuAnimator, Assembly-CSharp
+      value: UpgradeMenu, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 6112870053093849946, guid: 96eb8774245107f43ac60fa06689cf08,
         type: 3}
@@ -9748,7 +9811,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 237402864}
+      objectReference: {fileID: 237402863}
     - target: {fileID: 6482998230264605401, guid: 96eb8774245107f43ac60fa06689cf08,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
@@ -9777,7 +9840,7 @@ PrefabInstance:
     - target: {fileID: 6482998230264605401, guid: 96eb8774245107f43ac60fa06689cf08,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: UpgradeMenuAnimator, Assembly-CSharp
+      value: UpgradeMenu, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 6482998230264605401, guid: 96eb8774245107f43ac60fa06689cf08,
         type: 3}
@@ -9858,7 +9921,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 237402864}
+      objectReference: {fileID: 237402863}
     - target: {fileID: 8067839911604233429, guid: 96eb8774245107f43ac60fa06689cf08,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
@@ -9887,7 +9950,7 @@ PrefabInstance:
     - target: {fileID: 8067839911604233429, guid: 96eb8774245107f43ac60fa06689cf08,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: UpgradeMenuAnimator, Assembly-CSharp
+      value: UpgradeMenu, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 8067839911604233429, guid: 96eb8774245107f43ac60fa06689cf08,
         type: 3}

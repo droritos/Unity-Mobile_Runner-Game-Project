@@ -1,15 +1,17 @@
-using System;
 using UnityEngine;
 
-public class PauseByMenuState : MonoBehaviour
+namespace UI_UX_Canvas
 {
-   private void OnEnable()
+   public class PauseByMenuState : MonoBehaviour
    {
-      PauseManager.Instance.SetPaused(true);
-   }
+      private void OnEnable()
+      {
+         PauseManager.Instance.SetPaused(true);
+      }
 
-   private void OnDisable()
-   {
-      PauseManager.Instance.SetPaused(false);
+      private void OnDisable()
+      {
+         PauseManager.Instance.SetPaused(false);
+      }
    }
 }

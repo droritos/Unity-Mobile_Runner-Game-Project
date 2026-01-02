@@ -17,6 +17,7 @@ TagManager:
   - Enemy
   - EnemyProjectile
   - LvLUp
+  - Lane
   layers:
   - Default
   - TransparentFX

@@ -16,6 +16,8 @@ public class PlayerCombatController : MonoBehaviour , IPausable
     private PlayerStatsConfig _playerStatsConfig;
     
     private bool _isPaused;
+    private bool _canShoot;
+    private const string LaneTag = "Lane"; 
     
     void Start()
     {
@@ -30,9 +32,21 @@ public class PlayerCombatController : MonoBehaviour , IPausable
         PauseManager.Instance?.Unregister(this);
     }
 
+    #region << Triggers >>
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag(LaneTag)) _canShoot = true;
+
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag(LaneTag)) _canShoot = false;
+    }
+    #endregion
+
     void Update()
     {
-        if(_isPaused || GameManager.Instance.PlayerManager.PlayerMovement.IsMoving) return;
+        if(_isPaused || !_canShoot) return;
         _fire += Time.deltaTime;
         AutoShoot();
     }

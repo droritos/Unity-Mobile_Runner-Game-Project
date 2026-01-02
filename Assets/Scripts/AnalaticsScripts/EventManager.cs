@@ -6,6 +6,7 @@ using UnityEngine;
 public static class EventManager
 {
     public static Action<PlayerVitals> OnGameOver;
+    public static Action OnMove;
 
     public static void InvokeGameOver(PlayerVitals player)
     {
@@ -15,4 +16,7 @@ public static class EventManager
             //Debug.Log("Event : Game Over");
         }
     }
+
+    public static void RaiseMove() => OnMove?.Invoke();
+
 }

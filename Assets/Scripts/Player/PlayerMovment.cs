@@ -52,6 +52,7 @@ public class PlayerMovement : MonoSingleton<PlayerMovement>
         if (IsMoving) return;
         _lane = Mathf.Clamp(_lane + 1, -1, 1);
         StartLaneMove();
+        EventManager.RaiseMove();
     }
 
     public void MoveRight()
@@ -59,6 +60,7 @@ public class PlayerMovement : MonoSingleton<PlayerMovement>
         if (IsMoving) return;
         _lane = Mathf.Clamp(_lane - 1, -1, 1);
         StartLaneMove();
+        EventManager.RaiseMove();
     }
 
     private void StartLaneMove()

@@ -3976,6 +3976,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1563560098}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &968472452 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1957425757072838884, guid: 035b4d99d2838ea40b15a68042fdca20,
+    type: 3}
+  m_PrefabInstance: {fileID: 3868675417535144560}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6615e818b09374d46a4890c5cb13c028, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ObjectPoolManager
 --- !u!1 &976535234
 GameObject:
   m_ObjectHideFlags: 0
@@ -7810,6 +7822,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -11.58597
       objectReference: {fileID: 0}
+    - target: {fileID: 3581854999659900298, guid: d9e2f86008c6ffc4da828f30030f1d67,
+        type: 3}
+      propertyPath: ghostPool
+      value: 
+      objectReference: {fileID: 968472452}
     - target: {fileID: 3976743632387120917, guid: d9e2f86008c6ffc4da828f30030f1d67,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -8917,12 +8934,6 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1455357189369777254, guid: 035b4d99d2838ea40b15a68042fdca20,
         type: 3}
-      propertyPath: Prefab
-      value: 
-      objectReference: {fileID: 4850937502060106510, guid: bdb5430d9ccc8e646a709b7a237b54c8,
-        type: 3}
-    - target: {fileID: 1455357189369777254, guid: 035b4d99d2838ea40b15a68042fdca20,
-        type: 3}
       propertyPath: parent
       value: 
       objectReference: {fileID: 1155634227}
@@ -8930,16 +8941,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PoolsParent
-      objectReference: {fileID: 0}
-    - target: {fileID: 4911162038769962775, guid: 035b4d99d2838ea40b15a68042fdca20,
-        type: 3}
-      propertyPath: m_Name
-      value: PlayerProjectilePool
-      objectReference: {fileID: 0}
-    - target: {fileID: 6713634873720950745, guid: 035b4d99d2838ea40b15a68042fdca20,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7661057225334952364, guid: 035b4d99d2838ea40b15a68042fdca20,
         type: 3}
@@ -8991,34 +8992,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8106176391297575317, guid: 035b4d99d2838ea40b15a68042fdca20,
-        type: 3}
-      propertyPath: Prefab
-      value: 
-      objectReference: {fileID: 1226670256292926325, guid: c837ff2def6e20946871e478b7c648e7,
-        type: 3}
-    - target: {fileID: 8328821582034523251, guid: 035b4d99d2838ea40b15a68042fdca20,
-        type: 3}
-      propertyPath: Prefab
-      value: 
-      objectReference: {fileID: 6965616633362287044, guid: 686b2cfa7e1889a468880ed33eb2ac28,
-        type: 3}
     - target: {fileID: 8328821582034523251, guid: 035b4d99d2838ea40b15a68042fdca20,
         type: 3}
       propertyPath: parent
       value: 
       objectReference: {fileID: 984993360}
-    - target: {fileID: 8328821582034523251, guid: 035b4d99d2838ea40b15a68042fdca20,
-        type: 3}
-      propertyPath: <ObjectPoolType>k__BackingField
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8524323836019563513, guid: 035b4d99d2838ea40b15a68042fdca20,
-        type: 3}
-      propertyPath: Prefab
-      value: 
-      objectReference: {fileID: 4709642697772357348, guid: aa9084ce13c4be946985945cf3a0eebb,
-        type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -5,6 +5,7 @@ namespace GlobalClasses
    public enum ObjectPoolType
    {
       Coin,
-      LevelUp
+      LevelUp,
+      Ghost
    };
 }

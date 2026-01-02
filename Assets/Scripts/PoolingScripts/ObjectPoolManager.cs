@@ -18,6 +18,9 @@ public class ObjectPoolManager : MonoBehaviour
 
     void Awake()
     {
+        if(!parent)
+            parent = GameManager.Instance.transform;
+        
         Pool = new ObjectPool<GameObject>(
             CreatePooledItem,
             OnTakeFromPool,

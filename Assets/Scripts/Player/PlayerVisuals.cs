@@ -9,12 +9,14 @@ public class PlayerVisuals : MonoBehaviour , IPausable
     [field:SerializeField] public Animator Animator {get;private set;}
     [SerializeField] private ParticleSystem currencyCollectedVFX;
     [SerializeField] private Transform vfxSpawnPoint;
+    [SerializeField] GhostTrail ghostTrail;
     
     private int _speedAnimation = Animator.StringToHash("Speed");
     private int _die = Animator.StringToHash("Die");
 
     private void Start()
     {
+        EventManager.OnMove += ghostTrail.ActivateTrail;
         PauseManager.Instance.Register(this);
         Animator.SetFloat(_speedAnimation, 1f);
 
@@ -23,6 +25,7 @@ public class PlayerVisuals : MonoBehaviour , IPausable
 
     private void OnDestroy()
     {
+        EventManager.OnMove -= ghostTrail.ActivateTrail;
         PauseManager.Instance.Unregister(this);
         //GameManager.Instance.Player.OnDeath -= ApplyDieAnimation;
     }

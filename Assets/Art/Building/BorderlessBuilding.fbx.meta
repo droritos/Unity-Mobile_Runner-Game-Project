@@ -1,9 +1,34 @@
 fileFormatVersion: 2
 guid: 0604ed71f9655344c89e3ab00ba2c695
 ModelImporter:
-  serializedVersion: 22200
+  serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: FrameMAT
+    second: {fileID: 2100000, guid: edd41c850c59e5e4695ebb9e1a899a3b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: GlassMAT
+    second: {fileID: 2100000, guid: 01e05eaa8d54a8b488ce05de3bc44e28, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: OpenWindowMAT
+    second: {fileID: 2100000, guid: eccc95c7263ddbd4b9e0e964828a8d88, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: RoomWindowMAT
+    second: {fileID: 2100000, guid: 7b9ad7370092c3b41b8f3931ea268b67, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WallMAT
+    second: {fileID: 2100000, guid: 8eb163295f3829b4bb21edae78f2f33a, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -16,8 +41,6 @@ ModelImporter:
     optimizeGameObjects: 0
     removeConstantScaleCurves: 0
     motionNodeName: 
-    rigImportErrors: 
-    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
@@ -58,6 +81,9 @@ ModelImporter:
     maxBonesPerVertex: 4
     minBoneWeight: 0.001
     optimizeBones: 1
+    generateMeshLods: 0
+    meshLodGenerationFlags: 0
+    maximumMeshLod: -1
     meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8

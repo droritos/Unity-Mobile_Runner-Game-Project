@@ -1255,7 +1255,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GhostTrail
   activeTime: 0.5
-  meshRefreshRate: 0.05
+  meshRefreshRate: 0.1
   ghostLifeTime: 0.25
   _ghostScale: 0.95
   ghostPool: {fileID: 0}

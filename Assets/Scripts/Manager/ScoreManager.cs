@@ -20,6 +20,7 @@ public class ScoreManager : MonoSingleton<ScoreManager> , IPausable
     private bool _isPaused;
 
     private const string ScoreConstText = "Score: ";
+    private int _lastDisplayedScore = -1;
     
 
     private void Start()
@@ -40,13 +41,27 @@ public class ScoreManager : MonoSingleton<ScoreManager> , IPausable
     {
         SetTimeScore();
         SetCoins();
-        ScoreText();
+        
+        TotalScore = _coinCollected + _survivedScore + _levelUpBonus; 
+        
+        // UNCOMMENT THIS NOW
+        ScoreText(); 
     }
 
-    private void ScoreText() // Do Not Delete Me!!! , I am connection to the enemy spawner
+    private void ScoreText() 
     {
-        TotalScore = _coinCollected + _survivedScore + _levelUpBonus; // Getting Updated
-        difficultyScaler.SetText(ScoreConstText + Mathf.FloorToInt(TotalScore));
+        // 1. Convert to int
+        int currentScoreInt = Mathf.FloorToInt(TotalScore);
+
+        // 2. CHECK: Did the number actually change?
+        if (currentScoreInt != _lastDisplayedScore)
+        {
+            // 3. Only update the text if it's a new number
+            _lastDisplayedScore = currentScoreInt;
+            
+            // Optimization: Use {0} format to avoid string garbage creation
+            difficultyScaler.SetText("Score: {0}", currentScoreInt);
+        }
     }
 
     private void UpdateCoins()

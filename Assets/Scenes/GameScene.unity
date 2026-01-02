@@ -5747,6 +5747,7 @@ GameObject:
   - component: {fileID: 1516203709}
   - component: {fileID: 1516203708}
   - component: {fileID: 1516203707}
+  - component: {fileID: 1516203711}
   m_Layer: 5
   m_Name: UnRayCanvas
   m_TagString: Untagged
@@ -5840,6 +5841,24 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1516203711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1516203706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04205d238745e974fa7fdbd9836a5131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CoinFlyEffect
+  flyingCoinPrefab: {fileID: 4042650901058381697, guid: 3bde3db70ba2281419a472a568cfdcbf,
+    type: 3}
+  coinTarget: {fileID: 851668559}
+  spawnParent: {fileID: 1516203710}
+  flyDuration: 0.8
+  flyEase: 26
 --- !u!114 &1527687353 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2224416257171542193, guid: d9e2f86008c6ffc4da828f30030f1d67,

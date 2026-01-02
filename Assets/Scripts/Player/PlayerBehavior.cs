@@ -35,6 +35,7 @@ public class PlayerBehavior : MonoBehaviour, ISavable
             coinPool.ReleaseObject(other.gameObject);
             CoinsGathered++;
             playerVitals.RaiseCoinsGathered(CoinsGathered);
+            CoinFlyEffect.Instance?.FlyCoinToTarget(other.transform.position);
         }
         else if (other.CompareTag("LvLUp"))
         {

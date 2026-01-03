@@ -42,6 +42,8 @@ public class GameManager : MonoSingleton<GameManager>
 
     public void ResetStage()
     {
+        Player.playerVitals.TakeDamage(999);
+        /*
         if (SaveManager.Instance != null)
         {
             SaveManager.Instance.DeleteFileSavedFile();
@@ -51,6 +53,7 @@ public class GameManager : MonoSingleton<GameManager>
         {
             Debug.LogWarning("No Save Manager Exits!");
         }
+        */
     }
 
     public void PauseGameWhenMenuVisible(GameObject menu)

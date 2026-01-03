@@ -72,7 +72,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 2
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -140,7 +140,7 @@ TextureImporter:
         width: 475
         height: 475
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -149,6 +149,28 @@ TextureImporter:
       bones: []
       spriteID: 17b9801107fff154fa50284b3645185a
       internalID: 1419404397
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Panels_2
+      rect:
+        serializedVersion: 2
+        x: 839
+        y: 42
+        width: 146
+        height: 459
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c021ed5917c2c24d956e4e6283147ce
+      internalID: 996177327
       vertices: []
       indices: 
       edges: []
@@ -169,6 +191,7 @@ TextureImporter:
     nameFileIdTable:
       Panels_0: -1650895645
       Panels_1: 1419404397
+      Panels_2: 996177327
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

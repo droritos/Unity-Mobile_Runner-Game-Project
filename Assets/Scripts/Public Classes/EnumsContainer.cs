@@ -8,4 +8,14 @@ namespace GlobalClasses
       LevelUp,
       Ghost
    };
+
+   public enum RandomAudioType
+   {
+      PlayerLaser,
+      EnemyLaser,
+      Dash,
+      Collected,
+      Click,
+      Hit,
+   }
 }

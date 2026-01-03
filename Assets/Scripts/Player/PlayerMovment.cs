@@ -1,5 +1,7 @@
 using System;
 using System.Collections;
+using GlobalClasses;
+using Manager;
 using UnityEngine;
 
 
@@ -67,6 +69,7 @@ public class PlayerMovement : MonoSingleton<PlayerMovement>
         _startPosition = transform.position;
         _targetPosition = new Vector3(_lane * horizontalMoveRange, transform.position.y, transform.position.z);
         IsMoving = true;
+        AudioManager.Instance.PlaySFXByType(RandomAudioType.Dash);
     }
     private IEnumerator WaitForAnimationToFinish()
     {

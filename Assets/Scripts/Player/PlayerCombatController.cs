@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using GlobalClasses;
 using Interfaces;
+using Manager;
 using UnityEngine;
 
 public class PlayerCombatController : MonoBehaviour , IPausable
@@ -57,6 +59,7 @@ public class PlayerCombatController : MonoBehaviour , IPausable
             visualsController.Shoot();
             StartCoroutine(WaitForShoot());
             _fire = 0;
+
         }
     }
     private IEnumerator WaitForShoot()
@@ -69,6 +72,8 @@ public class PlayerCombatController : MonoBehaviour , IPausable
 
         float animLen = visualsController.GetCurrentAnimationLength();
         yield return new WaitForSeconds(animLen);
+            AudioManager.Instance.PlaySFXByType(RandomAudioType.PlayerLaser);
+        
 
         if (ProjectilePoolScript == null)
         {

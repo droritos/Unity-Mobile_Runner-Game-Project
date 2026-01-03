@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e37fac6f666cdf442afdb9441f1f7baa, type: 3}
+  m_Name: Collected
+  m_EditorClassIdentifier: Assembly-CSharp::Scriptable_Scripts.RandomAudio
+  m_audioClip:
+  - {fileID: 8300000, guid: 4346334e0cb5b0c4eb56053cfb99de48, type: 3}
+  - {fileID: 8300000, guid: c88f3be3f9982ed4cbd4820f5cd842b5, type: 3}
+  - {fileID: 8300000, guid: 5a50f66335f1a784f8adebb3d7b0c864, type: 3}
+  - {fileID: 8300000, guid: 9f59c5fd22931fc45b80e111e483b634, type: 3}
+  - {fileID: 8300000, guid: 80dcbbea4e2596141828a3d6e27ded92, type: 3}
+  - {fileID: 8300000, guid: 61fdb73e82e3ee64b82eb295f1f997cf, type: 3}

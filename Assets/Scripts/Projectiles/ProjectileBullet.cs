@@ -1,4 +1,6 @@
+using GlobalClasses;
 using Interfaces;
+using Manager;
 using UnityEngine;
 
 public class ProjectileBullet : MonoBehaviour , IPausable
@@ -46,6 +48,7 @@ public class ProjectileBullet : MonoBehaviour , IPausable
             // If no more pierces or ricochets are left, release the bullet back to the pool
             GameManager.Instance.PlayerManager.PlayerCombatController.ProjectilePoolScript.ReleaseObject(this.gameObject);
             ResetWeb();
+            AudioManager.Instance.PlaySFXByType(RandomAudioType.Hit);
         }
         else if (other.CompareTag("Wall"))
         {

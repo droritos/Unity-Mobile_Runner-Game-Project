@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Manager;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -36,17 +37,20 @@ public class PlayerBehavior : MonoBehaviour, ISavable
             CoinsGathered++;
             playerVitals.RaiseCoinsGathered(CoinsGathered);
             CoinFlyEffect.Instance?.FlyCoinToTarget(other.transform.position);
+            AudioManager.Instance.PlayCollectSound();
         }
         else if (other.CompareTag("LvLUp"))
         {
             lvlUpPool.ReleaseObject(other.gameObject);
             GameManager.Instance.UpgradeMenuScript.GainExperience(-1);
+            AudioManager.Instance.PlayCollectSound();
         }
         else if (other.CompareTag("EnemyProjectile"))
         {
             playerVitals.TakeDamage(4);
             GameManager.Instance.BulletPool.ReleaseObject(other.gameObject);
             Handheld.Vibrate();
+            //AudioManager.Instance.Play
         }
     }
 

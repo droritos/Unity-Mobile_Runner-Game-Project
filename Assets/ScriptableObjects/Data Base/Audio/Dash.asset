@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e37fac6f666cdf442afdb9441f1f7baa, type: 3}
+  m_Name: Dash
+  m_EditorClassIdentifier: Assembly-CSharp::Scriptable_Scripts.RandomAudio
+  m_audioClip:
+  - {fileID: 8300000, guid: d3f2ea164f6da8b4ba18f0b7884a81dd, type: 3}
+  - {fileID: 8300000, guid: 87e349c659d3d0e41bd3c4ffe66486a8, type: 3}
+  - {fileID: 8300000, guid: c2db67228400cc74091f2f4445388828, type: 3}
+  - {fileID: 8300000, guid: ac82c752a81d32f4984680c24632f0d3, type: 3}
+  - {fileID: 8300000, guid: d83ed0d1208a30b4c8eae31b7c903c30, type: 3}

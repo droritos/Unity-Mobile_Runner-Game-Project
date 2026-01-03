@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e37fac6f666cdf442afdb9441f1f7baa, type: 3}
+  m_Name: Player Laser
+  m_EditorClassIdentifier: Assembly-CSharp::Scriptable_Scripts.RandomAudio
+  m_audioClip:
+  - {fileID: 8300000, guid: e02851bd8c9e9f54696e2c2bfb1b6eed, type: 3}
+  - {fileID: 8300000, guid: 75fe467e6ceccf24eaab66478a1fa141, type: 3}
+  - {fileID: 8300000, guid: a417a3ac2bb29474cb43b4d8b5b4736a, type: 3}
+  - {fileID: 8300000, guid: 151c9af7916818f4bb153d03b78b7ac7, type: 3}
+  - {fileID: 8300000, guid: 121cda85b91dd844185ad69ef0f7dfce, type: 3}

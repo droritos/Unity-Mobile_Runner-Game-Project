@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0437fa0ded0a81459bdf0af83cc59da, type: 3}
+  m_Name: AudioDataBase
+  m_EditorClassIdentifier: Assembly-CSharp::Scriptable_Scripts.AudioDataBase
+  GameBackgroundMusic: {fileID: 8300000, guid: cd5c754e5dfd1284096ef307217841ae, type: 3}
+  DeadBackgroundMusic: {fileID: 8300000, guid: d043b0bd89b1a494a9d5f608b279845c, type: 3}
+  clickSound: {fileID: 11400000, guid: ed11f09c4cf1d2c49b96d1819e1a062c, type: 2}
+  collectSound: {fileID: 11400000, guid: 3cc05ec42b69e214288b692d2d196ce9, type: 2}
+  dashSound: {fileID: 11400000, guid: e3cff91d2bd118a44a209a09b8346ec0, type: 2}
+  deathSound: {fileID: 0}
+  hitSound: {fileID: 11400000, guid: c4e78f83afe29094ba07eade536b049c, type: 2}
+  laserSoundV1: {fileID: 11400000, guid: 63f95464343114149ac6a0e191198971, type: 2}
+  laserSoundV2: {fileID: 11400000, guid: bcf72276d3bf2b7449da53504e0178d9, type: 2}
+  laserSoundV3: {fileID: 0}

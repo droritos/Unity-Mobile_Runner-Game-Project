@@ -18,6 +18,7 @@ public class ButtonSetting : MonoBehaviour
     private void Start()
     {
         _button.onClick.AddListener(DoSettingAction);
+        DoSettingAction(); // First 
     }
 
     protected virtual void DoSettingAction()
@@ -27,4 +28,9 @@ public class ButtonSetting : MonoBehaviour
         _extraImageLayer.enabled = _bool;
     }
 
+    private void UpdateImage()
+    {
+        AudioEventManager.ToggleMute(false);
+        _extraImageLayer.enabled = false;
+    }
 }

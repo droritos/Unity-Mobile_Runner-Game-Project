@@ -9,7 +9,7 @@ namespace Setting
         [SerializeField] private AudioMixerGroup audioMixerGroup;
 
         private const string MasterSound = "MasterSound";
-        private float _originalMasterSound;
+        private float _originalMasterSound = 0f;
 
         private void OnEnable()
         {

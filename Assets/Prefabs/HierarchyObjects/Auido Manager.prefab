@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6178950240059023557}
   - component: {fileID: 556805409661247875}
+  - component: {fileID: 5743395187240465614}
   m_Layer: 0
   m_Name: Auido Manager
   m_TagString: Untagged
@@ -48,8 +49,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AudioManager
   musicSource: {fileID: 5479084357862663102}
   sfxSource: {fileID: 962426141166624500}
-  backgroundMusic: {fileID: 8300000, guid: 3efb9097dd351ce41a3424e3157f5c28, type: 3}
   audioDataBase: {fileID: 11400000, guid: 69f7531d7a5a63d4fb42caee2dbd86f4, type: 2}
+--- !u!114 &5743395187240465614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 215986600903209894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a456d3c07e241c74c8cfe09545fcff8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Setting.AudioSettings
+  audioMixerGroup: {fileID: 24300002, guid: 001f4bdeebef4d34aa8276cb09997d91, type: 2}
 --- !u!1 &4476132158358731573
 GameObject:
   m_ObjectHideFlags: 0

@@ -66,6 +66,26 @@ public class EnemySpawner : MonoBehaviour , IPausable
             _wasPooled = false;
         }
     }
+    [ContextMenu("Spawn Enemy")]
+    public void PoolEnemies()
+    {
+        GameObject enemy = robotEnemyPool.GetObject();
+        if (enemy.TryGetComponent(out RobotEnemyScript component))
+        {
+            EnemiesList.Add(component);
+        }
+
+        Transform chosenSpawnPoint = GetRandomSpawnPoint();
+        Vector3 enemyPosition = chosenSpawnPoint.position;
+        // Check if there's already an enemy at the chosen position and keep moving along Z-axis if occupied
+        while (IsEnemyAtPosition(enemyPosition))
+        {
+            enemyPosition = new Vector3(enemyPosition.x, enemyPosition.y, enemyPosition.z + 3);
+        }
+
+        StartCoroutine(LerpEnemyPosition(enemy, enemyPosition));
+        _wasPooled = true;
+    }
 
     private Transform GetRandomSpawnPoint()
     {

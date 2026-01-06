@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -34,12 +35,16 @@ public class GameManager : MonoSingleton<GameManager>
         
         //PauseManager.Instance.SetPaused(false); // Unpause when Start
     }
-
+    [ContextMenu("Take ScreenShot")]
+    public void ScreenShot()
+    {
+        ScreenCapture.CaptureScreenshot("ScreenShot Of In Game.png", 1);
+        Debug.Log("ScreenShot Of In Game.png");
+    }
     private void Start()
     {
         PlayerManager.PlayerBehavior.PlayerStatsConfig.SetStats();
     }
-
     public void ResetStage()
     {
         Player.playerVitals.TakeDamage(999);

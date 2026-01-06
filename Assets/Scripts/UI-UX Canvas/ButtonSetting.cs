@@ -1,36 +1,50 @@
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ButtonSetting : MonoBehaviour
 {
-    [SerializeField] Button _button;
+    private const string SOUND_PREF_KEY = "SoundMuted";
+
+    [SerializeField] private Button _button;
     [SerializeField] private Image _extraImageLayer;
 
-    private bool _bool = false;
+    private bool _isMuted;
 
     private void OnValidate()
     {
-        if(!_button)
+        if (!_button)
             _button = GetComponent<Button>();
     }
 
     private void Start()
     {
-        _button.onClick.AddListener(DoSettingAction);
-        DoSettingAction(); // First 
+        LoadPref();
+        ApplyState();
+
+        _button.onClick.AddListener(ToggleSound);
     }
 
-    protected virtual void DoSettingAction()
+    private void ToggleSound()
     {
-        _bool = !_bool;                 // new state
-        AudioEventManager.ToggleMute(_bool);
-        _extraImageLayer.enabled = _bool;
+        _isMuted = !_isMuted;
+        SavePref();
+        ApplyState();
     }
 
-    private void UpdateImage()
+    private void ApplyState()
     {
-        AudioEventManager.ToggleMute(false);
-        _extraImageLayer.enabled = false;
+        AudioEventManager.ToggleMute(_isMuted);
+        _extraImageLayer.enabled = _isMuted;
+    }
+
+    private void SavePref()
+    {
+        PlayerPrefs.SetInt(SOUND_PREF_KEY, _isMuted ? 1 : 0);
+        PlayerPrefs.Save();
+    }
+
+    private void LoadPref()
+    {
+        _isMuted = PlayerPrefs.GetInt(SOUND_PREF_KEY, 0) == 1;
     }
 }

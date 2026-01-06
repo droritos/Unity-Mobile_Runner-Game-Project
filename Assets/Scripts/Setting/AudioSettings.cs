@@ -10,7 +10,7 @@ namespace Setting
 
         private const string MasterSound = "MasterSound";
         private float _originalMasterSound = 0f;
-
+        
         private void OnEnable()
         {
             AudioEventManager.OnAudioChanged += ToggleMute;

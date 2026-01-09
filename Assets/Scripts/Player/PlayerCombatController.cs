@@ -46,22 +46,26 @@ public class PlayerCombatController : MonoBehaviour , IPausable
     }
     #endregion
 
-    void Update()
+    // void Update()
+    // {
+    //     if(_isPaused || !_canShoot) return;
+    //     _fire += Time.deltaTime;
+    //     AutoShoot();
+    // }
+    public void Shoot()
     {
-        if(_isPaused || !_canShoot) return;
-        _fire += Time.deltaTime;
-        AutoShoot();
+        visualsController.Shoot();
+        StartCoroutine(WaitForShoot());
     }
     private void AutoShoot()
     {
         if (_fire >= _playerStatsConfig.FireCooldown)
         {
-            visualsController.Shoot();
-            StartCoroutine(WaitForShoot());
+            Shoot();
             _fire = 0;
-
         }
     }
+
     private IEnumerator WaitForShoot()
     {
         if (visualsController == null)

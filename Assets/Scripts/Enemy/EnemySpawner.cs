@@ -89,7 +89,8 @@ public class EnemySpawner : MonoBehaviour , IPausable
 
     private Transform GetRandomSpawnPoint()
     {
-        int randomIndex = Random.Range(0, 2);  // Assuming you have three spawn points: Left, Middle, Right
+        int randomIndex = Random.Range(0, 3);  // Assuming you have three spawn points: Left, Middle, Right
+        Debug.Log(randomIndex);
         switch (randomIndex)
         {
             case 0:

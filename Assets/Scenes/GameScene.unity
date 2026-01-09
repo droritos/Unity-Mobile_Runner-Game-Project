@@ -2751,6 +2751,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UI_UX_Canvas.AbilityButton
   fillRing: {fileID: 1269072544}
   playerStatsConfig: {fileID: 11400000, guid: 1904f4b2a317cb24aad0ce5ae06b6e50, type: 2}
+  color: {r: 0.19215688, g: 0.6862745, b: 0.6862745, a: 0.47058824}
+  pressScale: 0.9
+  punchStrength: 0.2
+  shakeStrength: 15
   tapMaxTime: 0.2
   tapMaxDistance: 50
   playerAbilityScript: {fileID: 2024165873}

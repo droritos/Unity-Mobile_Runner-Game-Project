@@ -6335,11 +6335,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   difficultyMultiplier: 1
   startSpawnInterval: 25
-  minSpawnInterval: 5
+  minSpawnInterval: 10
   maxEnemiesAtOnce: 3
   roadYLevel: 0
-  startFallSpeed: 10
-  maxFallSpeed: 30
+  spawnHeight: 20
+  startFallSpeed: 30
+  maxFallSpeed: 60
+  spacingCheckRadius: 2
+  spaceBetweenEnemies: 5
+  avoidanceLayer:
+    serializedVersion: 2
+    m_Bits: 256
   spawnPoints:
   - {fileID: 1759830482}
   - {fileID: 482651334}

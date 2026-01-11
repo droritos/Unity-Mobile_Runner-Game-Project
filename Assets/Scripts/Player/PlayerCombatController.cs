@@ -55,6 +55,7 @@ public class PlayerCombatController : MonoBehaviour , IPausable
     public void Shoot()
     {
         GetProjectileToShoot();
+        AudioManager.Instance.PlaySFXByType(RandomAudioType.PlayerLaser);
         //visualsController.Shoot();
         //StartCoroutine(WaitForShoot());
     }

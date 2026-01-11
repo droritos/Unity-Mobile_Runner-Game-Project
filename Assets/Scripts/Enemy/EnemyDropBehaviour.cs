@@ -19,7 +19,7 @@ public class EnemyDropBehaviour : MonoBehaviour, IPausable
 
         _dropTween = transform.DOMoveY(floorY, fallSpeed)
             .SetSpeedBased()
-            .SetEase(Ease.OutBounce) 
+            .SetEase(Ease.InQuad) 
             .OnComplete(OnLanded); // NEW: Call a specific function when done
             
         PauseManager.Instance.Register(this);

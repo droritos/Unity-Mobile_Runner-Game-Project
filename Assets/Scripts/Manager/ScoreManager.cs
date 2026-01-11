@@ -44,7 +44,6 @@ public class ScoreManager : MonoSingleton<ScoreManager> , IPausable
         
         TotalScore = _coinCollected + _survivedScore + _levelUpBonus; 
         
-        // UNCOMMENT THIS NOW
         ScoreText(); 
     }
 

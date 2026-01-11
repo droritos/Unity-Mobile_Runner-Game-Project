@@ -18,5 +18,7 @@ public class PauseManager : MonoSingleton<PauseManager>
 
         foreach (var p in _pausables)
             p.SetPaused(paused);
+        
+        //Debug.Log($"Paused Debug: {IsPaused}");
     }
 }

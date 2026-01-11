@@ -4,7 +4,6 @@ using UnityEngine.SceneManagement;
 
 public class PlayerVitals : MonoBehaviour
 {
-    
     public int Level { get; private set; } = 1;
     public int CurrentHP { get; private set; }
     public int ExperiencePoints { get; private set; } = 0;
@@ -45,6 +44,8 @@ public class PlayerVitals : MonoBehaviour
 
         if (CurrentHP <= 0)
             Die();
+        
+        EventManager.RaiseTakeDamage();
     }
     public void RaiseCoinsGathered(int amount)
     {

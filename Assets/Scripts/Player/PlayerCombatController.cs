@@ -54,8 +54,9 @@ public class PlayerCombatController : MonoBehaviour , IPausable
     // }
     public void Shoot()
     {
-        visualsController.Shoot();
-        StartCoroutine(WaitForShoot());
+        GetProjectileToShoot();
+        //visualsController.Shoot();
+        //StartCoroutine(WaitForShoot());
     }
     private void AutoShoot()
     {
@@ -76,8 +77,8 @@ public class PlayerCombatController : MonoBehaviour , IPausable
 
         float animLen = visualsController.GetCurrentAnimationLength();
         yield return new WaitForSeconds(animLen);
-            AudioManager.Instance.PlaySFXByType(RandomAudioType.PlayerLaser);
         
+        AudioManager.Instance.PlaySFXByType(RandomAudioType.PlayerLaser);
 
         if (ProjectilePoolScript == null)
         {
@@ -85,23 +86,28 @@ public class PlayerCombatController : MonoBehaviour , IPausable
             yield break;
         }
 
+        GetProjectileToShoot();
+        // optionally:
+        // web.transform.rotation = projectileSpawnPoint[0].rotation;
+        // web.SetActive(true);
+    }
+
+    private void GetProjectileToShoot()
+    {
         GameObject projectile = ProjectilePoolScript.GetObject();
         if (projectile == null)
         {
             Debug.LogError("WaitForShoot: Pool returned NULL object", this);
-            yield break;
+            return;
         }
 
         if (projectileSpawnPoint == null || projectileSpawnPoint.Length == 0 || projectileSpawnPoint[0] == null)
         {
             Debug.LogError("WaitForShoot: projectileSpawnPoint[0] is NULL / not set", this);
-            yield break;
+            return;
         }
 
         projectile.transform.position = projectileSpawnPoint[0].position;
-        // optionally:
-        // web.transform.rotation = projectileSpawnPoint[0].rotation;
-        // web.SetActive(true);
     }
 
     public void SetPaused(bool paused)

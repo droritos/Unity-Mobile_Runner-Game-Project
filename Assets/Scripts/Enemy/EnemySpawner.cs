@@ -1,205 +1,117 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using Interfaces;
 using UnityEngine;
+using Interfaces;
 using Random = UnityEngine.Random;
 
-public class EnemySpawner : MonoBehaviour , IPausable
+public class EnemySpawner : MonoBehaviour, IPausable
 {
-    [Header("Enemy Data")]
-    [SerializeField] int fallingSpeed = 5;
+    [Header("Difficulty Settings")]
+    [Tooltip("Higher = Harder faster")]
+    [SerializeField] float difficultyMultiplier = 1.0f; 
+    [SerializeField] int startSpawnInterval = 25; 
+    [SerializeField] int minSpawnInterval = 5;
 
-    [Header("Spawn Points")]
-    [SerializeField] Transform leftSpawner;
-    [SerializeField] Transform middleSpawner;
-    [SerializeField] Transform rightSpawner;
+    [Header("Horde Settings")]
+    [SerializeField] int maxEnemiesAtOnce = 3; 
 
-    [Header("Enemy Belongings")]
-    public List<RobotEnemyScript> EnemiesList;
-    public Transform EnemyParent;
-    [SerializeField] ObjectPoolManager robotEnemyPool;
+    [Header("Drop Settings")]
+    [SerializeField] float roadYLevel = 0f; // Where is the ground?
+    [SerializeField] float startFallSpeed = 10f;
+    [SerializeField] float maxFallSpeed = 30f; // Falls faster as game gets harder
 
-    [Header("Spawner Data")]
-    [SerializeField] int scoreToSpawn = 25;
+    [Header("References")]
+    [SerializeField] Transform[] spawnPoints; // Left, Middle, Right
+    [SerializeField] ObjectPoolManager robotEnemyPool; // Your existing pool
+    
+    // Internal State
+    private float _currentScore;
+    private int _nextSpawnThreshold;
+    private float _currentFallSpeed;
+    private int _currentSpawnInterval;
+    private bool _isPaused;
 
-
-    private bool _wasPooled = false;
-    private int _score;
-    private bool _isPause;
-
-    void Start() => PauseManager.Instance.Register(this);
+    void Start()
+    {
+        PauseManager.Instance.Register(this);
+        
+        // Init Defaults
+        _currentFallSpeed = startFallSpeed;
+        _currentSpawnInterval = startSpawnInterval;
+        _nextSpawnThreshold = startSpawnInterval;
+    }
 
     private void OnDestroy() => PauseManager.Instance.Unregister(this);
 
     void Update()
     {
-        if(_isPause) return;
-        TryPoolEnemies();
+        if (_isPaused) return;
+
+        // 1. Difficulty Math
+        _currentScore = ScoreManager.Instance.TotalScore;
+        CalculateDifficulty();
+
+        // 2. Spawn Check
+        if (_currentScore >= _nextSpawnThreshold)
+        {
+            SpawnWave();
+            _nextSpawnThreshold += _currentSpawnInterval;
+        }
     }
-    private void TryPoolEnemies()
+
+    private void CalculateDifficulty()
     {
-        _score = Mathf.FloorToInt(ScoreManager.Instance.TotalScore);
-        if (_score % scoreToSpawn == 0 && _score != 0 && !_wasPooled)
-        {
-            GameObject enemy = robotEnemyPool.GetObject();
-            if (enemy.TryGetComponent(out RobotEnemyScript component))
-            {
-                EnemiesList.Add(component);
-            }
+        float effectiveScore = _currentScore * difficultyMultiplier;
 
-            Transform chosenSpawnPoint = GetRandomSpawnPoint();
-            Vector3 enemyPosition = chosenSpawnPoint.position;
+        // Fall Speed increases
+        float speedIncrease = effectiveScore / 100f; 
+        _currentFallSpeed = Mathf.Clamp(startFallSpeed + speedIncrease, startFallSpeed, maxFallSpeed);
 
-            // Check if there's already an enemy at the chosen position and keep moving along Z-axis if occupied
-            while (IsEnemyAtPosition(enemyPosition))
-            {
-                enemyPosition = new Vector3(enemyPosition.x, enemyPosition.y, enemyPosition.z + 3);
-            }
-
-            StartCoroutine(LerpEnemyPosition(enemy, enemyPosition));
-            _wasPooled = true;
-        }
-        else if (_score % scoreToSpawn != 0 && _wasPooled)
-        {
-            // Reset the flag when the score is no longer a multiple of 15
-            _wasPooled = false;
-        }
+        // Interval Decreases (Spawns faster)
+        int intervalDecrease = (int)(effectiveScore / 50f); 
+        _currentSpawnInterval = Mathf.Clamp(startSpawnInterval - intervalDecrease, minSpawnInterval, startSpawnInterval);
     }
-    [ContextMenu("Spawn Enemy")]
-    public void PoolEnemies()
+
+    private void SpawnWave()
     {
-        GameObject enemy = robotEnemyPool.GetObject();
-        if (enemy.TryGetComponent(out RobotEnemyScript component))
-        {
-            EnemiesList.Add(component);
-        }
+        // Calculate how many to spawn (1 -> 2 -> 3 based on score)
+        int countToSpawn = 1;
+        if (_currentScore > 1000) countToSpawn = Random.Range(1, maxEnemiesAtOnce + 1);
+        else if (_currentScore > 500) countToSpawn = Random.Range(1, 3);
 
-        Transform chosenSpawnPoint = GetRandomSpawnPoint();
-        Vector3 enemyPosition = chosenSpawnPoint.position;
-        // Check if there's already an enemy at the chosen position and keep moving along Z-axis if occupied
-        while (IsEnemyAtPosition(enemyPosition))
+        for (int i = 0; i < countToSpawn; i++)
         {
-            enemyPosition = new Vector3(enemyPosition.x, enemyPosition.y, enemyPosition.z + 3);
+            SpawnSingleEnemy(i); // Pass index to help offset positions
         }
-
-        StartCoroutine(LerpEnemyPosition(enemy, enemyPosition));
-        _wasPooled = true;
     }
 
-    private Transform GetRandomSpawnPoint()
+    private void SpawnSingleEnemy(int offsetIndex)
     {
-        int randomIndex = Random.Range(0, 3);  // Assuming you have three spawn points: Left, Middle, Right
-        Debug.Log(randomIndex);
-        switch (randomIndex)
+        GameObject enemyObj = robotEnemyPool.GetObject();
+        
+        // 1. Position Logic
+        Transform chosenLane = spawnPoints[Random.Range(0, spawnPoints.Length)];
+        Vector3 spawnPos = chosenLane.position;
+
+        // OFFSET: If spawning a "Horde" (multiple at once), push the later ones back
+        // so they don't land inside each other.
+        spawnPos.z += (offsetIndex * 4.0f); 
+
+        // 2. Set Position & Active
+        enemyObj.transform.position = spawnPos;
+        enemyObj.SetActive(true); // Ensure pool activates it
+
+        // 3. Trigger the Fall (Using the NEW script)
+        if (enemyObj.TryGetComponent(out EnemyDropBehaviour dropper))
         {
-            case 0:
-                return leftSpawner;
-            case 1:
-                return middleSpawner;
-            case 2:
-                return rightSpawner;
-            default:
-                return middleSpawner;  // Fallback to middle spawner if something goes wrong
+            dropper.StartDrop(roadYLevel, _currentFallSpeed);
         }
+        else
+        {
+            Debug.LogWarning("Enemy is missing 'EnemyDropBehaviour' script!");
+        }
+        
+        // Note: Your RobotEnemyScript runs its own Start/Update automatically
     }
 
-    private bool IsEnemyAtPosition(Vector3 position)
-    {
-        for (int i = EnemiesList.Count - 1; i >= 0; i--)
-        {
-            RobotEnemyScript enemy = EnemiesList[i];
-
-            // Remove inactive enemies
-            if (!enemy.gameObject.activeInHierarchy)
-            {
-                EnemiesList.RemoveAt(i);
-                continue;
-            }
-
-            // Check if the enemy is at the given position
-            if (Vector3.Distance(enemy.transform.position, position) < 1.0f)
-            {
-                return true; // An enemy is found at the position
-            }
-        }
-
-        return false; // No enemy at this position
-    }
-
-        private void SetDiffculty()
-    {
-        if (_score >= 50 && _score < 100)
-        {
-            scoreToSpawn = 30;
-            fallingSpeed = 4;
-        }
-        else if (_score >= 100 && _score < 150)
-        {
-            scoreToSpawn = 25;
-            fallingSpeed = 5;
-        }
-        else if (_score >= 150 && _score < 200)
-        {
-            scoreToSpawn = 20;
-            fallingSpeed = 6;
-        }
-        else if (_score >= 200 && _score < 300)
-        {
-            scoreToSpawn = 15;
-            fallingSpeed = 7;
-        }
-        else if (_score >= 300 && _score < 400)
-        {
-            scoreToSpawn = 12;
-            fallingSpeed = 8;
-        }
-        else if (_score >= 400 && _score < 500)
-        {
-            scoreToSpawn = 10;
-            fallingSpeed = 9;
-        }
-        else if (_score >= 500 && _score < 600)
-        {
-            scoreToSpawn = 8;
-            fallingSpeed = 10;
-        }
-        else if (_score >= 600 && _score < 800)
-        {
-            scoreToSpawn = 7;
-            fallingSpeed = 11;
-        }
-        else if (_score >= 800 && _score < 1000)
-        {
-            scoreToSpawn = 6;
-            fallingSpeed = 12;
-        }
-        else if (_score >= 1000)
-        {
-            scoreToSpawn = 5; // Maximum spawn rate
-            fallingSpeed = 14; // Maximum falling speed
-        }
-    }
-
-    private IEnumerator LerpEnemyPosition(GameObject enemy, Vector3 targetPosition)
-    {
-        float distance = Vector3.Distance(enemy.transform.position, targetPosition);
-        float elapsedTime = 0f;
-        Vector3 startPosition = enemy.transform.position;
-
-        while (elapsedTime < distance / fallingSpeed)
-        {
-            enemy.transform.position = Vector3.Lerp(startPosition, targetPosition, elapsedTime / (distance / fallingSpeed));
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
-
-        // Ensure the final position is exactly at the target position
-        enemy.transform.position = targetPosition;
-    }
-
-    public void SetPaused(bool paused)
-    {
-        _isPause =  paused;
-    }
+    public void SetPaused(bool paused) => _isPaused = paused;
 }

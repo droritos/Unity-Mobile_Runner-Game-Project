@@ -3,6 +3,7 @@ using System.Collections;
 using Manager;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
@@ -10,7 +11,7 @@ using Random = UnityEngine.Random;
 public class PlayerBehavior : MonoBehaviour, ISavable
 {
     #region Events
-    public event Action OnDeath { add => playerVitals.Died += value; remove => playerVitals.Died -= value; }
+    public event UnityAction OnDeath { add => playerVitals.Died.AddListener(value); remove => playerVitals.Died.RemoveListener(value) ; }
 
     #endregion
     
@@ -148,6 +149,7 @@ public class PlayerBehavior : MonoBehaviour, ISavable
         data.CobwebScaler = PlayerStatsConfig.CobwebScaler;
         data.CobwebPiercingLevel = PlayerStatsConfig.CobwebPiercingLevel;
         data.CriticalChance = PlayerStatsConfig.CriticalChance;
+        data.LastScore = (int)ScoreManager.Instance.TotalScore;
         //Debug.Log($"Saved CR {PlayerStatsConfig.CriticalChance} On Game Data - {data.CriticalChance}");
     }
     public void Load(GameData data)

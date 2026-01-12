@@ -5,6 +5,9 @@ using UnityEngine;
 public class GameData
 {
     public bool IsPlayerSurvived;
+    
+    public int LastScore;
+    
 
     public int PlayerCurrentLevel;
     public int CoinsCollected;
@@ -58,5 +61,7 @@ public class GameData
         G_CobwebScaler = 0;
         G_CobwebPiercingLevel = 0;
         G_CriticalChance = 10;
+
+        LastScore = 0;
     }
 }

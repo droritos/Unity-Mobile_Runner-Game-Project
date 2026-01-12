@@ -8,6 +8,8 @@ public static class EventManager
     public static Action<PlayerVitals> OnGameOver;
     public static Action OnMove;
     public static Action OnTakeDamage;
+    public static Action OnPlayerDeath;
+
 
     public static void InvokeGameOver(PlayerVitals player)
     {
@@ -20,5 +22,7 @@ public static class EventManager
 
     public static void RaiseMove() => OnMove?.Invoke();
     public static void RaiseTakeDamage() => OnTakeDamage?.Invoke();
+    
+    public static void RaisePlayerDeath() => OnPlayerDeath?.Invoke();
 
 }

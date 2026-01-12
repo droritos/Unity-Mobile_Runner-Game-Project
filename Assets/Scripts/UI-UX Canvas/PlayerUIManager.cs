@@ -48,9 +48,10 @@ public class PlayerUIManager : MonoBehaviour
         _playerVitals.HPChanged += OnHPChanged;
         _playerVitals.XPPercentChanged += OnXPChanged;
         _playerVitals.LevelChanged += OnLevelChanged;
-        _playerVitals.Died += OnDied;
         _playerVitals.OnCoinsGathered += OnCoinsGathered;
     }
+
+    
 
     private void Unbind()
     {
@@ -59,7 +60,6 @@ public class PlayerUIManager : MonoBehaviour
         _playerVitals.HPChanged -= OnHPChanged;
         _playerVitals.XPPercentChanged -= OnXPChanged;
         _playerVitals.LevelChanged -= OnLevelChanged;
-        _playerVitals.Died -= OnDied;
         _playerVitals.OnCoinsGathered -= OnCoinsGathered;
 
         _playerVitals = null;
@@ -89,10 +89,5 @@ public class PlayerUIManager : MonoBehaviour
     {
         if (levelText != null) levelText.SetText(LevelText + level);
     }
-
-    private void OnDied()
-    {
-        // Optional: show red flash, disable HUD, etc.
-        // (don’t load scene here — player/game systems should do that)
-    }
+    
 }

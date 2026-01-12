@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -43,26 +44,27 @@ public class GameManager : MonoSingleton<GameManager>
     }
     private void Start()
     {
+        Player.OnDeath += MoveToGameOver;
         PlayerManager.PlayerBehavior.PlayerStatsConfig.SetStats();
     }
+
+    private void OnDestroy()
+    {
+        Player.OnDeath -= MoveToGameOver;
+    }
+
     public void ResetStage()
     {
         Player.playerVitals.TakeDamage(999);
-        /*
-        if (SaveManager.Instance != null)
-        {
-            SaveManager.Instance.DeleteFileSavedFile();
-            SceneManager.LoadScene(2);
-        }
-        else
-        {
-            Debug.LogWarning("No Save Manager Exits!");
-        }
-        */
     }
 
-    public void PauseGameWhenMenuVisible(GameObject menu)
+    private void MoveToGameOver()
     {
-        PauseManager.Instance.SetPaused(menu.activeSelf);
+        StartCoroutine(MoveToGameOver(1f));  // Death Effect Duration
+    }
+    private IEnumerator MoveToGameOver(float delay )
+    {
+        yield return new WaitForSeconds(delay);
+        SceneManager.LoadScene(3);
     }
 }

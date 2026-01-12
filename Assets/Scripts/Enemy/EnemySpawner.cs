@@ -93,7 +93,7 @@ namespace Enemy
             float speedIncrease = effectiveScore / 100f; 
             _currentFallSpeed = Mathf.Clamp(startFallSpeed + speedIncrease, startFallSpeed, maxFallSpeed);
 
-            int intervalDecrease = (int)(effectiveScore / 50f); 
+            int intervalDecrease = (int)(effectiveScore / 200f); 
             _currentSpawnInterval = Mathf.Clamp(startSpawnInterval - intervalDecrease, minSpawnInterval, startSpawnInterval);
         }
 

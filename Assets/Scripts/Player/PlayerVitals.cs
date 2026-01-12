@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 public class PlayerVitals : MonoBehaviour
@@ -11,7 +12,7 @@ public class PlayerVitals : MonoBehaviour
     public event Action<int, int> HPChanged;          // current, max
     public event Action<float> XPPercentChanged;      // 0..1
     public event Action<int> LevelChanged;            // new level
-    public event Action Died;
+    public UnityEvent Died;
     public event Action<int> OnCoinsGathered;
 
     private PlayerStatsConfig _stats;
@@ -100,11 +101,10 @@ public class PlayerVitals : MonoBehaviour
 
         AddCollectedCoins(_stats.CoinsMultiplier);
 
-        Died?.Invoke();                 // UI / audio can react
-        //EventManager.InvokeGameOver(this);
+        Died?.Invoke();
 
         SaveManager.Instance.DeleteFileSavedFile();
-        SceneManager.LoadScene(3);
+       
     }
 
     private static void AddCollectedCoins(float multiplyCoins)

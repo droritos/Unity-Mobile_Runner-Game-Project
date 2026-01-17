@@ -1323,7 +1323,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Increase Web Size
+  m_text: Increase Laser Size
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ec44b9145e682b340a0ac060749cc08a, type: 2}
   m_sharedMaterial: {fileID: 598662105420952731, guid: ec44b9145e682b340a0ac060749cc08a,
@@ -1516,7 +1516,7 @@ GameObject:
   - component: {fileID: 4069772322354678193}
   - component: {fileID: 6482998230264605401}
   m_Layer: 5
-  m_Name: IncreaseWebSize
+  m_Name: IncreaseSize
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
